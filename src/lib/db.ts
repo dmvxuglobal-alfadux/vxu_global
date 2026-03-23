@@ -78,7 +78,7 @@ export const db = {
   // Blogs
   getBlogs: async (): Promise<BlogPost[]> => {
     if (isSupabaseLive) {
-      const { data, error } = await supabase.from('blogs').select('*').order('date', { ascending: false })
+      const { data, error } = await supabase!.from('blogs').select('*').order('date', { ascending: false })
       if (error) console.error(error)
       return data || []
     }
@@ -88,7 +88,7 @@ export const db = {
   
   getBlog: async (slug: string): Promise<BlogPost | undefined> => {
     if (isSupabaseLive) {
-      const { data } = await supabase.from('blogs').select('*').eq('slug', slug).single()
+      const { data } = await supabase!.from('blogs').select('*').eq('slug', slug).single()
       return data
     }
     await wait(MOCK_DELAY)
@@ -98,7 +98,7 @@ export const db = {
 
   addBlog: async (blog: Omit<BlogPost, 'id'>): Promise<void> => {
     if (isSupabaseLive) {
-      await supabase.from('blogs').insert([blog])
+      await supabase!.from('blogs').insert([blog])
       return
     }
     await wait(MOCK_DELAY)
@@ -109,7 +109,7 @@ export const db = {
 
   deleteBlog: async (id: string): Promise<void> => {
     if (isSupabaseLive) {
-      await supabase.from('blogs').delete().eq('id', id)
+      await supabase!.from('blogs').delete().eq('id', id)
       return
     }
     await wait(MOCK_DELAY)
@@ -119,7 +119,7 @@ export const db = {
 
   updateBlog: async (id: string, blog: Partial<BlogPost>): Promise<void> => {
     if (isSupabaseLive) {
-      await supabase.from('blogs').update(blog).eq('id', id)
+      await supabase!.from('blogs').update(blog).eq('id', id)
       return
     }
     await wait(MOCK_DELAY)
@@ -134,7 +134,7 @@ export const db = {
   // Mentors
   getMentors: async (): Promise<Mentor[]> => {
     if (isSupabaseLive) {
-      const { data } = await supabase.from('mentors').select('*')
+      const { data } = await supabase!.from('mentors').select('*')
       return data || []
     }
     await wait(MOCK_DELAY)
@@ -143,7 +143,7 @@ export const db = {
 
   addMentor: async (mentor: Omit<Mentor, 'id'>): Promise<void> => {
     if (isSupabaseLive) {
-      await supabase.from('mentors').insert([mentor])
+      await supabase!.from('mentors').insert([mentor])
       return
     }
     await wait(MOCK_DELAY)
@@ -154,7 +154,7 @@ export const db = {
 
   deleteMentor: async (id: string): Promise<void> => {
     if (isSupabaseLive) {
-      await supabase.from('mentors').delete().eq('id', id)
+      await supabase!.from('mentors').delete().eq('id', id)
       return
     }
     await wait(MOCK_DELAY)
@@ -164,7 +164,7 @@ export const db = {
 
   updateMentor: async (id: string, mentor: Partial<Mentor>): Promise<void> => {
     if (isSupabaseLive) {
-      await supabase.from('mentors').update(mentor).eq('id', id)
+      await supabase!.from('mentors').update(mentor).eq('id', id)
       return
     }
     await wait(MOCK_DELAY)
@@ -179,7 +179,7 @@ export const db = {
   // Ambassadors
   getAmbassadors: async (): Promise<Ambassador[]> => {
     if (isSupabaseLive) {
-      const { data } = await supabase.from('ambassadors').select('*')
+      const { data } = await supabase!.from('ambassadors').select('*')
       return data || []
     }
     await wait(MOCK_DELAY)
@@ -188,7 +188,7 @@ export const db = {
 
   addAmbassador: async (ambassador: Omit<Ambassador, 'id'>): Promise<void> => {
     if (isSupabaseLive) {
-      await supabase.from('ambassadors').insert([ambassador])
+      await supabase!.from('ambassadors').insert([ambassador])
       return
     }
     await wait(MOCK_DELAY)
@@ -199,7 +199,7 @@ export const db = {
 
   deleteAmbassador: async (id: string): Promise<void> => {
     if (isSupabaseLive) {
-      await supabase.from('ambassadors').delete().eq('id', id)
+      await supabase!.from('ambassadors').delete().eq('id', id)
       return
     }
     await wait(MOCK_DELAY)
@@ -209,7 +209,7 @@ export const db = {
 
   updateAmbassador: async (id: string, ambassador: Partial<Ambassador>): Promise<void> => {
     if (isSupabaseLive) {
-      await supabase.from('ambassadors').update(ambassador).eq('id', id)
+      await supabase!.from('ambassadors').update(ambassador).eq('id', id)
       return
     }
     await wait(MOCK_DELAY)
@@ -224,7 +224,7 @@ export const db = {
   // Announcement
   getAnnouncement: async (): Promise<Announcement> => {
     if (isSupabaseLive) {
-      const { data } = await supabase.from('settings').select('*').eq('id', 'announcement').single()
+      const { data } = await supabase!.from('settings').select('*').eq('id', 'announcement').single()
       return data || initialAnnouncement
     }
     await wait(MOCK_DELAY)
@@ -233,7 +233,7 @@ export const db = {
 
   updateAnnouncement: async (announcement: Partial<Announcement>): Promise<void> => {
     if (isSupabaseLive) {
-      await supabase.from('settings').upsert({ id: 'announcement', ...announcement })
+      await supabase!.from('settings').upsert({ id: 'announcement', ...announcement })
       return
     }
     await wait(MOCK_DELAY)
