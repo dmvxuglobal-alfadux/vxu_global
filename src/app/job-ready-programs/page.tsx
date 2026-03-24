@@ -6,11 +6,6 @@ import { Footer } from "@/components/layout/Footer"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Trophy, Briefcase, BrainCircuit, LineChart, Code2, Presentation, Gem } from "lucide-react"
 
-export const metadata = {
-  title: "Campus Job-Ready Programs | VXU Global",
-  description: "Bridge the Gap Between Graduation and Employment with world-class upskilling programs."
-}
-
 const programsData = [
   {
     id: "analytics",
