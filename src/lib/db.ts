@@ -18,6 +18,7 @@ export interface Mentor {
   experience: string
   company: string
   photo: string
+  linkedinUrl?: string
 }
 
 export interface Ambassador {
@@ -56,8 +57,8 @@ const initialBlogs = [
   { id: '2', title: 'AI Engineering Salaries in 2024', slug: 'ai-salaries', content: 'AI engineers are earning upwards of...', image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b', category: 'Upskilling', date: '2023-10-15', tags: ['AI'] }
 ]
 const initialMentors = [
-  { id: '1', name: 'Dr. Sarah Jenkins', expertise: 'Machine Learning', experience: '15+ Years', company: 'Google', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2' },
-  { id: '2', name: 'Mark Roberts', expertise: 'Cloud Architecture', experience: '12+ Years', company: 'AWS', photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a' }
+  { id: '1', name: 'Dr. Sarah Jenkins', expertise: 'Machine Learning', experience: '15+ Years', company: 'Google', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2', linkedinUrl: '#' },
+  { id: '2', name: 'Mark Roberts', expertise: 'Cloud Architecture', experience: '12+ Years', company: 'AWS', photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a', linkedinUrl: '#' }
 ]
 const initialAmbassadors = [
   { id: '1', name: 'Aiden Smith', college: 'Stanford University', country: 'USA', photo: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79' },

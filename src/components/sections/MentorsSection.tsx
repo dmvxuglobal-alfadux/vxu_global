@@ -11,6 +11,7 @@ export interface Mentor {
   expertise: string
   experience: string
   company: string
+  linkedinUrl?: string
 }
 
 export function MentorsSection({ 
@@ -78,9 +79,16 @@ export function MentorsSection({
                    </div>
                 </div>
 
-                <button className="w-full py-3 rounded-full border-2 border-slate-100 text-primary font-bold hover:bg-primary hover:text-white hover:border-slate-900 transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-md">
-                   <Linkedin size={18} /> Connect
-                </button>
+                <a 
+                  href={mentor.linkedinUrl || "#"} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block w-full"
+                >
+                  <button className="w-full py-3 rounded-full border-2 border-slate-100 text-primary font-bold hover:bg-primary hover:text-white hover:border-slate-900 transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-md">
+                     <Linkedin size={18} /> Connect
+                  </button>
+                </a>
               </div>
             </motion.div>
           ))}

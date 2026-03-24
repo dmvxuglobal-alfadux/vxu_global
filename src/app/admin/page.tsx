@@ -299,7 +299,8 @@ function MentorForm({ initialData, onSave, onCancel }: any) {
         expertise: fd.get("expertise"),
         experience: fd.get("experience"),
         company: fd.get("company"),
-        photo: imageBase64
+        photo: imageBase64,
+        linkedinUrl: fd.get("linkedinUrl")
       })
     }}>
        <Input name="name" defaultValue={initialData?.name} placeholder="Mentor Name" required />
@@ -308,6 +309,7 @@ function MentorForm({ initialData, onSave, onCancel }: any) {
          <Input name="experience" defaultValue={initialData?.experience} placeholder="Years of Experience (e.g. 10+ Years)" required />
          <Input name="company" defaultValue={initialData?.company} placeholder="Current Company (e.g. Google)" required />
        </div>
+       <Input name="linkedinUrl" defaultValue={initialData?.linkedinUrl} placeholder="LinkedIn Profile URL (e.g. https://linkedin.com/in/username)" />
        
        <ImageUpload defaultImage={imageBase64} onImageSelected={setImageBase64} />
        
@@ -326,12 +328,13 @@ function AmbassadorForm({ initialData, onSave, onCancel }: any) {
     <form className="space-y-4" onSubmit={(e:any) => {
       e.preventDefault();
       const fd = new FormData(e.target);
-      onSave({
+      const payload = {
         name: fd.get("name"),
         college: fd.get("college"),
         country: fd.get("country"),
         photo: imageBase64
-      })
+      };
+      onSave(payload);
     }}>
        <Input name="name" defaultValue={initialData?.name} placeholder="Ambassador Name" required />
        <Input name="college" defaultValue={initialData?.college} placeholder="College / University" required />
