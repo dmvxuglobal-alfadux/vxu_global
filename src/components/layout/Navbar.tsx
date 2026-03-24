@@ -45,7 +45,6 @@ export function Navbar() {
 
   const studyAbroadLinks = [
     { name: "Overview (All Countries)", href: "/study-abroad" },
-    { name: "Study Abroad Pathway", href: "/study-abroad-pathway" },
     { name: "Study in Europe", href: "/study-in-europe" },
     { name: "Study in USA", href: "/study-in-usa" },
     { name: "Study in Germany", href: "/study-in-germany" },
