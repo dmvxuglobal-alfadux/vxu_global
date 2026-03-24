@@ -108,18 +108,18 @@ export function Navbar() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
-              <div className="relative group p-4 -ml-4 cursor-pointer">
-                <span className="text-sm font-medium text-primary/80 group-hover:text-primary transition-colors flex items-center gap-1">
-                  Study Abroad
-                  <svg className="w-4 h-4 mt-0.5 group-hover:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                </span>
+            <div className="relative group p-4 -ml-4 cursor-pointer">
+              <span className="text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors flex items-center gap-1">
+                Study Abroad
+                <svg className="w-4 h-4 mt-0.5 group-hover:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              </span>
                 <div className="absolute top-full left-0 w-64 bg-white shadow-xl border border-slate-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-50 overflow-hidden">
                   <div className="flex flex-col py-2">
                     {studyAbroadLinks.map((link) => (
                       <Link
                         key={link.name}
                         href={link.href}
-                        className="px-5 py-2.5 text-sm font-medium text-secondary hover:bg-blue-50/50 hover:text-primary transition-colors"
+                        className="px-5 py-2.5 text-sm font-medium text-primary hover:bg-blue-50/50 hover:text-secondary transition-colors"
                       >
                         {link.name}
                       </Link>
@@ -128,9 +128,10 @@ export function Navbar() {
                 </div>
               </div>
 
-              <Link href="/study-abroad-pathway" className="text-sm font-bold text-secondary hover:text-primary transition-colors animate-pulse">
-                Pathway Program 🚀
-              </Link>
+              <Link href="/study-abroad-pathway" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
+                Pathway Program
+                <span className="text-[10px] bg-secondary text-white px-1.5 py-0.5 rounded-full font-bold ml-1 animate-pulse">NEW</span>
+            </Link>
 
               {navLinks.map((link) => (
                 <Link
@@ -190,6 +191,9 @@ export function Navbar() {
                   </Link>
                 ))}
                 <div className="px-3 py-2 mt-2 text-xs font-bold text-slate-400 uppercase tracking-wider border-t border-slate-100">Other Programs</div>
+                  <Link href="/study-abroad-pathway" className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-muted" onClick={() => setIsOpen(false)}>
+                  Pathway Program
+                </Link>
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}

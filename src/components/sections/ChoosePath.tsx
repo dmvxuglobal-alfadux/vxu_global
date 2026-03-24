@@ -15,31 +15,22 @@ export function ChoosePath() {
       delay: 0.1
     },
     {
-      title: "Job-Ready Programs",
-      description: "Campus Job-Ready programs designed to upskill college students and freshers.",
-      icon: <GraduationCap className="w-8 h-8 text-secondary" />,
+      title: "Study Abroad Pathway",
+      description: "Smart 40% cost-saving hybrid model. Start in India, finish abroad.",
+      icon: <Cpu className="w-8 h-8 text-secondary" />,
       color: "bg-red-50",
       border: "border-red-100",
-      href: "/job-ready-programs",
+      href: "/study-abroad-pathway",
       delay: 0.2
     },
     {
-      title: "MBBS Abroad",
-      description: "WHO-approved MBBS programs abroad with Indian hostel & food.",
-      icon: <Globe className="w-8 h-8 text-primary" />,
-      color: "bg-white",
+      title: "Job-Ready Programs",
+      description: "Campus programs designed to upskill students and ensure placement.",
+      icon: <GraduationCap className="w-8 h-8 text-primary" />,
+      color: "bg-blue-50",
       border: "border-blue-100",
-      href: "/mbbs-abroad",
+      href: "/job-ready-programs",
       delay: 0.3
-    },
-    {
-      title: "Pathway Programs",
-      description: "Fast-track your global education with our specialized pathway programs.",
-      icon: <Cpu className="w-8 h-8 text-secondary" />,
-      color: "bg-red-50",
-      border: "border-orange-100",
-      href: "/study-abroad-pathway",
-      delay: 0.4
     }
   ]
 
