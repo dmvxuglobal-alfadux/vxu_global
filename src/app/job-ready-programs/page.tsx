@@ -80,11 +80,12 @@ export default function JobReadyProgramsPage() {
             World&apos;s Top Institutions. Get trained by the best and become Job-ready in Analytics, Management, UI/UX, and Finance.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button size="lg" className="bg-secondary text-white hover:bg-white hover:text-primary transition-all font-bold h-14 px-8 text-lg">
-              Explore Programs
-            </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-primary transition-all font-bold h-14 px-8 text-lg bg-transparent">
-              View Hiring Partners
+            <Button 
+              size="lg" 
+              onClick={() => window.dispatchEvent(new CustomEvent("trigger-lead-form"))}
+              className="bg-secondary text-white hover:bg-white hover:text-primary transition-all font-bold h-14 px-10 text-lg rounded-full shadow-xl"
+            >
+              Explore Programs & Get Curriculum
             </Button>
           </div>
         </div>
@@ -167,10 +168,13 @@ export default function JobReadyProgramsPage() {
                          </p>
                        </div>
                        
-                       <a href="https://wa.link/e6r1ap" target="_blank" rel="noopener noreferrer" className="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between text-primary font-bold hover:text-secondary transition-colors text-sm uppercase tracking-wide">
+                       <button 
+                         onClick={() => window.dispatchEvent(new CustomEvent("trigger-lead-form"))}
+                         className="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between text-primary font-bold hover:text-secondary transition-colors text-sm uppercase tracking-wide w-full"
+                       >
                           Explore Curriculum
                           <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
-                       </a>
+                       </button>
                     </div>
                   ))}
                 </div>
@@ -187,7 +191,11 @@ export default function JobReadyProgramsPage() {
                <p className="text-xl text-white/80 font-medium mb-10 leading-relaxed">
                  Join over 5,000+ students who transformed their technical and managerial careers with our Job-Ready Programs.
                </p>
-               <Button size="lg" className="bg-secondary text-white hover:bg-white hover:text-primary transition-all font-bold h-14 px-10 text-lg rounded-full shadow-lg">
+               <Button 
+                size="lg" 
+                onClick={() => window.dispatchEvent(new CustomEvent("trigger-lead-form"))}
+                className="bg-secondary text-white hover:bg-white hover:text-primary transition-all font-bold h-14 px-10 text-lg rounded-full shadow-lg"
+               >
                  Book Free Career Counselling
                </Button>
             </div>
