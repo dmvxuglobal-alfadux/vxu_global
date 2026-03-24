@@ -128,6 +128,10 @@ export function Navbar() {
               </div>
             </div>
 
+            <Link href="/study-abroad-pathway" className="text-sm font-bold text-secondary hover:text-primary transition-colors animate-pulse">
+                Pathway Program 🚀
+            </Link>
+
             {navLinks.map((link) => (
               <Link
                 key={link.name}

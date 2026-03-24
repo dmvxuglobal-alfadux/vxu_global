@@ -11,6 +11,7 @@ const studyAbroadData = [
   {
     country: "United States",
     flag: "🇺🇸",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&fit=crop",
     programs: [
       { name: "MBA", university: "Northeastern University" },
       { name: "MBA", university: "Clark University" },
@@ -21,6 +22,7 @@ const studyAbroadData = [
   {
     country: "Germany",
     flag: "🇩🇪",
+    image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&fit=crop",
     programs: [
       { name: "Master of Business Administration (90 ECTS)", university: "SRH University of Applied Sciences" },
       { name: "MA International Business & Leadership", university: "SRH University of Applied Sciences" },
@@ -31,6 +33,7 @@ const studyAbroadData = [
   {
     country: "France",
     flag: "🇫🇷",
+    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&fit=crop",
     programs: [
       { name: "Master of Business Administration", university: "Paris School of Business" },
       { name: "MSc Corporate Finance", university: "KEDGE Business School" },
@@ -41,16 +44,18 @@ const studyAbroadData = [
   {
     country: "United Kingdom",
     flag: "🇬🇧",
+    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&fit=crop",
     programs: [
       { name: "Master of Business Administration", university: "University of Sunderland" },
-      { name: "MBA with Work Placement", university: "University of Roehampton" },
-      { name: "MSc Data Science with Work Placement", university: "University of Roehampton" },
+      { name: "MBA with Work Placement", university: "University Roehampton" },
+      { name: "MSc Data Science with Work Placement", university: "University Roehampton" },
       { name: "MSc International Business Management", university: "St Mary's University Twickenham London" }
     ]
   },
   {
     country: "Ireland",
     flag: "🇮🇪",
+    image: "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=800&fit=crop",
     programs: [
       { name: "MSc in Data Analytics", university: "Dundalk Institute of Technology" },
       { name: "MBS in Entrepreneurship and Marketing", university: "Dundalk Institute of Technology" }
@@ -59,6 +64,7 @@ const studyAbroadData = [
   {
     country: "Finland",
     flag: "🇫🇮",
+    image: "https://images.unsplash.com/photo-1528644012132-59cd871fc3fc?w=800&fit=crop",
     programs: [
       { name: "MBA (Business Informatics)", university: "Metropolia University of Applied Sciences" },
       { name: "MBA (International Business Management)", university: "Seinäjoki University of Applied Sciences (SeAMK)" }
@@ -67,6 +73,7 @@ const studyAbroadData = [
   {
     country: "Canada",
     flag: "🇨🇦",
+    image: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800&fit=crop",
     programs: [
       { name: "MS in Project Management", university: "Northeastern University, Canada" },
       { name: "MPS in Analytics", university: "Northeastern University, Canada" },
@@ -325,23 +332,22 @@ export default function StudyAbroadPathwayPage() {
                   transition={{ duration: 0.5 }}
                   className="bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500"
                 >
-                  <div className="bg-primary p-8 text-white flex items-center justify-between relative overflow-hidden">
-                    <div className="relative z-10">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="text-4xl">{dest.flag}</span>
-                        <h3 className="text-3xl font-bold tracking-tight">{dest.country}</h3>
-                      </div>
-                      <p className="text-white/70 font-medium">Top University Programs</p>
+                  <div className="relative h-64 overflow-hidden group/img">
+                    <img src={dest.image} alt={dest.country} className="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
+                    <div className="absolute bottom-6 left-8 flex items-center gap-3">
+                      <span className="text-4xl">{dest.flag}</span>
+                      <h3 className="text-3xl font-bold text-white tracking-tight">{dest.country}</h3>
                     </div>
                   </div>
                   <div className="p-8">
                     <div className="space-y-6">
                       {dest.programs.map((prog, pIdx) => (
                         <div key={pIdx} className="flex items-start gap-4 pb-4 border-b border-slate-50 last:border-0">
-                          <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0 animate-pulse"><GraduationCap size={20}/></div>
+                          <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0 animate-pulse group-hover:bg-primary group-hover:text-white transition-colors"><GraduationCap size={20}/></div>
                           <div>
-                            <h4 className="text-lg font-bold text-primary mb-1">{prog.name}</h4>
-                            <p className="text-sm text-slate-500">{prog.university}</p>
+                            <h4 className="text-lg font-bold text-primary mb-1 group-hover:text-secondary transition-colors">{prog.name}</h4>
+                            <p className="text-sm text-slate-500 font-medium">{prog.university}</p>
                           </div>
                         </div>
                       ))}
@@ -452,9 +458,9 @@ function PSWItem({flag, country, psw}: any) {
      <div className="bg-white/10 p-4 rounded-2xl border border-white/20">
         <div className="flex items-center gap-2 mb-1">
            <span className="text-xl">{flag}</span>
-           <span className="font-bold text-sm">{country}</span>
+           <span className="font-bold text-sm tracking-wide">{country}</span>
         </div>
-        <div className="text-xs font-black text-secondary uppercase tracking-tighter">{psw}</div>
+        <div className="text-sm font-black text-secondary uppercase tracking-tighter shadow-sm">{psw}</div>
      </div>
    )
 }
