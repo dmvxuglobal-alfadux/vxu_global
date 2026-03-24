@@ -45,6 +45,7 @@ export function Navbar() {
 
   const studyAbroadLinks = [
     { name: "Overview (All Countries)", href: "/study-abroad" },
+    { name: "Study Abroad Pathway", href: "/study-abroad-pathway" },
     { name: "Study in Europe", href: "/study-in-europe" },
     { name: "Study in USA", href: "/study-in-usa" },
     { name: "Study in Germany", href: "/study-in-germany" },
@@ -54,11 +55,11 @@ export function Navbar() {
     { name: "Study in Canada", href: "/study-in-canada-new" },
     { name: "Study in UK", href: "/study-in-uk" },
     { name: "Study in Australia", href: "/study-in-australia" },
+    { name: "MBBS Abroad", href: "/mbbs-abroad" },
   ]
 
   const navLinks = [
     { name: "Job Ready Programs", href: "/job-ready-programs" },
-    { name: "MBBS Abroad", href: "/#mbbs" },
     { name: "Ambassadors", href: "/ambassadors" },
     { name: "Mentors", href: "/mentors" },
     { name: "Blogs", href: "/blogs" },

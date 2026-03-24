@@ -29,16 +29,16 @@ export function ChoosePath() {
       icon: <Globe className="w-8 h-8 text-primary" />,
       color: "bg-white",
       border: "border-blue-100",
-      href: "#mbbs",
+      href: "/mbbs-abroad",
       delay: 0.3
     },
     {
-      title: "Upskilling Programs",
-      description: "Advance your career across AI, Cloud & Management (Ascent & Elevate).",
+      title: "Pathway Programs",
+      description: "Fast-track your global education with our specialized pathway programs.",
       icon: <Cpu className="w-8 h-8 text-secondary" />,
       color: "bg-red-50",
       border: "border-orange-100",
-      href: "#programs",
+      href: "/study-abroad-pathway",
       delay: 0.4
     }
   ]
