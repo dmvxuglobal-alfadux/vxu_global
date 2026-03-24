@@ -38,7 +38,7 @@ export function LeadPopup({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
       const result = await res.json();
       
       if (res.ok && result.success) {
-        alert("Success! Your counselling session is being booked. Check your email shortly.")
+        alert("Success! Your counselling session is being booked. Our expert counsellor will connect with you shortly.")
         onClose()
       } else {
         throw new Error(result.error || "Failed to submit")
