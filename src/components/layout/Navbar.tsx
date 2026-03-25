@@ -5,7 +5,6 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ArrowRight, Globe2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input" // Added for LeadPopup context
 import { db, Announcement } from "@/lib/db"
 import { LeadPopup } from "@/components/floating/LeadPopup"
 
@@ -16,26 +15,18 @@ export function Navbar() {
   const [showLeadForm, setShowLeadForm] = React.useState(false)
 
   React.useEffect(() => {
-    // Add event listener for global lead form trigger
-    const handleTrigger = () => {
-      console.log("Lead form triggered globally");
-      setShowLeadForm(true);
-    };
+    const handleTrigger = () => setShowLeadForm(true);
     window.addEventListener("trigger-lead-form", handleTrigger);
 
     async function loadAnnouncement() {
       try {
         const data = await db.getAnnouncement()
-        if (data && data.isActive) {
-          setAnnouncement(data)
-        }
+        if (data && data.isActive) setAnnouncement(data)
       } catch (err) { }
     }
     loadAnnouncement()
 
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener("scroll", handleScroll)
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -44,25 +35,24 @@ export function Navbar() {
   }, [])
 
   const studyAbroadLinks = [
-    { name: "Overview (All Countries)", href: "/study-abroad" },
-    { name: "Study in USA", href: "/study-in-usa" },
-    { name: "Study in UK", href: "/study-in-uk" },
-    { name: "Study in Canada", href: "/study-in-canada-new" },
-    { name: "Study in Australia", href: "/study-in-australia" },
-    { name: "Study in Germany", href: "/study-in-germany" },
-    { name: "Study in France", href: "/study-in-france" },
-    { name: "Study in Netherlands", href: "/study-in-netherlands" },
-    { name: "Study in Finland", href: "/study-in-finland" },
-    { name: "Study in Sweden", href: "/study-in-sweden" },
-    { name: "Study in Spain", href: "/study-in-spain" },
-    { name: "Study in Italy", href: "/study-in-italy" },
-    { name: "Study in Ireland", href: "/study-in-ireland" },
-    { name: "Study in New Zealand", href: "/study-in-new-zealand" },
-    { name: "Study in Dubai (UAE)", href: "/study-in-dubai" },
-    { name: "Study in Singapore", href: "/study-in-singapore" },
-    { name: "Study in Japan", href: "/study-in-japan" },
-    { name: "Study in Malta", href: "/study-in-malta" },
-    { name: "Study in Cyprus", href: "/study-in-cyprus" },
+    { name: "United States", href: "/study-in-usa" },
+    { name: "United Kingdom", href: "/study-in-uk" },
+    { name: "Canada", href: "/study-in-canada" },
+    { name: "Australia", href: "/study-in-australia" },
+    { name: "Ireland", href: "/study-in-ireland" },
+    { name: "Germany", href: "/study-in-germany" },
+    { name: "France", href: "/study-in-france" },
+    { name: "Netherlands", href: "/study-in-netherlands" },
+    { name: "Finland", href: "/study-in-finland" },
+    { name: "Sweden", href: "/study-in-sweden" },
+    { name: "Spain", href: "/study-in-spain" },
+    { name: "Italy", href: "/study-in-italy" },
+    { name: "New Zealand", href: "/study-in-new-zealand" },
+    { name: "Dubai", href: "/study-in-dubai" },
+    { name: "Singapore", href: "/study-in-singapore" },
+    { name: "Japan", href: "/study-in-japan" },
+    { name: "Malta", href: "/study-in-malta" },
+    { name: "Cyprus", href: "/study-in-cyprus" },
     { name: "MBBS Abroad", href: "/mbbs-abroad" },
   ]
 
@@ -76,196 +66,86 @@ export function Navbar() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-transparent"
-          }`}
-        id="main-nav-header"
-      >
+      <header className="fixed top-0 w-full z-50 transition-all duration-300">
         <AnimatePresence>
           {announcement && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="bg-gradient-to-r from-[#E31837] via-[#ff4d4d] to-[#E31837] text-white overflow-hidden relative shadow-md z-[60]"
+              initial={{ height: 0 }}
+              animate={{ height: 'auto' }}
+              exit={{ height: 0 }}
+              className="bg-gradient-to-r from-red-600 to-rose-600 text-white overflow-hidden relative z-[60]"
             >
-              <div className="absolute inset-0 bg-black/5 pointer-events-none"></div>
-              <div className="container mx-auto px-4 py-2 flex flex-col md:flex-row items-center justify-center text-xs md:text-sm font-bold gap-1 md:gap-3 text-center relative max-w-7xl">
-                <div className="flex items-center justify-center gap-2">
-                  <span className="animate-pulse shrink-0">✨</span>
-                  <span className="leading-snug pr-6 md:pr-0">{announcement.text}</span>
-                </div>
-                <button
-                  onClick={() => setShowLeadForm(true)}
-                  className="inline-flex items-center bg-white/20 hover:bg-white text-white hover:text-primary transition-all px-3 py-1 rounded-full font-bold whitespace-nowrap shrink-0 mt-1 md:mt-0 shadow-sm border border-white/10"
-                >
-                  Explore Now <ArrowRight size={14} className="ml-1" />
-                </button>
-                <button onClick={() => setAnnouncement(null)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded p-1 rounded-full flex shrink-0 border border-transparent hover:border-white/30">
-                  <X size={14} className="shrink-0" />
-                </button>
+              <div className="container mx-auto px-4 py-2 flex items-center justify-center text-sm font-bold gap-3">
+                <span className="leading-snug">{announcement.text}</span>
+                <button onClick={() => setShowLeadForm(true)} className="bg-white/20 hover:bg-white text-white hover:text-red-600 px-3 py-1 rounded-full text-xs">Explore Now</button>
+                <button onClick={() => setAnnouncement(null)} className="absolute right-4"><X size={14} /></button>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="VXU Global Logo" className="h-12 object-contain" />
-            </Link>
+        <div className={`transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-lg border-b" : "bg-white/10 backdrop-blur-sm"}`}>
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="flex items-center justify-between h-20">
+              <Link href="/"><img src="/logo.png" alt="Logo" className="h-10" /></Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              <div className="relative group p-4 -ml-4 cursor-pointer">
-                <span className="text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors flex items-center gap-1">
-                  Study Abroad
-                  <svg className="w-4 h-4 mt-0.5 group-hover:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                </span>
-                
-                {/* Mega Menu Dropdown */}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95vw] max-w-[1200px] bg-white shadow-2xl border border-slate-100 rounded-[2.5rem] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-4 group-hover:translate-y-0 z-50 overflow-hidden p-10">
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-                    
-                    {/* Column 1: Popular */}
-                    <div>
-                      <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-400 mb-8 border-b border-slate-50 pb-3">Top Tiers</h4>
-                      <div className="flex flex-col gap-4">
-                        <MenuLink href="/study-in-usa" name="United States" />
-                        <MenuLink href="/study-in-uk" name="United Kingdom" />
-                        <MenuLink href="/study-in-canada" name="Canada" />
-                        <MenuLink href="/study-in-australia" name="Australia" />
-                        <MenuLink href="/study-in-ireland" name="Ireland" />
-                      </div>
-                    </div>
-
-                    {/* Column 2: Europe Core */}
-                    <div>
-                      <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-400 mb-8 border-b border-slate-50 pb-3">Europe Central</h4>
-                      <div className="flex flex-col gap-4">
-                        <MenuLink href="/study-in-germany" name="Germany" />
-                        <MenuLink href="/study-in-france" name="France" />
-                        <MenuLink href="/study-in-netherlands" name="Netherlands" />
-                        <MenuLink href="/study-in-italy" name="Italy" />
-                        <MenuLink href="/study-in-spain" name="Spain" />
-                      </div>
-                    </div>
-
-                    {/* Column 3: Nordic & Affordable */}
-                    <div>
-                      <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-400 mb-8 border-b border-slate-50 pb-3">Safe & Budget</h4>
-                      <div className="flex flex-col gap-4">
-                        <MenuLink href="/study-in-finland" name="Finland" />
-                        <MenuLink href="/study-in-sweden" name="Sweden" />
-                        <MenuLink href="/study-in-malta" name="Malta" />
-                        <MenuLink href="/study-in-cyprus" name="Cyprus" />
-                        <MenuLink href="/mbbs-abroad" name="MBBS Abroad" />
-                      </div>
-                    </div>
-
-                    {/* Column 4: Asia & Overview */}
-                    <div className="bg-slate-50/50 -m-10 p-10 ml-0 border-l border-slate-100">
-                      <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-400 mb-8 border-b border-slate-200 pb-3">Strategic</h4>
-                      <div className="flex flex-col gap-4">
-                        <MenuLink href="/study-in-dubai" name="Dubai (UAE)" />
-                        <MenuLink href="/study-in-singapore" name="Singapore" />
-                        <MenuLink href="/study-in-japan" name="Japan" />
-                        <div className="mt-6 pt-6 border-t border-slate-200">
-                          <Link href="/study-abroad" className="inline-flex items-center gap-2 text-sm font-black text-secondary group/all">
-                            View All 30+ <ArrowRight size={14} className="group-hover/all:translate-x-1 transition-transform" />
-                          </Link>
+              <div className="hidden md:flex items-center gap-6">
+                <div className="relative group py-8">
+                  <span className="text-sm font-bold text-slate-700 cursor-pointer flex items-center gap-1 group-hover:text-primary transition-colors">
+                    Study Abroad <Globe2 size={14} />
+                  </span>
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95vw] max-w-[1240px] bg-white shadow-2xl rounded-[2rem] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all p-10 z-50 border border-slate-100 grid grid-cols-4 gap-12">
+                     <div>
+                        <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-6 border-b pb-2">Top Tiers</h4>
+                        <div className="flex flex-col gap-3">
+                           {studyAbroadLinks.slice(0, 5).map(l => <MenuLink key={l.href} {...l} />)}
                         </div>
-                      </div>
-                    </div>
-
+                     </div>
+                     <div>
+                        <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-6 border-b pb-2">Europe Core</h4>
+                        <div className="flex flex-col gap-3">
+                           {studyAbroadLinks.slice(5, 10).map(l => <MenuLink key={l.href} {...l} />)}
+                        </div>
+                     </div>
+                     <div>
+                        <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-6 border-b pb-2">Safe & Budget</h4>
+                        <div className="flex flex-col gap-3">
+                           {studyAbroadLinks.slice(10, 15).map(l => <MenuLink key={l.href} {...l} />)}
+                        </div>
+                     </div>
+                     <div className="bg-slate-50 -m-10 p-10 ml-0 rounded-r-[2rem]">
+                        <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-6 border-b pb-2">Strategic</h4>
+                        <div className="flex flex-col gap-3">
+                           {studyAbroadLinks.slice(15).map(l => <MenuLink key={l.href} {...l} />)}
+                           <Link href="/study-abroad" className="text-primary font-black text-sm mt-4 inline-flex items-center gap-1">View All <ArrowRight size={14}/></Link>
+                        </div>
+                     </div>
                   </div>
                 </div>
+
+                <Link href="/study-abroad-pathway" className="text-sm font-bold text-slate-700 hover:text-primary relative group">
+                  Pathway Program
+                  <span className="absolute -top-4 -right-2 bg-secondary text-white text-[8px] px-1.5 py-0.5 rounded-full animate-pulse">NEW</span>
+                </Link>
+
+                {navLinks.map(l => <Link key={l.href} href={l.href} className="text-sm font-bold text-slate-700 hover:text-primary">{l.name}</Link>)}
               </div>
 
-              <Link href="/study-abroad-pathway" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
-                Pathway Program
-                <span className="text-[10px] bg-secondary text-white px-1.5 py-0.5 rounded-full font-bold ml-1 animate-pulse">NEW</span>
-            </Link>
-
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-                  onClick={(e) => {
-                    if (link.href.startsWith('#')) {
-                      e.preventDefault();
-                      document.getElementById(link.href.slice(1))?.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              <div className="flex items-center gap-4">
+                <Button variant="outline" className="hidden sm:flex border-primary text-primary font-bold">Admin Login</Button>
+                <Button variant="gradient" onClick={() => setShowLeadForm(true)} className="rounded-full px-6 font-bold shadow-xl shadow-primary/20">Book Counselling</Button>
+                <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
+              </div>
             </div>
-
-            <div className="hidden md:flex items-center gap-4">
-              <Link href="/login">
-                <Button variant="ghost" className="text-sm font-semibold text-primary/80 hover:text-primary hover:bg-slate-50">
-                  Admin Login
-                </Button>
-              </Link>
-              <Button variant="gradient" onClick={() => setShowLeadForm(true)}>Book Counselling</Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2 text-foreground"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? <X /> : <Menu />}
-            </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-b border-border shadow-lg overflow-hidden"
-            >
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-b border-primary/10">
-                <div className="px-3 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider">Study Abroad</div>
-                {studyAbroadLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className="block px-3 py-2 rounded-md text-base leading-snug font-medium text-primary hover:text-secondary hover:bg-slate-50 pl-6"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-                <div className="px-3 py-2 mt-2 text-xs font-bold text-slate-400 uppercase tracking-wider border-t border-slate-100">Other Programs</div>
-                  <Link href="/study-abroad-pathway" className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-muted" onClick={() => setIsOpen(false)}>
-                  Pathway Program
-                </Link>
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-muted"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-                <div className="flex flex-col gap-3 pt-4 px-3">
-                  <Link href="/login" onClick={() => setIsOpen(false)}>
-                    <Button variant="outline" className="w-full">Admin Login</Button>
-                  </Link>
-                  <Button variant="gradient" className="w-full" onClick={() => { setIsOpen(false); setShowLeadForm(true); }}>
-                    Book Counselling
-                  </Button>
-                </div>
+            <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }} className="md:hidden bg-white border-b overflow-hidden shadow-2xl">
+              <div className="p-6 space-y-4">
+                 {navLinks.map(l => <Link key={l.href} href={l.href} onClick={() => setIsOpen(false)} className="block text-lg font-bold text-slate-800">{l.name}</Link>)}
+                 <Button className="w-full h-14 text-lg font-black" onClick={() => { setIsOpen(false); setShowLeadForm(true); }}>Talk to Expert</Button>
               </div>
             </motion.div>
           )}
@@ -278,10 +158,7 @@ export function Navbar() {
 
 function MenuLink({ href, name }: { href: string; name: string }) {
   return (
-    <Link
-      href={href}
-      className="text-sm font-bold text-primary/70 hover:text-secondary transition-all hover:translate-x-1 inline-block"
-    >
+    <Link href={href} className="text-sm font-bold text-slate-600 hover:text-secondary transition-all hover:translate-x-1">
       {name}
     </Link>
   )
