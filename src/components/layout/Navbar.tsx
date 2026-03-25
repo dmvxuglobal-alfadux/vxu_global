@@ -66,8 +66,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 w-full z-50 bg-white">
-        {/* Static Announcement Section */}
+      <header className="w-full z-50 transition-all duration-300">
         <AnimatePresence>
           {announcement && (
             <motion.div
@@ -76,17 +75,17 @@ export function Navbar() {
               exit={{ height: 0 }}
               className="bg-[#E31837] text-white overflow-hidden relative"
             >
-              <div className="container mx-auto px-4 py-2 flex items-center justify-center text-xs md:text-sm font-bold gap-3">
-                <span className="leading-snug pr-6 md:pr-0">{announcement.text}</span>
-                <button onClick={() => setShowLeadForm(true)} className="bg-white/20 hover:bg-white text-white hover:text-red-600 px-3 py-1 rounded-full text-xs transition-colors">Explore Now</button>
-                <button onClick={() => setAnnouncement(null)} className="absolute right-4"><X size={14} /></button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
+                <div className="container mx-auto px-4 py-2 flex items-center justify-center text-xs md:text-sm font-bold gap-3">
+                  <span className="leading-snug pr-6 md:pr-0">{announcement.text}</span>
+                  <button onClick={() => setShowLeadForm(true)} className="bg-white/20 hover:bg-white text-white hover:text-red-600 px-3 py-1 rounded-full text-xs transition-colors">Explore Now</button>
+                  <button onClick={() => setAnnouncement(null)} className="absolute right-4"><X size={14} /></button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+ 
         {/* Main Navbar */}
-        <div className={`transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-slate-100" : "bg-transparent"}`}>
+        <div className={`pointer-events-auto transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-slate-100" : "bg-white shadow-sm border-b"}`}>
           <div className="container mx-auto px-4 lg:px-8">
             <div className="flex items-center justify-between h-20">
               <Link href="/"><img src="/logo.png" alt="VXU Global" className="h-10 lg:h-12 object-contain" /></Link>
@@ -98,7 +97,7 @@ export function Navbar() {
                     Study Abroad <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
                   </span>
                   
-                  {/* Mega Menu Dropdown */}
+                  {/* Mega Menu Dropdown - FIXED POSITIONING */}
                   <div className="absolute top-full left-0 w-[95vw] lg:w-[1100px] bg-white shadow-2xl rounded-[2.5rem] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-4 group-hover:translate-y-0 z-50 overflow-hidden border border-slate-100 grid md:grid-cols-4 gap-0 pointer-events-auto">
                      <div className="p-8 lg:p-10">
                         <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-6 border-b border-slate-50 pb-2">Top Tiers</h4>
@@ -148,14 +147,12 @@ export function Navbar() {
                 <Link href="/login" className="hidden lg:block">
                   <Button variant="ghost" className="text-slate-600 font-bold hover:text-primary">Admin Login</Button>
                 </Link>
-                
                 <motion.div
                   animate={{ scale: [1, 1.05, 1] }}
                   transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                 >
-                  <Button variant="gradient" onClick={() => setShowLeadForm(true)} className="rounded-full px-6 md:px-8 font-bold shadow-xl shadow-primary/20 scale-90 md:scale-100">Book Now</Button>
+                  <Button variant="gradient" onClick={() => setShowLeadForm(true)} className="rounded-full px-6 md:px-8 font-bold shadow-xl shadow-primary/20 scale-90 md:scale-100 whitespace-nowrap">Book Now</Button>
                 </motion.div>
-
                 <button className="md:hidden p-2 text-slate-800" onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
               </div>
             </div>
