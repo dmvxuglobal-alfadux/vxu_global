@@ -45,15 +45,24 @@ export function Navbar() {
 
   const studyAbroadLinks = [
     { name: "Overview (All Countries)", href: "/study-abroad" },
-    { name: "Study in Europe", href: "/study-in-europe" },
     { name: "Study in USA", href: "/study-in-usa" },
+    { name: "Study in UK", href: "/study-in-uk" },
+    { name: "Study in Canada", href: "/study-in-canada-new" },
+    { name: "Study in Australia", href: "/study-in-australia" },
     { name: "Study in Germany", href: "/study-in-germany" },
     { name: "Study in France", href: "/study-in-france" },
+    { name: "Study in Netherlands", href: "/study-in-netherlands" },
     { name: "Study in Finland", href: "/study-in-finland" },
-    { name: "Study in Dubai", href: "/study-in-dubai" },
-    { name: "Study in Canada", href: "/study-in-canada-new" },
-    { name: "Study in UK", href: "/study-in-uk" },
-    { name: "Study in Australia", href: "/study-in-australia" },
+    { name: "Study in Sweden", href: "/study-in-sweden" },
+    { name: "Study in Spain", href: "/study-in-spain" },
+    { name: "Study in Italy", href: "/study-in-italy" },
+    { name: "Study in Ireland", href: "/study-in-ireland" },
+    { name: "Study in New Zealand", href: "/study-in-new-zealand" },
+    { name: "Study in Dubai (UAE)", href: "/study-in-dubai" },
+    { name: "Study in Singapore", href: "/study-in-singapore" },
+    { name: "Study in Japan", href: "/study-in-japan" },
+    { name: "Study in Malta", href: "/study-in-malta" },
+    { name: "Study in Cyprus", href: "/study-in-cyprus" },
     { name: "MBBS Abroad", href: "/mbbs-abroad" },
   ]
 
@@ -108,22 +117,67 @@ export function Navbar() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
-            <div className="relative group p-4 -ml-4 cursor-pointer">
-              <span className="text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors flex items-center gap-1">
-                Study Abroad
-                <svg className="w-4 h-4 mt-0.5 group-hover:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-              </span>
-                <div className="absolute top-full left-0 w-64 bg-white shadow-xl border border-slate-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-50 overflow-hidden">
-                  <div className="flex flex-col py-2">
-                    {studyAbroadLinks.map((link) => (
-                      <Link
-                        key={link.name}
-                        href={link.href}
-                        className="px-5 py-2.5 text-sm font-medium text-primary hover:bg-blue-50/50 hover:text-secondary transition-colors"
-                      >
-                        {link.name}
-                      </Link>
-                    ))}
+              <div className="relative group p-4 -ml-4 cursor-pointer">
+                <span className="text-sm font-medium text-muted-foreground group-hover:text-primary transition-colors flex items-center gap-1">
+                  Study Abroad
+                  <svg className="w-4 h-4 mt-0.5 group-hover:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </span>
+                
+                {/* Mega Menu Dropdown */}
+                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[800px] bg-white shadow-2xl border border-slate-100 rounded-[2rem] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-4 group-hover:translate-y-0 z-50 overflow-hidden p-8">
+                  <div className="grid grid-cols-4 gap-10">
+                    
+                    {/* Column 1: Popular */}
+                    <div>
+                      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 border-b border-slate-50 pb-2">Top Tiers</h4>
+                      <div className="flex flex-col gap-3">
+                        <MenuLink href="/study-in-usa" name="United States" />
+                        <MenuLink href="/study-in-uk" name="United Kingdom" />
+                        <MenuLink href="/study-in-canada" name="Canada" />
+                        <MenuLink href="/study-in-australia" name="Australia" />
+                        <MenuLink href="/study-in-ireland" name="Ireland" />
+                      </div>
+                    </div>
+
+                    {/* Column 2: Europe Core */}
+                    <div>
+                      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 border-b border-slate-50 pb-2">Europe Central</h4>
+                      <div className="flex flex-col gap-3">
+                        <MenuLink href="/study-in-germany" name="Germany" />
+                        <MenuLink href="/study-in-france" name="France" />
+                        <MenuLink href="/study-in-netherlands" name="Netherlands" />
+                        <MenuLink href="/study-in-italy" name="Italy" />
+                        <MenuLink href="/study-in-spain" name="Spain" />
+                      </div>
+                    </div>
+
+                    {/* Column 3: Nordic & Affordable */}
+                    <div>
+                      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 border-b border-slate-50 pb-2">Safe & Budget</h4>
+                      <div className="flex flex-col gap-3">
+                        <MenuLink href="/study-in-finland" name="Finland" />
+                        <MenuLink href="/study-in-sweden" name="Sweden" />
+                        <MenuLink href="/study-in-malta" name="Malta" />
+                        <MenuLink href="/study-in-cyprus" name="Cyprus" />
+                        <MenuLink href="/mbbs-abroad" name="MBBS Abroad" />
+                      </div>
+                    </div>
+
+                    {/* Column 4: Asia & Overview */}
+                    <div className="bg-slate-50 -m-8 p-8 ml-0 border-l border-slate-100">
+                      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 border-b border-slate-100 pb-2">Strategic</h4>
+                      <div className="flex flex-col gap-3">
+                        <MenuLink href="/study-in-dubai" name="Dubai (UAE)" />
+                        <MenuLink href="/study-in-singapore" name="Singapore" />
+                        <MenuLink href="/study-in-japan" name="Japan" />
+                        <div className="mt-4 pt-4 border-t border-slate-200">
+                          <Link href="/study-abroad" className="inline-flex items-center gap-2 text-sm font-black text-secondary group/all">
+                            View All 30+ <ArrowRight size={14} className="group-hover/all:translate-x-1 transition-transform" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>
@@ -219,5 +273,16 @@ export function Navbar() {
       </header>
       <LeadPopup isOpen={showLeadForm} onClose={() => setShowLeadForm(false)} />
     </>
+  )
+}
+
+function MenuLink({ href, name }: { href: string; name: string }) {
+  return (
+    <Link
+      href={href}
+      className="text-sm font-bold text-primary/70 hover:text-secondary transition-all hover:translate-x-1 inline-block"
+    >
+      {name}
+    </Link>
   )
 }
