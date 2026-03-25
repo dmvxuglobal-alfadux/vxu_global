@@ -1,302 +1,369 @@
+"use client"
+
 import * as React from "react"
-import { notFound } from "next/navigation"
+import { notFound, useParams } from "next/navigation"
 import { destinationsData } from "@/data/destinations"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
 import { Button } from "@/components/ui/button"
-import { MapPin, Trophy, DollarSign, Briefcase, ChevronRight, CheckCircle2, ArrowRight } from "lucide-react"
+import { 
+  MapPin, Trophy, DollarSign, Briefcase, ChevronRight, CheckCircle2, 
+  ArrowRight, ShieldCheck, Star, Users, Globe2, Zap, AlertTriangle, 
+  Heart, Plane, Smile, Clock, Building2, TrendingUp, Info 
+} from "lucide-react"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import { motion } from "framer-motion"
 
-// Server component dynamic metadata
-export async function generateMetadata({ params }: any) {
-  const resolvedParams = await params;
-  const data = destinationsData[resolvedParams.slug]
-  if (!data) return { title: 'Not Found' }
-  return {
-    title: `${data.title} | VXU Global`,
-    description: data.subheadline
-  }
-}
+export default function DestinationPage() {
+  const params = useParams()
+  const slug = params.slug as string
+  const data = destinationsData[slug]
 
-export default async function DestinationPage({ params }: any) {
-  const resolvedParams = await params;
-  const data = destinationsData[resolvedParams.slug]
   if (!data) {
     notFound()
   }
 
-  const isOverview = resolvedParams.slug === 'study-abroad'
+  const isOverview = slug === 'study-abroad'
 
   return (
-    <div className="min-h-screen bg-white font-[var(--font-sans)]">
+    <div className="min-h-screen bg-slate-50 font-[var(--font-sans)]">
       <Navbar />
 
-      {/* Hero Banner Yocket Style */}
-      <div className="relative pt-20 pb-0 bg-primary overflow-hidden h-[450px] md:h-[500px]">
+      {/* 1. Hero Section (Emotional + Aspirational Hook) */}
+      <div className="relative pt-20 pb-0 bg-primary overflow-hidden min-h-[500px] flex items-end">
         <div className="absolute inset-0 z-0">
-          <img src={data.heroImage} alt={data.title} className="w-full h-full object-cover opacity-30 mix-blend-overlay" />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent" />
+          <img src={data.heroImage} alt={data.title} className="w-full h-full object-cover opacity-30 mix-blend-overlay scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-transparent" />
         </div>
         
-        <div className="container relative z-10 mx-auto px-4 h-full flex flex-col justify-end pb-16">
-          <div className="flex items-center gap-2 text-white/60 text-sm font-semibold tracking-widest uppercase mb-6">
-            <span className="hover:text-white cursor-pointer">Destinations</span> <ChevronRight size={14}/> 
+        <div className="container relative z-10 mx-auto px-4 pb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-white/60 text-sm font-bold tracking-widest uppercase mb-6"
+          >
+            <Link href="/study-abroad" className="hover:text-white transition-colors">Destinations</Link> 
+            <ChevronRight size={14}/> 
             <span className="text-secondary">{data.title}</span>
-          </div>
+          </motion.div>
           
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-4 tracking-tight drop-shadow-lg">
-            {data.title}
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl font-medium leading-relaxed">
-            {data.headline}. <span className="text-white/70 font-normal">{data.subheadline}</span>
-          </p>
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-8xl font-black text-white mb-6 tracking-tight drop-shadow-2xl max-w-4xl"
+          >
+             {data.title === "Overseas Education" ? "Build a Global Career, Not Just a Degree" : data.heroTitle || `Study in ${data.title.replace('Study in ', '')}`}
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl md:text-3xl text-secondary font-black bg-white/10 backdrop-blur-md inline-block px-6 py-2 rounded-xl mb-8 border border-white/10"
+          >
+            {data.positioning || "Best for Global Career Growth"}
+          </motion.p>
         </div>
       </div>
 
-      {/* Hero Stats Strip */}
-      <div className="bg-white border-b shadow-sm relative z-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-100">
-            {data.stats.map((stat: any, i: number) => (
-              <div key={i} className="py-6 px-4 md:px-8 text-center flex flex-col justify-center items-center group">
-                 <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1 group-hover:text-primary transition-colors">{stat.label}</p>
-                 <p className="text-xl font-black text-primary">{stat.value}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content Grid */}
       <div className="container mx-auto px-4 py-16">
         <div className="flex flex-col lg:flex-row gap-12">
           
-          {/* Left Column (Content) */}
-          <div className="lg:w-2/3 space-y-12">
+          {/* Main Content Area */}
+          <div className="lg:w-2/3 space-y-20">
             
-            {isOverview ? (
-              <div className="space-y-16">
-                 {/* 1. Why Choose VXU Global? */}
-                 <section className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
-                    <h2 className="text-3xl font-bold text-primary mb-6">VXU Global Makes It Simple, Affordable, and Life-Changing</h2>
-                    <p className="text-lg text-primary/80 mb-6 font-medium">Your future deserves clarity. Get Free Career Counselling today — just one call can change everything.</p>
-                    <h3 className="text-xl font-bold text-primary mb-4">Why Choose VXU Global for Overseas Education?</h3>
-                    <ul className="space-y-3 mb-8">
-                       {[
-                         "End-to-End handholding support & Study Abroad Guidance – from profile building to post-landing support",
-                         "Upto 40% Cost Savings with our unique pathway programs",
-                         "Admissions to 1000+ universities across 30+ countries",
-                         "Support for IELTS, SOPs, LORs, and visa interviews",
-                         "Exclusive education loan assistance (secured & unsecured)",
-                         "Fast-tracked pathway programs in partnership with global edtech leaders",
-                         "Personalized support for students from Tier 2/3 cities in India"
-                       ].map((item, i) => (
-                         <li key={i} className="flex items-start gap-3">
-                           <CheckCircle2 className="text-secondary shrink-0 mt-1" size={20} />
-                           <span className="text-primary/80 font-medium">{item}</span>
-                         </li>
-                       ))}
-                    </ul>
+            {/* 2. Quick Snapshot (Decision in 30 Seconds) */}
+            <section className="bg-white rounded-[2.5rem] p-10 shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden relative">
+               <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+               <h2 className="text-3xl font-black text-primary mb-8 flex items-center gap-3">
+                  <Clock className="text-secondary" /> Quick Snapshot
+               </h2>
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-slate-100 rounded-3xl overflow-hidden border border-slate-100">
+                  <SnapshotItem label="Avg Cost" value={data.quickSnapshot?.avgCost || data.stats?.[0]?.value || "Varies"} />
+                  <SnapshotItem label="PSW Visa" value={data.quickSnapshot?.pswVisa || data.stats?.[1]?.value || "Available"} />
+                  <SnapshotItem label="PR Chances" value={data.quickSnapshot?.prChances || "Moderate"} />
+                  <SnapshotItem label="Job Market" value={data.quickSnapshot?.jobMarket || "High"} />
+                  <SnapshotItem label="Safety" value={data.quickSnapshot?.safety || "High"} />
+                  <SnapshotItem label="Best For" value={data.quickSnapshot?.bestFor || "Career Growth"} />
+               </div>
+            </section>
 
-                    <div className="bg-[#f4f7fa] p-6 rounded-2xl border border-blue-100">
-                       <h3 className="text-xl font-bold text-primary mb-4">Take your career Global</h3>
-                       <p className="text-primary/80 mb-4">We support you explore and choose the best Country & Program options matching your requirements.</p>
-                       <div className="grid sm:grid-cols-3 gap-4">
-                          <div className="bg-white p-4 rounded-xl shadow-sm text-center border border-slate-100">
-                             <Trophy className="text-secondary mx-auto mb-2" size={24}/>
-                             <p className="text-primary font-bold text-sm">Post Study Visas up to 5 Years</p>
-                          </div>
-                          <div className="bg-white p-4 rounded-xl shadow-sm text-center border border-slate-100">
-                             <DollarSign className="text-secondary mx-auto mb-2" size={24}/>
-                             <p className="text-primary font-bold text-sm">Cost savings up to 50 Lakhs</p>
-                          </div>
-                          <div className="bg-white p-4 rounded-xl shadow-sm text-center border border-slate-100">
-                             <Briefcase className="text-secondary mx-auto mb-2" size={24}/>
-                             <p className="text-primary font-bold text-sm">Masters starting from 10 Lakhs</p>
-                          </div>
+            {/* 3. Why Study in [Country] (2026 Perspective) */}
+            <section>
+               <h2 className="text-4xl font-black text-primary mb-8 tracking-tight">🎯 Why Study in {data.title.replace('Study in ', '')} (2026 Perspective)</h2>
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {(data.whyPerspective || [
+                    { title: "Global Recognition", desc: "Degrees are respected globally by top employers." },
+                    { title: "PSW Advantage", desc: "Stay back and work after graduation." },
+                    { title: "High ROI", desc: "Best-in-class salary growth post-graduation." },
+                    { title: "Networking", desc: "Connect with global industry leaders." }
+                  ]).map((item: any, i: number) => (
+                    <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-blue-100 transition-all group">
+                       <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all mb-4">
+                          <CheckCircle2 size={24}/>
                        </div>
+                       <h3 className="text-xl font-bold text-primary mb-2">{item.title}</h3>
+                       <p className="text-slate-500 font-medium leading-relaxed">{item.desc}</p>
                     </div>
-                 </section>
+                  ))}
+               </div>
+            </section>
 
-                 {/* 2. Why Overseas Education Details */}
-                 <section className="space-y-8">
-                    <h2 className="text-3xl font-bold text-primary">Why Overseas Education?</h2>
-                    
-                    <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
-                      <h3 className="text-2xl font-bold text-primary mb-4">1. Enhanced Job Opportunities</h3>
-                      <ul className="space-y-4 text-primary/80 font-medium">
-                        <li><strong className="text-primary">Global Job Market Access:</strong> Degrees from renowned international universities increase employability. 90% of UK international grads secure employment/further study within 6 months.</li>
-                        <li><strong className="text-primary">Higher Salaries:</strong> Grads often earn up to a 35% increase compared to domestic graduates.</li>
-                        <li><strong className="text-primary">Internships & Work Placements:</strong> Strong industry ties worldwide provide immense practical experience.</li>
-                        <li><strong className="text-primary">Minimizing AI Risk:</strong> Specialize in emerging fields like AI ethics and governance to work alongside automation safely.</li>
-                      </ul>
-                    </div>
+            {/* 4. Who Should Choose This Country? (Personas) */}
+            <section className="bg-gradient-to-br from-primary to-[#001c4d] rounded-[2.5rem] p-12 text-white overflow-hidden relative">
+               <div className="relative z-10">
+                  <h2 className="text-4xl font-black mb-12">👤 Who Should Choose This Country?</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                     <PersonaCard title="Ideal For" type="ideal" items={data.personas?.ideal || ["Goal-oriented students", "Tech enthusiasts", "Budget conscious Families"]} />
+                     <PersonaCard title="Borderline Fit" type="borderline" items={data.personas?.borderline || ["Students wanting immediate PR", "Specific small niches"]} />
+                     <PersonaCard title="Not For" type="not" items={data.personas?.notFor || ["Students wanting easy degrees", "Very small budgets"]} />
+                  </div>
+               </div>
+               <Users className="absolute bottom-[-50px] right-[-50px] text-white/5 w-96 h-96" />
+            </section>
 
-                    <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
-                      <h3 className="text-2xl font-bold text-primary mb-4">2. Superior Quality of Education</h3>
-                      <ul className="space-y-4 text-primary/80 font-medium">
-                        <li><strong className="text-primary">Advanced Research:</strong> The US alone houses over 150 of the world's top 500 universities.</li>
-                        <li><strong className="text-primary">Diverse Academic Environment:</strong> Multicultural settings enhance innovation, such as Germany's hands-on practical learning approach.</li>
-                      </ul>
-                    </div>
+            {/* 5. Cost of Studying in [Country] */}
+            <section className="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
+               <h2 className="text-4xl font-black text-primary mb-8 flex items-center gap-3">
+                  <DollarSign className="text-secondary" /> Cost of Studying (Realistic INR)
+               </h2>
+               <div className="overflow-hidden rounded-3xl border border-slate-100 mb-10">
+                  <table className="w-full text-left">
+                     <thead>
+                        <tr className="bg-slate-50">
+                           <th className="p-6 font-black text-primary text-xl">Category</th>
+                           <th className="p-6 font-black text-primary text-xl text-right">Cost (INR/year)</th>
+                        </tr>
+                     </thead>
+                     <tbody className="divide-y divide-slate-100">
+                        <tr className="hover:bg-slate-50/50">
+                           <td className="p-6 font-bold text-slate-600">Tuition Fees</td>
+                           <td className="p-6 font-black text-primary text-right">{data.costBreakdown?.tuition || "₹10L - ₹25L"}</td>
+                        </tr>
+                        <tr className="hover:bg-slate-50/50">
+                           <td className="p-6 font-bold text-slate-600">Living Expenses</td>
+                           <td className="p-6 font-black text-primary text-right">{data.costBreakdown?.living || "₹6L - ₹10L"}</td>
+                        </tr>
+                        <tr className="bg-secondary/5 font-black text-secondary">
+                           <td className="p-6 text-xl">Total Cost</td>
+                           <td className="p-6 text-2xl text-right">{data.costBreakdown?.total || "₹16L - ₹35L"}</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <HacksCard title="Cheapest Pathways" icon={<Plane size={20}/>} desc={data.costHacks?.pathways || "Hybrid models & Pathway options."} />
+                  <HacksCard title="Scholarships" icon={<Star size={20}/>} desc={data.costHacks?.scholarships || "Merit based available from €2k-€5k."} />
+                  <HacksCard title="Saving Hacks" icon={<Zap size={20}/>} desc={data.costHacks?.hacks || "Share rooms, cook at home, use student cards."} />
+               </div>
+            </section>
 
-                    <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
-                      <h3 className="text-2xl font-bold text-primary mb-4">3. Personal & Professional Growth</h3>
-                      <ul className="space-y-4 text-primary/80 font-medium">
-                        <li><strong className="text-primary">Cultural Exposure:</strong> Broader perspectives. 95% of exchange students report improved cultural understanding.</li>
-                        <li><strong className="text-primary">Networking Opportunities:</strong> 85% of global jobs are filled through networking through peers and professors abroad.</li>
-                        <li><strong className="text-primary">Improved Quality of Life:</strong> Enjoy high standards of living, healthcare, and work-life balance in countries like Canada & Australia.</li>
-                        <li><strong className="text-primary">Global Citizen:</strong> Develop cross-cultural competence and achieve near-native language fluency.</li>
-                      </ul>
-                    </div>
-                 </section>
+            {/* 6 & 7. Part-Time & PSW (CRITICAL) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+               <section className="bg-blue-50/30 rounded-[2.5rem] p-10 border border-blue-50">
+                  <h2 className="text-2xl font-black text-primary mb-6 flex items-center gap-2">
+                     <Clock className="text-secondary" /> Part-Time Work
+                  </h2>
+                  <ul className="space-y-4 font-bold text-slate-600">
+                     <li className="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-blue-50">
+                        <span className="text-slate-400">Hours</span> <span>{data.workInfo?.hours || "20 Hrs/Week"}</span>
+                     </li>
+                     <li className="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-blue-50">
+                        <span className="text-slate-400">Avg Wage</span> <span>{data.workInfo?.wage || "€12 - €15/hr"}</span>
+                     </li>
+                     <li className="mt-6 flex items-start gap-3 bg-white p-6 rounded-2xl border-l-4 border-l-secondary shadow-sm">
+                        <Smile className="text-secondary shrink-0" />
+                        <p className="text-primary leading-snug">Can cover living? <strong>{data.workInfo?.coversLiving || "Yes (mostly)"}</strong>. {data.workInfo?.coversLivingDesc || "Shared housing is key."}</p>
+                     </li>
+                  </ul>
+               </section>
+               <section className="bg-slate-900 rounded-[2.5rem] p-10 text-white relative overflow-hidden">
+                  <h2 className="text-2xl font-black mb-6 flex items-center gap-2">
+                     <Briefcase className="text-secondary" /> Post-Study Work
+                  </h2>
+                  <div className="space-y-6">
+                     <div>
+                        <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mb-1">Duration</p>
+                        <p className="text-2xl font-black text-secondary">{data.pswInfo?.duration || "1-3 Years"}</p>
+                     </div>
+                     <div>
+                        <p className="text-white/40 font-bold uppercase tracking-widest text-[10px] mb-1">Verdict Line</p>
+                        <p className="text-lg font-bold leading-tight">PSW in this country is <strong>{data.pswInfo?.verdict || "Strong"}</strong> because of the thriving local job market.</p>
+                     </div>
+                  </div>
+                  <Building2 className="absolute top-[-20px] right-[-20px] text-white/5 w-40 h-40" />
+               </section>
+            </div>
 
-                 {/* 3. Destination Grid (Already here from previous step) */}
-                 <section>
-                    <div className="flex items-center justify-between mb-6">
-                      <h2 className="text-3xl font-bold text-primary">Top Study Abroad Destinations We Serve</h2>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      {Object.entries(destinationsData).filter(([slug]) => slug !== 'study-abroad').map(([slug, dest]) => (
-                        <Link href={`/${slug}`} key={slug} className="group block relative h-48 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-200 cursor-pointer">
-                          <img src={dest.heroImage} alt={dest.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent group-hover:from-secondary transition-colors duration-500" />
-                          <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
-                            <h3 className="text-xl font-bold text-white tracking-wide">{dest.title}</h3>
-                            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-white group-hover:text-secondary transition-colors shadow-lg">
-                                <ArrowRight size={16} />
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                 </section>
+            {/* 8 & 9. Job Market & Top Companies */}
+            <section className="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
+               <h2 className="text-4xl font-black text-primary mb-12">🚀 Job Market & Companies</h2>
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                  <div>
+                     <h3 className="text-xl font-black text-primary mb-6 flex items-center gap-2 font-bold"><TrendingUp size={20} className="text-green-500" /> Top Industries</h3>
+                     <div className="flex flex-wrap gap-2 mb-10">
+                        {(data.topIndustries || ["Fintech", "HealthTech", "Automotive", "AI Research", "Robotics"]).map((ind: string) => (
+                          <span key={ind} className="px-4 py-2 bg-slate-50 text-primary rounded-xl font-bold border border-slate-100">{ind}</span>
+                        ))}
+                     </div>
+                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Entry Salary Range</p>
+                        <p className="text-2xl font-black text-primary">{data.jobInfo?.salary || "₹45L - ₹80L per year"}</p>
+                     </div>
+                  </div>
+                  <div className="space-y-4">
+                     <h3 className="text-xl font-black mb-6">🏢 Top Companies Hiring</h3>
+                     <div className="grid grid-cols-2 gap-4">
+                        {(data.topCompaniesList || ["Amazon", "Google", "Siemens", "SAP", "Volkswagen", "L'Oreal"]).map((comp: string) => (
+                           <div key={comp} className="p-4 bg-white border border-slate-100 rounded-2xl text-sm font-black text-primary text-center hover:border-secondary hover:text-secondary transition-all cursor-default">
+                              {comp}
+                           </div>
+                        ))}
+                     </div>
+                  </div>
+               </div>
+            </section>
 
-                 {/* 4. FAQs */}
-                 <section className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
-                    <h2 className="text-3xl font-bold text-primary mb-8">Frequently Asked Questions (FAQs)</h2>
-                    <div className="space-y-4">
-                       {[
-                         { q: "Which country is best for Indian students to study abroad?", a: "The best country depends on your budget, course, and career goals. Popular choices include the USA, UK, Canada, Australia, and Germany." },
-                         { q: "Can I study abroad without IELTS?", a: "Yes, several universities in Germany, France, and Poland accept students without IELTS." },
-                         { q: "How do I get a loan for overseas education?", a: "VXU Global offers education loan assistance through top public-sector and private lenders, including options without collateral." },
-                         { q: "Is the visa process difficult?", a: "With proper documentation and interview prep, the visa process is straightforward. Our expert counsellors ensure you're fully prepared." },
-                         { q: "Do you offer any fast-track or low-cost study abroad programs?", a: "Yes, we offer pathway programs and hybrid study models that save up to 40% on costs with options to complete studies in 2 countries." },
-                         { q: "How early should I start my overseas education planning?", a: "Ideally, students should begin planning 12–18 months in advance to meet application and visa timelines comfortably." },
-                         { q: "What documents are needed to apply for universities abroad?", a: "Typical documents include academic transcripts, passport, SOP, LORs, resume, and English proficiency scores (if applicable)." },
-                         { q: "Do you help with scholarship applications?", a: "Yes, we guide students to merit-based and need-based scholarships offered by universities and external funding bodies." },
-                         { q: "Can I work part-time while studying abroad?", a: "Yes, most countries like Canada, Australia, the UK, and Germany allow students to work part-time while studying." },
-                         { q: "What support do you offer after the student reaches the destination country?", a: "We provide pre-departure briefings, connect students with local communities, and offer post-landing guidance to ensure a smooth transition." },
-                       ].map((faq, index) => (
-                         <details key={index} className="group bg-[#f4f7fa] p-4 rounded-xl cursor-pointer marker:content-['']">
-                            <summary className="flex justify-between items-center font-bold text-primary text-lg transition-colors group-hover:text-secondary list-none">
-                               {faq.q}
-                               <ChevronRight className="transform transition-transform group-open:rotate-90 text-secondary" />
-                            </summary>
-                            <p className="mt-4 text-primary/80 font-medium leading-relaxed pl-2 border-l-2 border-secondary">{faq.a}</p>
-                         </details>
-                       ))}
-                    </div>
-                 </section>
+            {/* 10 & 11. PR & Safety */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+               <section className="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100 border-t-4 border-t-secondary">
+                  <h2 className="text-2xl font-black text-primary mb-6 flex items-center gap-2">
+                     <Globe2 className="text-secondary" /> PR & Settlement
+                  </h2>
+                  <div className="space-y-4 mb-4">
+                     <div className="flex justify-between items-center text-sm font-bold border-b border-dotted pb-3"><span>Timeline</span> <span>{data.prInfo?.timeline || "3-5 Years"}</span></div>
+                     <div className="flex justify-between items-center text-sm font-bold border-b border-dotted pb-3"><span>Difficulty</span> <span className="text-amber-600">{data.prInfo?.difficulty || "Moderate"}</span></div>
+                  </div>
+                  <div className="p-4 bg-slate-50 rounded-xl text-xs font-bold text-slate-500 italic">
+                     👉 PR is not guaranteed—it depends on policies, employer support, and specific skill demand.
+                  </div>
+               </section>
+               <section className="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100 border-t-4 border-t-blue-500">
+                  <h2 className="text-2xl font-black text-primary mb-6 flex items-center gap-2">
+                     <ShieldCheck className="text-blue-500" /> Safety & Stability
+                  </h2>
+                  <div className="space-y-4">
+                     <div className="flex justify-between items-center text-sm font-bold border-b border-dotted pb-3"><span>Crime Perception</span> <span className="text-green-600">Very Low</span></div>
+                     <div className="flex justify-between items-center text-sm font-bold border-b border-dotted pb-3"><span>Stability</span> <span className="text-green-600">Ultra High</span></div>
+                  </div>
+                  <p className="mt-4 text-sm text-slate-500 font-medium">Safe for Indian students with vibrant community hubs.</p>
+               </section>
+            </div>
 
-              </div>
-            ) : (
-              <div className="space-y-12">
-                <section className="bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
-                  <h2 className="text-3xl font-bold text-primary mb-6">Why {data.title}?</h2>
-                  <p className="text-lg text-primary/80 leading-relaxed mb-6">
-                    {data.content || "Experience world-class education surrounded by global industry leaders. Graduates enjoy excellent return on investment, dynamic cultural experiences, and massive career acceleration."}
+            {/* 13. 10-Point Rating System */}
+            <section className="bg-white rounded-[2.5rem] p-10 shadow-xl shadow-slate-200/50 border border-slate-100">
+               <h2 className="text-3xl font-black text-primary mb-10 text-center uppercase tracking-tighter">📊 10-Point Rating Matrix</h2>
+               <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+                  {Object.entries(data.ratings || {
+                    Affordability: 7,
+                    Quality: 9,
+                    Jobs: 8,
+                    PR: 6,
+                    ROI: 9
+                  }).map(([key, val]: any) => (
+                    <div key={key} className="text-center group">
+                       <div className="relative inline-block mb-3">
+                          <svg className="w-16 h-16 transform -rotate-90">
+                            <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-slate-100" />
+                            <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" 
+                              strokeDasharray={2 * Math.PI * 28} 
+                              strokeDashoffset={2 * Math.PI * 28 * (1 - (val/10))}
+                              className="text-secondary transition-all duration-1000 group-hover:stroke-primary" 
+                            />
+                          </svg>
+                          <span className="absolute inset-0 flex items-center justify-center font-black text-primary">{val}</span>
+                       </div>
+                       <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest">{key}</p>
+                    </div>
+                  ))}
+               </div>
+               <div className="mt-12 p-8 bg-primary rounded-3xl text-center">
+                  <p className="text-white/60 font-bold uppercase tracking-widest mb-1">Overall VXU Score</p>
+                  <p className="text-5xl font-black text-secondary">{data.overallRating || "8.5"}</p>
+               </div>
+            </section>
+
+            {/* 14. Pros & Cons (HONEST) */}
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-10">
+               <div className="bg-green-50/50 rounded-3xl p-10 border border-green-100">
+                  <h3 className="text-2xl font-black text-green-700 mb-6">✅ Pros</h3>
+                  <ul className="space-y-4 font-bold text-green-800">
+                    {(data.prosLines || ["World class prestige", "Thriving job markets", "Higher salaries"]).map((line: string) => (
+                       <li key={line} className="flex items-start gap-3"><CheckCircle2 size={18} className="shrink-0 mt-1"/> {line}</li>
+                    ))}
+                  </ul>
+               </div>
+               <div className="bg-red-50/50 rounded-3xl p-10 border border-red-100">
+                  <h3 className="text-2xl font-black text-red-700 mb-6">⚠️ Real Challenges</h3>
+                  <ul className="space-y-4 font-bold text-red-800">
+                    {(data.consLines || ["High living costs", "Intense competition", "Winter weather"]).map((line: string) => (
+                       <li key={line} className="flex items-start gap-3"><AlertTriangle size={18} className="shrink-0 mt-1"/> {line}</li>
+                    ))}
+                  </ul>
+               </div>
+            </section>
+
+            {/* 16 & 17. Verdict & Closing */}
+            <section className="bg-primary rounded-[3.5rem] p-16 text-white text-center relative overflow-hidden">
+               <div className="relative z-10 max-w-2xl mx-auto">
+                  <h2 className="text-4xl font-black mb-8">🎯 Final Verdict</h2>
+                  <p className="text-2xl font-medium mb-12 text-white/80 leading-relaxed">
+                     {data.finalVerdict || "Perfect for students targeting high-roi careers in specialized fields. Avoid if you have no budget flex."}
                   </p>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="flex items-center gap-3 p-4 rounded-xl bg-white border border-blue-100">
-                      <Trophy className="text-secondary shrink-0" />
-                      <span className="text-primary font-bold">Top Global Universities</span>
-                    </div>
-                    <div className="flex items-center gap-3 p-4 rounded-xl bg-white border border-blue-100">
-                      <Briefcase className="text-secondary shrink-0" />
-                      <span className="text-primary font-bold">Thriving Job Market</span>
-                    </div>
-                    <div className="flex items-center gap-3 p-4 rounded-xl bg-white border border-blue-100">
-                      <DollarSign className="text-secondary shrink-0" />
-                      <span className="text-primary font-bold">High ROI & Scholarships</span>
-                    </div>
-                    <div className="flex items-center gap-3 p-4 rounded-xl bg-white border border-blue-100">
-                      <CheckCircle2 className="text-secondary shrink-0" />
-                      <span className="text-primary font-bold">Fast-Track Visas</span>
-                    </div>
+                  <div className="p-10 bg-white/5 backdrop-blur-md rounded-3xl border border-white/10">
+                     <p className="text-xl font-bold italic mb-8">&quot;Choosing the right country is not about trends—it’s about choosing what fits your future.&quot;</p>
+                     <Button 
+                       onClick={() => window.dispatchEvent(new CustomEvent("trigger-lead-form"))}
+                       className="bg-secondary hover:bg-white hover:text-primary text-white h-16 px-12 rounded-full text-xl font-black transition-all shadow-2xl"
+                     >
+                       Talk to an Expert Now <ArrowRight size={24} className="ml-2"/>
+                     </Button>
                   </div>
-                </section>
-
-                <section>
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-3xl font-bold text-primary">Top Universities</h2>
-                    <Button variant="outline" className="text-primary border-primary hover:bg-primary hover:text-white">View All</Button>
-                  </div>
-                  <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                    {(data.universities || []).map((uni: any, idx: number) => (
-                      <div key={idx} className="snap-start shrink-0 w-80 bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group">
-                        <div className="h-40 bg-white relative flex items-center justify-center p-6 border-b border-slate-100">
-                           <img src={uni.img} alt={uni.name} className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" />
-                        </div>
-                        <div className="p-6">
-                          <h3 className="text-xl font-bold text-primary group-hover:text-secondary transition-colors mb-2 truncate">{uni.name}</h3>
-                          <p className="text-sm text-primary/70 font-medium mb-4">{uni.loc}</p>
-                          <div className="flex gap-2">
-                            <span className="px-3 py-1 bg-blue-50 text-xs font-bold text-primary border border-blue-100 rounded-md">Rank {uni.rank}</span>
-                            <span className="px-3 py-1 bg-red-50 text-xs font-bold text-secondary border border-red-100 rounded-md">Fall Intake</span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-
-                <section>
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-3xl font-bold text-primary">Top Hiring Companies</h2>
-                    <Button variant="outline" className="text-primary border-primary hover:bg-primary hover:text-white">View All</Button>
-                  </div>
-                  <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                    {(data.companies || []).map((company: any, idx: number) => (
-                      <div key={idx} className="snap-start shrink-0 w-64 bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer group flex flex-col items-center p-6">
-                        <div className="w-24 h-24 mb-4 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center p-4 overflow-hidden relative">
-                           <img src={company.logo} alt={company.name} className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 hover:scale-110" />
-                        </div>
-                        <h3 className="text-lg font-bold text-primary group-hover:text-secondary transition-colors text-center w-full truncate">{company.name}</h3>
-                        <p className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-widest text-center">Top Employer</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </div>
-            )}
+               </div>
+               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent pointer-events-none opacity-50"></div>
+            </section>
 
           </div>
 
           {/* Right Column (Sticky Sidebar) */}
           <div className="lg:w-1/3">
-            <div className="sticky top-28 bg-white border-t-4 border-t-secondary rounded-2xl p-8 shadow-2xl">
-               <h3 className="text-2xl font-black text-primary mb-2">Check Your Eligibility</h3>
-               <p className="text-sm text-primary/70 mb-6 font-medium">Get a free profile evaluation from our expert counsellors for {data.title}.</p>
+            <div className="sticky top-28 space-y-8">
                
-               <form className="space-y-4">
-                 <Input placeholder="Full Name" className="bg-white border-none h-12" required />
-                 <Input placeholder="Email Address" type="email" className="bg-white border-none h-12" required />
-                 <Input placeholder="Phone Number" type="tel" className="bg-white border-none h-12" required />
-                 <Input placeholder="Highest Qualification" className="bg-white border-none h-12" required />
-                 
-                 <Button className="w-full h-14 text-lg font-bold bg-primary hover:bg-secondary text-white transition-colors duration-300 shadow-xl mt-4">
-                   Book Free Counselling
-                 </Button>
-               </form>
-               
-               <div className="mt-6 pt-6 border-t border-slate-100 text-center">
-                 <p className="text-xs text-primary/60 font-bold uppercase tracking-widest mb-3">Or chat with us now</p>
-                 <a href="https://wa.me/918885554048" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 text-[#25D366] font-bold hover:opacity-80 transition-opacity">
-                    Need instant answers? WhatsApp Us.
-                 </a>
+               {/* Eligibility Form */}
+               <div className="bg-white border-t-8 border-t-secondary rounded-[2.5rem] p-10 shadow-2xl border border-slate-100">
+                  <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-6">
+                     <Globe2 className="text-primary" size={32} />
+                  </div>
+                  <h3 className="text-3xl font-black text-primary mb-2">Free Profile Eval</h3>
+                  <p className="text-sm text-slate-500 mb-8 font-medium italic">Join 5000+ students on their global journey.</p>
+                  
+                  <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("trigger-lead-form")); }}>
+                    <Input placeholder="Full Name" className="h-14 rounded-xl bg-slate-50 border-slate-100" required />
+                    <Input placeholder="Highest Qualification" className="h-14 rounded-xl bg-slate-50 border-slate-100" required />
+                    
+                    <Button block className="w-full h-16 text-lg font-black bg-primary hover:bg-secondary text-white transition-all duration-300 shadow-xl mt-4 rounded-xl">
+                      Book Free Counselling
+                    </Button>
+                  </form>
+                  
+                  <div className="mt-8 pt-8 border-t border-slate-100 text-center">
+                    <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mb-4">Immediate Expert Access</p>
+                    <a href="https://wa.me/918885554048" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 px-6 py-3 bg-[#25D366] text-white rounded-full font-black hover:scale-105 transition-transform shadow-lg">
+                       <HelpCircle size={20}/> WhatsApp Us Now
+                    </a>
+                  </div>
                </div>
+
+               {/* Comparison Shortcut */}
+               <div className="bg-slate-900 rounded-[2.5rem] p-10 text-white border border-slate-800 shadow-xl">
+                  <h4 className="text-lg font-black mb-6 flex items-center gap-2 font-bold"><Info size={20} className="text-secondary" /> Strategic Tip</h4>
+                  <p className="text-sm text-white/70 font-medium leading-relaxed mb-6">
+                     Better than <strong>Canada</strong> for tech salaries, but higher initial cost than <strong>Germany</strong>. Choose based on ROI timelines.
+                  </p>
+                  <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white hover:text-primary font-bold">Compare Countries</Button>
+               </div>
+
             </div>
           </div>
 
@@ -304,5 +371,64 @@ export default async function DestinationPage({ params }: any) {
       </div>
       <Footer />
     </div>
+  )
+}
+
+// Subcomponents
+function SnapshotItem({ label, value }: any) {
+  return (
+    <div className="bg-white p-6 md:p-8 flex flex-col items-center justify-center text-center group transition-colors hover:bg-slate-50">
+       <div className="text-[10px] md:text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-2 group-hover:text-secondary transition-colors">{label}</div>
+       <div className="text-sm md:text-lg font-black text-primary group-hover:scale-105 transition-transform">{value}</div>
+    </div>
+  )
+}
+
+function StepItem({ num, text }: any) {
+  return (
+    <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-100">
+       <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-black flex-shrink-0">{num}</div>
+       <p className="text-slate-700 font-bold leading-snug">{text}</p>
+    </div>
+  )
+}
+
+function PersonaCard({ title, items, type }: any) {
+   const colors = {
+      ideal: "bg-green-500/10 border-green-500/20 text-green-200",
+      borderline: "bg-amber-500/10 border-amber-500/20 text-amber-200",
+      not: "bg-red-500/10 border-red-500/20 text-red-100"
+   }[type as 'ideal' | 'borderline' | 'not'] || ""
+
+   return (
+     <div className={`p-8 rounded-[2rem] border ${colors} backdrop-blur-sm`}>
+        <h4 className="text-xl font-black mb-6 uppercase tracking-widest">{title}</h4>
+        <ul className="space-y-3">
+           {items.map((item: string, i: number) => (
+              <li key={i} className="flex items-center gap-3 text-sm font-bold">
+                 <div className="w-1.5 h-1.5 rounded-full bg-white/40"></div>
+                 {item}
+              </li>
+           ))}
+        </ul>
+     </div>
+   )
+}
+
+function HacksCard({ title, icon, desc }: any) {
+   return (
+     <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 group hover:bg-primary transition-all">
+        <div className="flex items-center gap-3 mb-3">
+           <div className="text-secondary group-hover:text-white transition-colors">{icon}</div>
+           <h4 className="text-xs font-black uppercase text-slate-400 tracking-widest group-hover:text-white/60">{title}</h4>
+        </div>
+        <p className="text-sm font-bold text-primary group-hover:text-white">{desc}</p>
+     </div>
+   )
+}
+
+function HelpCircle({size}: any) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
   )
 }

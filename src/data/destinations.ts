@@ -2,221 +2,406 @@ export const destinationsData: Record<string, any> = {
   "study-abroad": {
     title: "Overseas Education",
     heroImage: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600&fit=crop",
-    headline: "Your Global Journey Starts Here",
-    subheadline: "Explore 30+ countries, WHO-approved programs, and end-to-end consulting.",
+    heroTitle: "Build a Global Career, Not Just a Degree",
+    positioning: "Comprehensive End-to-End Consulting",
     stats: [
       { label: "Countries", value: "30+" },
       { label: "Partner Universities", value: "3,000+" },
       { label: "Success Rate", value: "98%" }
     ],
-    content: "VXU Global Consulting simplifies your path to international education..."
+    quickSnapshot: {
+      avgCost: "₹10L - ₹60L",
+      pswVisa: "Up to 5 Years",
+      prChances: "Varies",
+      jobMarket: "Global",
+      safety: "Top Tier",
+      bestFor: "Global Exposure"
+    },
+    whyPerspective: [
+      { title: "Enhanced Job Opportunities", desc: "Access the global job market with starting salaries 30-50% higher than domestic degrees." },
+      { title: "Superior Education Quality", desc: "Learn from world-leading faculty and research-intensive environments." },
+      { title: "Personal Growth", desc: "Develop a global mindset and independent problem-solving skills." },
+      { title: "Long-term PR Pathways", desc: "Build a future in stable, developed economies with clear residency paths." }
+    ],
+    costBreakdown: {
+      tuition: "₹8L - ₹45L",
+      living: "₹6L - ₹12L",
+      total: "₹14L - ₹57L"
+    },
+    ratings: {
+      Affordability: 6,
+      Quality: 10,
+      Jobs: 9,
+      PR: 7,
+      ROI: 9
+    },
+    overallRating: "8.2",
+    finalVerdict: "The best investment for long-term career security and global mobility. Perfect for ambitious students aiming for tier-1 careers."
   },
   "study-in-usa": {
     title: "Study in USA",
     heroImage: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=1600&fit=crop",
-    headline: "Masters under just 13 Lakhs",
-    subheadline: "Up to 3 Years STEM OPT. No GRE/GMAT waiver available. Top tech hubs and research facilities.",
-    stats: [
-      { label: "Avg. Tuition", value: "$12k - $50k" },
-      { label: "Post-Study Visa", value: "Up to 3 Years" },
-      { label: "Job Placement", value: "75% within 6 mos" },
-      { label: "Top Industries", value: "Tech, Finance, Biotech" }
+    heroTitle: "The Innovation Hub for Global Talent",
+    positioning: "Best for high-paying careers & STEM",
+    quickSnapshot: {
+      avgCost: "₹25L - ₹45L",
+      pswVisa: "Up to 3 Years (STEM)",
+      prChances: "Moderate",
+      jobMarket: "Ultra High",
+      safety: "Medium-High",
+      bestFor: "Tech, Finance & ROI"
+    },
+    whyPerspective: [
+      { title: "STEM OPT Advantage", desc: "Up to 3 years of work rights in the US after graduation for STEM students." },
+      { title: "Silicon Valley Edge", desc: "Unmatched networking with world-leading tech giants like Google & Meta." },
+      { title: "Higher Startup Ecosystem", desc: "Best environment for student entrepreneurs and research funding." },
+      { title: "Diverse University Tiers", desc: "Options ranging from Ivy League to highly affordable state universities." }
     ],
-    content: "The USA is home to many of the world's top universities. With opportunities in Silicon Valley and Wall Street...",
-    universities: [
-      { name: "Northeastern University", loc: "USA • Top 50 National", rank: "#44", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://northeastern.edu&size=256" },
-      { name: "DePaul University", loc: "Chicago, USA • Private", rank: "#137", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://depaul.edu&size=256" },
-      { name: "Clark University", loc: "USA • Private Research", rank: "#97", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://clarku.edu&size=256" },
-      { name: "Drexel University", loc: "USA • Private Research", rank: "#105", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://drexel.edu&size=256" },
-      { name: "Yeshiva University", loc: "USA • Private Research", rank: "#67", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://yu.edu&size=256" }
-    ],
-    companies: [
-      { name: "Amazon", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://amazon.com&size=256" },
-      { name: "Microsoft", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://microsoft.com&size=256" },
-      { name: "Google", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://google.com&size=256" },
-      { name: "Apple", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://apple.com&size=256" },
-      { name: "Meta", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://meta.com&size=256" }
-    ]
+    personas: {
+      ideal: ["STEM focused students", "High salary seekers", "Research aspirants"],
+      borderline: ["Very low budget families", "Students wanting immediate PR"],
+      notFor: ["People seeking easy PR", "Non-competitive profiles"]
+    },
+    costBreakdown: {
+      tuition: "₹15L - ₹35L",
+      living: "₹8L - ₹12L",
+      total: "₹23L - ₹47L"
+    },
+    workInfo: {
+      hours: "20 Hrs/Week",
+      wage: "$12 - $18/hr",
+      coversLiving: "Partially",
+      coversLivingDesc: "Can cover groceries and pocket money, but rent usually requires extra funds."
+    },
+    pswInfo: {
+        duration: "1 Year (Non-STEM) / 3 Years (STEM)",
+        verdict: "Strong"
+    },
+    jobInfo: {
+        salary: "₹50L - ₹1.2Cr per year",
+        salaryDesc: "Top bracket for software, data, and finance roles."
+    },
+    topIndustries: ["Big Tech", "AI & Robotics", "Healthcare", "Investment Banking", "Aerospace"],
+    topCompaniesList: ["Google", "Amazon", "Microsoft", "Goldman Sachs", "Apple", "Pfizer"],
+    prInfo: {
+        timeline: "5-10+ Years",
+        difficulty: "Hard (H1B based)"
+    },
+    ratings: {
+        Affordability: 5,
+        Quality: 10,
+        Jobs: 10,
+        PR: 5,
+        ROI: 9
+    },
+    overallRating: "7.8",
+    finalVerdict: "Highest risk but highest reward. Best for the top 5% of ambitious talent who want to compete at the world's highest level.",
+    prosLines: ["Highest global salaries", "World's top 10 universities", "Unmatched industry networking"],
+    consLines: ["Complex H1B visa lottery", "High tuition costs", "Distance from India"]
   },
-  "study-in-europe": {
-    title: "Study in Europe",
-    heroImage: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1600&fit=crop",
-    headline: "World-Class Education & Culture",
-    subheadline: "Travel across 26 Schengen countries on a single visa. Highly subsidized tuition fees.",
-    stats: [
-      { label: "Avg. Tuition", value: "Free - €15k" },
-      { label: "Post-Study Visa", value: "1-2 Years" },
-      { label: "Living Cost", value: "€800 - €1,200/mo" }
-    ],
-    universities: [
-      { name: "KEDGE Business School", loc: "France • Triple Crown", rank: "Top 1%", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://kedge.edu&size=256" },
-      { name: "SRH Berlin", loc: "Germany • Applied Sciences", rank: "Top 5", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://srh-berlin.de&size=256" },
-      { name: "IBS Hungary", loc: "Hungary • Business", rank: "Top 50 EU", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ibs-b.hu&size=256" },
-      { name: "SeAMK", loc: "Finland • Applied Sciences", rank: "Top 10 FI", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://seamk.fi&size=256" }
-    ],
-    companies: [
-      { name: "Airbus", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://airbus.com&size=256" },
-      { name: "SAP", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://sap.com&size=256" },
-      { name: "Siemens", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://siemens.com&size=256" },
-      { name: "L'Oreal", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://loreal.com&size=256" }
-    ]
-  },
-  "study-in-uk": {
-    title: "Study in UK",
-    heroImage: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&fit=crop",
-    headline: "One-Year Masters Programs",
-    subheadline: "2-year Graduate Route Visa. prestigious Russell Group universities.",
-    stats: [
-      { label: "Avg. Tuition", value: "£14k - £30k" },
-      { label: "Post-Study Visa", value: "2 Years" },
-      { label: "Masters Duration", value: "1 Year" }
-    ],
-    universities: [
-      { name: "University of Roehampton", loc: "London, UK • Public", rank: "Top 800", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://roehampton.ac.uk&size=256" },
-      { name: "Northeastern University London", loc: "London, UK", rank: "Top 100", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://nulondon.ac.uk&size=256" },
-      { name: "St. Mary's University", loc: "London, UK", rank: "Top 100 UK", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://stmarys.ac.uk&size=256" },
-      { name: "University of Sunderland", loc: "UK • Public Research", rank: "Top 1000", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://sunderland.ac.uk&size=256" }
-    ],
-    companies: [
-      { name: "Barclays", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://barclays.co.uk&size=256" },
-      { name: "HSBC", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://hsbc.com&size=256" },
-      { name: "Unilever", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://unilever.com&size=256" },
-      { name: "GSK", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://gsk.com&size=256" },
-      { name: "BP", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://bp.com&size=256" }
-    ]
-  },
-  "study-in-canada-new": {
+  "study-in-canada": {
     title: "Study in Canada",
     heroImage: "https://images.unsplash.com/photo-1519832979-6fa011b87667?w=1600&fit=crop",
-    headline: "Safe, Welcoming, and PR-Friendly",
-    subheadline: "Up to 3-year PGWP (Post-Graduation Work Permit) leading to Permanent Residency.",
-    stats: [
-      { label: "Avg. Tuition", value: "CAD 15k - 35k" },
-      { label: "Post-Study Visa", value: "Up to 3 Years" },
-      { label: "PR Pathway", value: "Highly Favorable" }
+    heroTitle: "Your Direct Gateway to Permanent Residency",
+    positioning: "Best for PR & Quality of Life",
+    quickSnapshot: {
+      avgCost: "₹15L - ₹28L",
+      pswVisa: "Up to 3 Years",
+      prChances: "Highest",
+      jobMarket: "Medium-High",
+      safety: "Ultra High",
+      bestFor: "PR Seekers & Families"
+    },
+    whyPerspective: [
+      { title: "Fast-Track PR", desc: "Express Entry and PNP programs favor international graduates." },
+      { title: "Inclusive Culture", desc: "One of the world's most welcoming environments for immigrants." },
+      { title: "PGWP Rights", desc: "Stay back up to 3 years regardless of your field of study." },
+      { title: "Affordability", desc: "More accessible tuition and living costs than the USA or UK." }
     ],
-    universities: [
-      { name: "Algoma University", loc: "Canada • Public", rank: "Top 100 CA", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://algomau.ca&size=256" },
-      { name: "Yorkville University", loc: "Canada • Private", rank: "Top 50 CA", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://yorkvilleu.ca&size=256" },
-      { name: "University Canada West", loc: "Vancouver, Canada", rank: "Top 5 QS", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ucanwest.ca&size=256" },
-      { name: "IBU Canada", loc: "Toronto, Canada", rank: "Business Specialized", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ibu.ca&size=256" }
-    ],
-    companies: [
-      { name: "Shopify", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://shopify.com&size=256" },
-      { name: "RBC", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://rbc.com&size=256" },
-      { name: "Magna", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://magna.com&size=256" },
-      { name: "Bombardier", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://bombardier.com&size=256" },
-      { name: "Bell Canada", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://bell.ca&size=256" }
-    ]
-  },
-  "study-in-australia": {
-    title: "Study in Australia",
-    heroImage: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=1600&fit=crop",
-    headline: "High Standard of Living & Wages",
-    subheadline: "Up to 4-year Post-Study Work rights. Global leaders in engineering and health.",
-    stats: [
-      { label: "Avg. Tuition", value: "AUD 30k - 45k" },
-      { label: "Post-Study Visa", value: "Up to 4 Years" },
-      { label: "Part-time Work", value: "48 hrs/fortnight" }
-    ],
-    universities: [
-      { name: "Macquarie University", loc: "Australia • Public Research", rank: "#195", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://mq.edu.au&size=256" },
-      { name: "University of Newcastle", loc: "Australia • Public Research", rank: "#192", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://newcastle.edu.au&size=256" }
-    ],
-    companies: [
-      { name: "Commonwealth Bank", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://commbank.com.au&size=256" },
-      { name: "BHP", logo: "https://t3.gstatic.com/faviconV2? client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://bhp.com&size=256" },
-      { name: "Woolworths", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://woolworths.com.au&size=256" },
-      { name: "Atlassian", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://atlassian.com&size=256" }
-    ]
+    personas: {
+      ideal: ["Students seeking PR", "Tech & Health profiles", "Families planning to settle"],
+      borderline: ["Purely high-salary chasers", "Students preferring warm weather"],
+      notFor: ["Extremely low budgets", "People hating cold winters"]
+    },
+    costBreakdown: {
+      tuition: "₹12L - ₹22L",
+      living: "₹8L - ₹10L",
+      total: "₹20L - ₹32L"
+    },
+    workInfo: {
+      hours: "20 Hrs/Week",
+      wage: "CAD 15 - 18/hr",
+      coversLiving: "Yes",
+      coversLivingDesc: "Working full 20 hours can often cover food and utilities."
+    },
+    pswInfo: {
+        duration: "Up to 3 Years",
+        verdict: "Very Strong"
+    },
+    jobInfo: {
+        salary: "₹35L - ₹65L per year",
+        salaryDesc: "Strong market in Tech, Healthcare, and Skilled Trades."
+    },
+    topIndustries: ["Fintech", "Health Sciences", "Software Engineering", "Natural Resources", "Logistics"],
+    topCompaniesList: ["Shopify", "RBC", "TD Bank", "Air Canada", "Magna International", "Bell"],
+    prInfo: {
+        timeline: "2-4 Years",
+        difficulty: "Easy / Moderate"
+    },
+    ratings: {
+        Affordability: 7,
+        Quality: 8,
+        Jobs: 7,
+        PR: 10,
+        ROI: 8
+    },
+    overallRating: "8.4",
+    finalVerdict: "Unbeatable for students who want a stable, safe future with guaranteed permanent residency options. The best ROI in terms of settlement.",
+    prosLines: ["Clear path to PR", "Ultra-safe environment", "Diverse Indian community"],
+    consLines: ["Extreme winters", "Housing crisis in major hubs", "Recent visa cap changes"]
   },
   "study-in-germany": {
     title: "Study in Germany",
     heroImage: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1600&fit=crop",
-    headline: "Tuition-Free Public Universities",
-    subheadline: "The engineering powerhouse of Europe with 18-month job seeker visa.",
-    stats: [
-      { label: "Avg. Tuition", value: "€0 - €1,500/sem" },
-      { label: "Post-Study Visa", value: "18 Months" },
-      { label: "Top Industry", value: "Automotive & IT" }
+    heroTitle: "Zero Tuition, Infinite Career Opportunities",
+    positioning: "Best for Engineers & Budget Seekers",
+    quickSnapshot: {
+      avgCost: "₹10L - ₹18L",
+      pswVisa: "18 Months",
+      prChances: "High",
+      jobMarket: "High",
+      safety: "Ultra High",
+      bestFor: "Engineers, IT & Low Cost"
+    },
+    whyPerspective: [
+      { title: "Public Uni Advantage", desc: "Zero tuition fees in most public universities ($0 tuition)." },
+      { title: "Economic Powerhouse", desc: "Europe's largest economy with a massive demand for skilled labor." },
+      { title: "Industry 4.0", desc: "The birthplace of advanced automotive and robotic engineering." },
+      { title: "Central EU Location", desc: "Travel and work anywhere in the 26 Schengen countries." }
     ],
-    universities: [
-      { name: "SRH Berlin", loc: "Germany • Applied Sciences", rank: "Top 5 DE", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://srh-berlin.de&size=256" },
-      { name: "ISM Germany", loc: "Germany • Business", rank: "Top 10 DE", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ism.de&size=256" },
-      { name: "EU Business School", loc: "Munich, Germany", rank: "Top 50 EU", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://euruni.edu&size=256" }
-    ],
-    companies: [
-      { name: "Volkswagen", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://volkswagen.com&size=256" },
-      { name: "Siemens", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://siemens.com&size=256" },
-      { name: "SAP", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://sap.com&size=256" },
-      { name: "BMW", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://bmw.com&size=256" },
-      { name: "Bosch", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://bosch.com&size=256" }
-    ]
+    personas: {
+      ideal: ["Engineers & IT professionals", "Self-funded students", "Research lovers"],
+      borderline: ["Language averse students", "Students wanting purely English campus life"],
+      notFor: ["Management with very high salary expectations", "Casual students"]
+    },
+    costBreakdown: {
+      tuition: "₹0 - ₹8L (Private)",
+      living: "₹9L - ₹11L",
+      total: "₹9L - ₹19L"
+    },
+    workInfo: {
+      hours: "20 Hrs/Week (120 full days/year)",
+      wage: "€12 - €14/hr",
+      coversLiving: "Yes (Mostly)",
+      coversLivingDesc: "Working legally can cover monthly living costs in most cities."
+    },
+    pswInfo: {
+        duration: "18 Months",
+        verdict: "Strong (High Conversion)"
+    },
+    jobInfo: {
+        salary: "₹40L - ₹75L per year",
+        salaryDesc: "Strong demand for STEM roles. Lower tax for students."
+    },
+    topIndustries: ["Automotive", "Mechanical Engineering", "IT / SAP", "Green Energy", "Biotech"],
+    topCompaniesList: ["Volkswagen", "Siemens", "SAP", "BMW", "Bosch", "Mercedes-Benz"],
+    prInfo: {
+        timeline: "2-5 Years",
+        difficulty: "Moderate (German B1 needed)"
+    },
+    ratings: {
+        Affordability: 9,
+        Quality: 9,
+        Jobs: 9,
+        PR: 8,
+        ROI: 10
+    },
+    overallRating: "9.0",
+    finalVerdict: "The gold standard for engineering and tech students on a budget. If you learn German, your success is almost 100% guaranteed.",
+    prosLines: ["Low/No tuition fees", "Excellent job security", "Strong labor laws"],
+    consLines: ["Language barrier (C1 needed for jobs)", "Complex bureaucracy", "Rigid academic standards"]
   },
-  "study-in-france": {
-    title: "Study in France",
-    heroImage: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1600&fit=crop",
-    headline: "Elite Business & Fashion Schools",
-    subheadline: "2-year post-study work visa for master's degree holders. Government housing subsidies.",
-    stats: [
-      { label: "Avg. Tuition", value: "€2,770 - €3,770" },
-      { label: "Post-Study Visa", value: "2 Years" },
-      { label: "Housing Aid", value: "CAF Available" }
+  "study-in-uk": {
+    title: "Study in UK",
+    heroImage: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&fit=crop",
+    heroTitle: "Complete Your Masters in Just 12 Months",
+    positioning: "Best for 1-Year ROI & Global Prestige",
+    quickSnapshot: {
+      avgCost: "₹18L - ₹30L",
+      pswVisa: "2 Years",
+      prChances: "Moderate",
+      jobMarket: "Competitive",
+      safety: "High",
+      bestFor: "Business, Law & Fast ROI"
+    },
+    whyPerspective: [
+      { title: "One-Year Masters", desc: "Save one full year of tuition and living costs compared to USA / Canada." },
+      { title: "Global Prestige", desc: "Home to Oxford, Cambridge and world-leading Russell Group universities." },
+      { title: "2-Year Graduate Visa", desc: "Work for 2 full years after your 1-year degree without employer sponsorship." },
+      { title: "Global Financial Hub", desc: "London is arguably the world's most important financial city." }
     ],
-    universities: [
-      { name: "KEDGE Business School", loc: "France • Triple Crown", rank: "Top 1%", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://kedge.edu&size=256" },
-      { name: "PSB Paris School", loc: "France • Business", rank: "Top 10 FR", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://psbedu.paris&size=256" },
-      { name: "Excelia", loc: "France • Management", rank: "Top 50 EU", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://excelia-group.com&size=256" },
-      { name: "EMLV France", loc: "France • Engineering & Biz", rank: "Top 20 FR", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://emlv.fr&size=256" }
+    personas: {
+      ideal: ["Students wanting fast ROI", "Management/MBA profiles", "Humanities & Law"],
+      borderline: ["Budget constraints", "Students wanting purely suburban life"],
+      notFor: ["People seeking easy PR", "Students needing long study durations"]
+    },
+    costBreakdown: {
+      tuition: "₹14L - ₹22L",
+      living: "₹10L - ₹13L",
+      total: "₹24L - ₹35L"
+    },
+    workInfo: {
+      hours: "20 Hrs/Week",
+      wage: "£11 - £13/hr",
+      coversLiving: "Partially",
+      coversLivingDesc: "Covers daily needs but London rent is notoriously high."
+    },
+    pswInfo: {
+        duration: "2 Years",
+        verdict: "Moderate (High Competition)"
+    },
+    jobInfo: {
+        salary: "₹35L - ₹60L per year",
+        salaryDesc: "Strong for Finance, Marketing, and Creative industries."
+    },
+    topIndustries: ["Financial Services", "Creative Arts", "Healthcare (NHS)", "Consumer Goods", "Legal"],
+    topCompaniesList: ["Barclays", "HSBC", "Unilever", "GSK", "BP", "Deloitte"],
+    prInfo: {
+        timeline: "5-10 Years",
+        difficulty: "Hard (High Salary Threshold)"
+    },
+    ratings: {
+        Affordability: 6,
+        Quality: 9,
+        Jobs: 7,
+        PR: 5,
+        ROI: 8
+    },
+    overallRating: "7.0",
+    finalVerdict: "Perfect for students who want a prestigious degree and immediate global exposure within a short 12-month period. Not ideal for those whose only goal is PR.",
+    prosLines: ["12-month fast masters", "High global ranking", "Culturally rich"],
+    consLines: ["High living costs in London", "Strict PR rules", "High competition for jobs"]
+  },
+  "study-in-ireland": {
+    title: "Study in Ireland",
+    heroImage: "https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=1600&fit=crop",
+    heroTitle: "The Tech Capital of Europe (Silicon Docks)",
+    positioning: "Best for Big-Tech & Friendly Vibes",
+    quickSnapshot: {
+      avgCost: "₹15L - ₹25L",
+      pswVisa: "2 Years",
+      prChances: "Moderate-High",
+      jobMarket: "Ultra High",
+      safety: "Ultra High",
+      bestFor: "Software Engineers & Tech"
+    },
+    whyPerspective: [
+      { title: "EMEA HQ Hub", desc: "Google, Meta, and Apple have their Europe HQs in Dublin." },
+      { title: "Fast-Track Tech Career", desc: "Small labor market but massive corporate presence = high hiring rates." },
+      { title: "English Speaking", desc: "Zero language barrier; full integration into the local culture." },
+      { title: "Critical Skills List", desc: "Special pathways for CS, Engineering, and Healthcare for easier visa sponsorship." }
     ],
-    companies: [
-      { name: "L'Oreal", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://loreal.com&size=256" },
-      { name: "BNP Paribas", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://bnpparibas.com&size=256" },
-      { name: "Airbus", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://airbus.com&size=256" },
-      { name: "Sanofi", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://sanofi.com&size=256" },
-      { name: "Capgemini", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://capgemini.com&size=256" }
-    ]
+    personas: {
+      ideal: ["Software & Data Engineers", "Tax chasers", "Friendly nature lovers"],
+      borderline: ["Students needing big-city hustle (outside Dublin)", "Low budgets"],
+      notFor: ["Non-tech profiles expecting tech salaries", "People disliking rain"]
+    },
+    costBreakdown: {
+      tuition: "₹10L - ₹18L",
+      living: "₹8L - ₹11L",
+      total: "₹18L - ₹29L"
+    },
+    workInfo: {
+      hours: "20 Hrs/Week",
+      wage: "€12 - €14/hr",
+      coversLiving: "No (Dublin)",
+      coversLivingDesc: "Dublin housing crisis has made rent very expensive."
+    },
+    pswInfo: {
+        duration: "2 Years",
+        verdict: "Very Strong (Best for Tech)"
+    },
+    jobInfo: {
+        salary: "₹45L - ₹85L per year",
+        salaryDesc: "Top tier salaries for software and cloud computing."
+    },
+    topIndustries: ["Cloud Computing", "Pharmaceuticals", "Fintech", "Medical Devices", "Agri-Tech"],
+    topCompaniesList: ["Google", "Meta", "Pfizer", "Intel", "Stripe", "Accenture"],
+    prInfo: {
+        timeline: "2-5 Years",
+        difficulty: "Moderate (Skill dependent)"
+    },
+    ratings: {
+        Affordability: 7,
+        Quality: 8,
+        Jobs: 10,
+        PR: 7,
+        ROI: 9
+    },
+    overallRating: "8.2",
+    finalVerdict: "The #1 choice for tech students who want an English-speaking environment with direct access to Silicon Valley giants' HQs.",
+    prosLines: ["Unmatched tech job market", "Friendly local population", "EU gateway"],
+    consLines: ["Severe housing shortage", "High cost of living in Dublin", "Variable weather"]
   },
   "study-in-finland": {
     title: "Study in Finland",
-    heroImage: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=1600&fit=crop",
-    headline: "World's Happiest Country",
-    subheadline: "Incredible living standards and booming tech scene. Post-study resident permit.",
-    stats: [
-      { label: "Avg. Tuition", value: "€8k - €15k" },
-      { label: "Post-Study Visa", value: "2 Years" },
-      { label: "Quality of Life", value: "Ranked #1" }
+    heroImage: "https://images.unsplash.com/photo-1528644012132-59cd871fc3fc?w=1600&fit=crop",
+    heroTitle: "Education for the Future, Welfare for Life",
+    positioning: "Best for Quality of Life & Safety",
+    quickSnapshot: {
+      avgCost: "₹12L - ₹22L",
+      pswVisa: "2 Years",
+      prChances: "Moderate",
+      jobMarket: "Medium (Language key)",
+      safety: "10/10 (Global Top)",
+      bestFor: "Safety & Sustainability Lovers"
+    },
+    whyPerspective: [
+      { title: "Happiest Country", desc: "Voted #1 happiest country globally for 6 consecutive years." },
+      { title: "Practical Education", desc: "Universities of Applied Sciences focus on real-world industry projects." },
+      { title: "Cleanest Environment", desc: "Pristine nature and world-class public infrastructure." },
+      { title: "Startup Spirit", desc: "Home of Slush (Europe's biggest startup event) and Nokia." }
     ],
-    universities: [
-      { name: "SeAMK", loc: "Finland • Applied Sciences", rank: "Top 10 FI", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://seamk.fi&size=256" },
-      { name: "XAMK", loc: "Finland • Applied Sciences", rank: "Top 15 FI", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://xamk.fi&size=256" }
-    ],
-    companies: [
-      { name: "Nokia", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://nokia.com&size=256" },
-      { name: "Kone", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://kone.com&size=256" },
-      { name: "Supercell", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://supercell.com&size=256" },
-      { name: "Rovio", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://rovio.com&size=256" }
-    ]
-  },
-  "study-in-dubai": {
-    title: "Study in Dubai",
-    heroImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&fit=crop",
-    headline: "Tax-Free Income & Luxury Lifestyle",
-    subheadline: "Campuses for top UK/US/Aus universities. Fast-track visas.",
-    stats: [
-      { label: "Avg. Tuition", value: "AED 30k - 60k" },
-      { label: "Tax on Income", value: "0%" },
-      { label: "Part-time Work", value: "Allowed" }
-    ],
-    universities: [
-      { name: "RIT Dubai", loc: "Dubai • Tech & Business", rank: "Top 5 UAE", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://rit.edu&size=256" },
-      { name: "Murdoch University Dubai", loc: "Dubai • Int. Campus", rank: "Top 10 UAE", img: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://murdoch.edu.au&size=256" }
-    ],
-    companies: [
-      { name: "Emirates", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://emirates.com&size=256" },
-      { name: "Emaar", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://emaar.com&size=256" },
-      { name: "DP World", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://dpworld.com&size=256" },
-      { name: "Dubai Islamic Bank", logo: "https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://dib.ae&size=256" }
-    ]
+    personas: {
+      ideal: ["Safety-conscious students", "Enviro-tech enthusiasts", "Families wanting peace"],
+      borderline: ["Language averse techies", "Hustle culture seekers"],
+      notFor: ["Students needing massive direct high-salary jobs without language", "Sun-seekers"]
+    },
+    costBreakdown: {
+      tuition: "₹8L - ₹14L",
+      living: "₹7L - ₹9L",
+      total: "₹15L - ₹23L"
+    },
+    workInfo: {
+      hours: "30 Hrs/Week (Increased)",
+      wage: "€11 - €13/hr",
+      coversLiving: "Yes",
+      coversLivingDesc: "Finland is surprisingly affordable if you live in student housing."
+    },
+    pswInfo: {
+        duration: "2 Years",
+        verdict: "Moderate (Language matters)"
+    },
+    jobInfo: {
+        salary: "₹35L - ₹60L per year",
+        salaryDesc: "Strong in Clean-tech, Gaming, and Healthcare."
+    },
+    topIndustries: ["Gaming (Supercell/Rovio)", "Marine Engineering", "Clean-tech", "Education Tech", "Nursing"],
+    topCompaniesList: ["Nokia", "Kone", "Supercell", "Rovio", "UPM", "Wartsila"],
+    prInfo: {
+        timeline: "4-6 Years",
+        difficulty: "Moderate (Finnish needed)"
+    },
+    ratings: {
+        Affordability: 8,
+        Quality: 9,
+        Jobs: 6,
+        PR: 7,
+        ROI: 8
+    },
+    overallRating: "7.6",
+    finalVerdict: "Best for those who value safety, work-life balance, and child welfare over raw salary figures. A peaceful long-term home.",
+    prosLines: ["safest country on earth", "high education standards", "fair work culture"],
+    consLines: ["Finnish language is hard", "Niche job market", "Dark, cold winters"]
   }
 }
