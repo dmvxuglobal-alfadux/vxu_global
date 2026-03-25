@@ -8,7 +8,11 @@ import { Button } from "@/components/ui/button"
 import { db, Announcement } from "@/lib/db"
 import { LeadPopup } from "@/components/floating/LeadPopup"
 
+import { usePathname } from "next/navigation"
+
 export function Navbar() {
+  const pathname = usePathname()
+  const isHome = pathname === "/"
   const [isOpen, setIsOpen] = React.useState(false)
   const [scrolled, setScrolled] = React.useState(false)
   const [announcement, setAnnouncement] = React.useState<Announcement | null>(null)
@@ -89,27 +93,28 @@ export function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Fixed Sticky Navbar (Stays at the top) */}
+      {/* Fixed Sticky Navbar */}
       <nav className={`fixed w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? "top-0 bg-white/95 backdrop-blur-md shadow-lg border-b border-slate-100 py-2" 
-          : announcement ? "top-auto bg-transparent py-4 text-white" : "top-0 bg-transparent py-4 text-white"
+          ? "top-0 bg-white shadow-lg border-b border-slate-100 py-2" 
+          : isHome 
+            ? "top-auto bg-transparent py-4 text-white" 
+            : "top-0 bg-white shadow-sm border-b border-slate-100 py-2 text-slate-800"
       }`}>
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <Link href="/" className="flex flex-shrink-0">
                <img 
-                 src={scrolled ? "/logo.png" : "/logo.png"} 
+                 src="/flogo.png" 
                  alt="VXU Global" 
-                 className={`h-10 lg:h-12 object-contain transition-all ${!scrolled && "brightness-0 invert"}`} 
+                 className={`h-10 lg:h-12 object-contain transition-all ${(!scrolled && isHome) ? "brightness-0 invert" : ""}`} 
                />
             </Link>
 
-            {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-6 lg:gap-8">
               <div className="relative group py-2">
                 <span className={`text-sm font-bold cursor-pointer flex items-center gap-1 group-hover:text-secondary transition-colors ${
-                    scrolled ? "text-slate-800" : "text-white"
+                    (scrolled || !isHome) ? "text-slate-800" : "text-white"
                   }`}>
                   Study Abroad <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
                 </span>
@@ -151,15 +156,15 @@ export function Navbar() {
               </div>
 
               <Link href="/study-abroad-pathway" className={`text-sm font-bold relative group ${
-                  scrolled ? "text-slate-800" : "text-white/90"
+                  (scrolled || !isHome) ? "text-slate-800" : "text-white/90"
                 }`}>
                 Pathway Program
                 <span className="absolute -top-4 -right-2 bg-secondary text-white text-[8px] px-1.5 py-0.5 rounded-full animate-pulse font-black shadow-sm">NEW</span>
               </Link>
-
+ 
               {navLinks.map(l => (
                 <Link key={l.href} href={l.href} className={`text-sm font-bold transition-colors ${
-                    scrolled ? "text-slate-800 hover:text-primary" : "text-white/90 hover:text-white"
+                    (scrolled || !isHome) ? "text-slate-800 hover:text-primary" : "text-white/90 hover:text-white"
                   }`}>{l.name}</Link>
               ))}
             </div>
@@ -167,16 +172,37 @@ export function Navbar() {
             <div className="flex items-center gap-4">
               <Link href="/login" className="hidden lg:block">
                 <Button variant="ghost" className={`font-bold transition-colors ${
-                    scrolled ? "text-slate-600 hover:text-primary" : "text-white/80 hover:text-white"
+                    (scrolled || !isHome) ? "text-slate-600 hover:text-primary" : "text-white/80 hover:text-white"
                   }`}>Admin Login</Button>
               </Link>
               <motion.div
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  boxShadow: [
+                    "0 0 0 rgba(227, 24, 55, 0)",
+                    "0 0 20px rgba(227, 24, 55, 0.4)",
+                    "0 0 0 rgba(227, 24, 55, 0)"
+                  ]
+                }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                className="w-full sm:w-auto relative group overflow-hidden rounded-full"
               >
-                <Button variant="gradient" onClick={() => setShowLeadForm(true)} className="rounded-full px-6 md:px-8 font-bold shadow-xl shadow-primary/20 scale-90 md:scale-100 whitespace-nowrap">Book Now</Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  onClick={() => window.dispatchEvent(new CustomEvent("trigger-lead-form"))}
+                  className="h-14 px-8 text-lg rounded-full bg-white hover:bg-slate-50 border-primary text-primary shadow-xl w-full border-2 relative overflow-hidden"
+                >
+                  <span className="relative z-10">Book Free Counselling</span>
+                  {/* Sheen Effect */}
+                  <motion.div 
+                    animate={{ x: ["-100%", "200%"] }}
+                    transition={{ repeat: Infinity, duration: 3, ease: "linear", repeatDelay: 1 }}
+                    className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
+                  />
+                </Button>
               </motion.div>
-              <button className={`md:hidden p-2 ${scrolled ? "text-slate-800" : "text-white"}`} onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
+              <button className={`md:hidden p-2 ${(scrolled || !isHome) ? "text-slate-800" : "text-white"}`} onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
             </div>
           </div>
         </div>
