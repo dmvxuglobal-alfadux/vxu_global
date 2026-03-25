@@ -87,7 +87,7 @@ export function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="bg-gradient-to-r from-[#E31837] via-[#ff4d4d] to-[#E31837] text-white overflow-hidden relative shadow-md"
+              className="bg-gradient-to-r from-[#E31837] via-[#ff4d4d] to-[#E31837] text-white overflow-hidden relative shadow-md z-[60]"
             >
               <div className="absolute inset-0 bg-black/5 pointer-events-none"></div>
               <div className="container mx-auto px-4 py-2 flex flex-col md:flex-row items-center justify-center text-xs md:text-sm font-bold gap-1 md:gap-3 text-center relative max-w-7xl">
@@ -124,13 +124,13 @@ export function Navbar() {
                 </span>
                 
                 {/* Mega Menu Dropdown */}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[800px] bg-white shadow-2xl border border-slate-100 rounded-[2rem] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-4 group-hover:translate-y-0 z-50 overflow-hidden p-8">
-                  <div className="grid grid-cols-4 gap-10">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[95vw] max-w-[1200px] bg-white shadow-2xl border border-slate-100 rounded-[2.5rem] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-4 group-hover:translate-y-0 z-50 overflow-hidden p-10">
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                     
                     {/* Column 1: Popular */}
                     <div>
-                      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 border-b border-slate-50 pb-2">Top Tiers</h4>
-                      <div className="flex flex-col gap-3">
+                      <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-400 mb-8 border-b border-slate-50 pb-3">Top Tiers</h4>
+                      <div className="flex flex-col gap-4">
                         <MenuLink href="/study-in-usa" name="United States" />
                         <MenuLink href="/study-in-uk" name="United Kingdom" />
                         <MenuLink href="/study-in-canada" name="Canada" />
@@ -141,8 +141,8 @@ export function Navbar() {
 
                     {/* Column 2: Europe Core */}
                     <div>
-                      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 border-b border-slate-50 pb-2">Europe Central</h4>
-                      <div className="flex flex-col gap-3">
+                      <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-400 mb-8 border-b border-slate-50 pb-3">Europe Central</h4>
+                      <div className="flex flex-col gap-4">
                         <MenuLink href="/study-in-germany" name="Germany" />
                         <MenuLink href="/study-in-france" name="France" />
                         <MenuLink href="/study-in-netherlands" name="Netherlands" />
@@ -153,8 +153,8 @@ export function Navbar() {
 
                     {/* Column 3: Nordic & Affordable */}
                     <div>
-                      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 border-b border-slate-50 pb-2">Safe & Budget</h4>
-                      <div className="flex flex-col gap-3">
+                      <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-400 mb-8 border-b border-slate-50 pb-3">Safe & Budget</h4>
+                      <div className="flex flex-col gap-4">
                         <MenuLink href="/study-in-finland" name="Finland" />
                         <MenuLink href="/study-in-sweden" name="Sweden" />
                         <MenuLink href="/study-in-malta" name="Malta" />
@@ -164,13 +164,13 @@ export function Navbar() {
                     </div>
 
                     {/* Column 4: Asia & Overview */}
-                    <div className="bg-slate-50 -m-8 p-8 ml-0 border-l border-slate-100">
-                      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 border-b border-slate-100 pb-2">Strategic</h4>
-                      <div className="flex flex-col gap-3">
+                    <div className="bg-slate-50/50 -m-10 p-10 ml-0 border-l border-slate-100">
+                      <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-400 mb-8 border-b border-slate-200 pb-3">Strategic</h4>
+                      <div className="flex flex-col gap-4">
                         <MenuLink href="/study-in-dubai" name="Dubai (UAE)" />
                         <MenuLink href="/study-in-singapore" name="Singapore" />
                         <MenuLink href="/study-in-japan" name="Japan" />
-                        <div className="mt-4 pt-4 border-t border-slate-200">
+                        <div className="mt-6 pt-6 border-t border-slate-200">
                           <Link href="/study-abroad" className="inline-flex items-center gap-2 text-sm font-black text-secondary group/all">
                             View All 30+ <ArrowRight size={14} className="group-hover/all:translate-x-1 transition-transform" />
                           </Link>

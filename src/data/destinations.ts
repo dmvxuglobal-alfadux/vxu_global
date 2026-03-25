@@ -403,5 +403,16 @@ export const destinationsData: Record<string, any> = {
     finalVerdict: "Best for those who value safety, work-life balance, and child welfare over raw salary figures. A peaceful long-term home.",
     prosLines: ["safest country on earth", "high education standards", "fair work culture"],
     consLines: ["Finnish language is hard", "Niche job market", "Dark, cold winters"]
-  }
+  },
+  "study-in-netherlands": { title: "Study in Netherlands", heroImage: "https://images.unsplash.com/photo-1541088936845-e2ff04f5bbdc?w=1600&fit=crop", heroTitle: "The Gateway to Europe", positioning: "Best for Logistics & Business", ratings: { Affordability: 6, Quality: 9, Jobs: 8 } },
+  "study-in-sweden": { title: "Study in Sweden", heroImage: "https://images.unsplash.com/photo-1540304453526-bb2275f822ac?w=1600&fit=crop", heroTitle: "Innovation in the North", positioning: "Best for Sustainable Tech", ratings: { Affordability: 6, Quality: 8, Jobs: 7 } },
+  "study-in-spain": { title: "Study in Spain", heroImage: "https://images.unsplash.com/photo-1543783207-ec64e4d9ea3e?w=1600&fit=crop", heroTitle: "The Vibe of Europe", positioning: "Best for MBA & Tourism", ratings: { Affordability: 8, Quality: 7, Jobs: 6 } },
+  "study-in-italy": { title: "Study in Italy", heroImage: "https://images.unsplash.com/photo-1529260830199-42c24126f198?w=1600&fit=crop", heroTitle: "Art & Heritage", positioning: "Best for Design & Arts", ratings: { Affordability: 8, Quality: 7, Jobs: 6 } },
+  "study-in-australia": { title: "Study in Australia", heroImage: "https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=1600&fit=crop", heroTitle: "Leading Edge in Health & Tech", positioning: "Best for High Wages", ratings: { Affordability: 6, Quality: 8, Jobs: 8 } },
+  "study-in-new-zealand": { title: "Study in New Zealand", heroImage: "https://images.unsplash.com/photo-1469521669194-bdf9555cfde5?w=1600&fit=crop", heroTitle: "Nature & Excellence", positioning: "Best for Peace & Balance", ratings: { Affordability: 6, Quality: 7, Jobs: 7 } },
+  "study-in-dubai": { title: "Study in Dubai", heroImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&fit=crop", heroTitle: "Global Business Nexus", positioning: "Best for Fast Career Growth", ratings: { Affordability: 6, Quality: 7, Jobs: 8 } },
+  "study-in-singapore": { title: "Study in Singapore", heroImage: "https://images.unsplash.com/photo-1525625239-182cc3ef8082?w=1600&fit=crop", heroTitle: "The Asian Tiger", positioning: "Best for Tech Excellence", ratings: { Affordability: 5, Quality: 9, Jobs: 9 } },
+  "study-in-japan": { title: "Study in Japan", heroImage: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1600&fit=crop", heroTitle: "Traditional Tech Powerhouse", positioning: "Best for Robotics", ratings: { Affordability: 7, Quality: 8, Jobs: 8 } },
+  "study-in-malta": { title: "Study in Malta", heroImage: "https://images.unsplash.com/photo-1529260830199-42c24126f198?w=1600&fit=crop", heroTitle: "The Mediterranean Gem", positioning: "Best for English & Budget", ratings: { Affordability: 8, Quality: 6, Jobs: 6 } },
+  "study-in-cyprus": { title: "Study in Cyprus", heroImage: "https://images.unsplash.com/photo-1541088936845-e2ff04f5bbdc?w=1600&fit=crop", heroTitle: "Low Cost Gateway", positioning: "Best for Affordability", ratings: { Affordability: 9, Quality: 6, Jobs: 5 } }
 }
