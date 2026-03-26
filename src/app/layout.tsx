@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "VXU Global",
     images: [
       {
-         url: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070",
+         url: "/og-image.png",
          width: 1200,
          height: 630,
       }
