@@ -89,7 +89,7 @@ export default function StudyAbroadPathwayPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-24 bg-[#001265] overflow-hidden text-white">
+      <section className="relative pt-16 pb-24 bg-[#001265] overflow-hidden text-white">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-[#001265] opacity-90 mix-blend-multiply" />
           <img src="https://images.unsplash.com/photo-152305035309e-ad148c0201ee?w=1600&fit=crop" className="w-full h-full object-cover opacity-20" alt="Students Abroad" />

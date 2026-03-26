@@ -25,7 +25,7 @@ export function HeroSection() {
   }, [videoTexts.length])
 
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden">
+    <section className="relative min-h-[85vh] flex items-center pt-8 pb-16 overflow-hidden">
       {/* Pure White Background */}
       <div className="absolute inset-0 z-0 bg-white" />
 

@@ -31,7 +31,7 @@ export default function DestinationPage() {
       <Navbar />
 
       {/* 1. Hero Section (Emotional + Aspirational Hook) */}
-      <div className="relative pt-20 pb-0 bg-primary overflow-hidden min-h-[500px] flex items-end">
+      <div className="relative pt-12 pb-0 bg-primary overflow-hidden min-h-[400px] flex items-end">
         <div className="absolute inset-0 z-0">
           <img src={data.heroImage} alt={data.title} className="w-full h-full object-cover opacity-30 mix-blend-overlay scale-105" />
           <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-transparent" />
