@@ -338,14 +338,17 @@ export default function DestinationPage() {
                   <h3 className="text-3xl font-black text-primary mb-2">Free Profile Eval</h3>
                   <p className="text-sm text-slate-500 mb-8 font-medium italic">Join 5000+ students on their global journey.</p>
                   
-                  <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent("trigger-lead-form")); }}>
-                    <Input placeholder="Full Name" className="h-14 rounded-xl bg-slate-50 border-slate-100" required />
-                    <Input placeholder="Highest Qualification" className="h-14 rounded-xl bg-slate-50 border-slate-100" required />
-                    
-                    <Button block className="w-full h-16 text-lg font-black bg-primary hover:bg-secondary text-white transition-all duration-300 shadow-xl mt-4 rounded-xl">
-                      Book Free Counselling
+                  <div className="space-y-4">
+                    <p className="text-slate-600 font-medium text-sm leading-relaxed mb-4">
+                      Get a comprehensive evaluation of your academic profile, budget, and visa chances by our international experts.
+                    </p>
+                    <Button 
+                      onClick={() => window.dispatchEvent(new CustomEvent("trigger-lead-form"))}
+                      className="w-full h-16 text-lg font-black bg-primary hover:bg-secondary text-white transition-all duration-300 shadow-xl rounded-xl"
+                    >
+                      Book Free Evaluation
                     </Button>
-                  </form>
+                  </div>
                   
                   <div className="mt-8 pt-8 border-t border-slate-100 text-center">
                     <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] mb-4">Immediate Expert Access</p>
