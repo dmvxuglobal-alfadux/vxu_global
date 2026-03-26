@@ -160,17 +160,47 @@ export function Navbar() {
         {/* Mobile Nav */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }} className="md:hidden bg-white border-b border-slate-100 overflow-hidden shadow-2xl pointer-events-auto">
-              <div className="p-6 space-y-4">
-                 <div className="text-xs font-black uppercase tracking-widest text-slate-400 border-b border-slate-50 pb-2">Programs</div>
-                 <Link href="/study-abroad" className="block text-lg font-bold text-slate-900" onClick={() => setIsOpen(false)}>Study Abroad</Link>
-                 <Link href="/study-abroad-pathway" className="block text-lg font-bold text-slate-900" onClick={() => setIsOpen(false)}>Pathway Program</Link>
-                 <div className="text-xs font-black uppercase tracking-widest text-slate-400 border-b border-slate-50 pb-2 pt-4">Other</div>
-                 {navLinks.map(l => (
-                  <Link key={l.href} href={l.href} onClick={() => setIsOpen(false)} className="block text-lg font-bold text-slate-900">{l.name}</Link>
-                 ))}
-                 <div className="pt-6">
-                    <Button className="w-full h-14 text-lg font-black rounded-2xl" onClick={() => { setIsOpen(false); setShowLeadForm(true); }}>Talk to Expert</Button>
+            <motion.div 
+              initial={{ height: 0, opacity: 0 }} 
+              animate={{ height: 'calc(100vh - 5rem)', opacity: 1 }} 
+              exit={{ height: 0, opacity: 0 }} 
+              className="md:hidden bg-white overflow-y-auto pointer-events-auto border-t border-slate-50"
+            >
+              <div className="p-8 space-y-8 pb-32">
+                 <div className="space-y-4">
+                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b border-slate-50 pb-2">Destinations</div>
+                   <div className="grid grid-cols-2 gap-4">
+                      {studyAbroadLinks.slice(0, 10).map(l => (
+                        <Link key={l.href} href={l.href} onClick={() => setIsOpen(false)} className="text-sm font-bold text-slate-800 hover:text-primary">{l.name}</Link>
+                      ))}
+                   </div>
+                   <Link href="/study-abroad" className="inline-flex items-center gap-2 text-xs font-black text-secondary pt-2" onClick={() => setIsOpen(false)}>
+                     View All 30+ <ArrowRight size={14}/>
+                   </Link>
+                 </div>
+
+                 <div className="space-y-4">
+                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b border-slate-50 pb-2">Programs</div>
+                   <Link href="/study-abroad-pathway" className="block text-lg font-black text-primary flex items-center justify-between" onClick={() => setIsOpen(false)}>
+                     Pathway Program <span className="text-[8px] bg-secondary text-white px-1.5 py-0.5 rounded-full">NEW</span>
+                   </Link>
+                   {navLinks.slice(0, 1).map(l => (
+                     <Link key={l.href} href={l.href} onClick={() => setIsOpen(false)} className="block text-lg font-bold text-slate-900">{l.name}</Link>
+                   ))}
+                 </div>
+
+                 <div className="space-y-4">
+                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b border-slate-50 pb-2">Resources</div>
+                   {navLinks.slice(1).map(l => (
+                     <Link key={l.href} href={l.href} onClick={() => setIsOpen(false)} className="block text-md font-bold text-slate-700">{l.name}</Link>
+                   ))}
+                 </div>
+
+                 <div className="pt-8 border-t border-slate-100 grid grid-cols-1 gap-4">
+                    <Button variant="gradient" className="w-full h-14 text-lg font-black rounded-2xl shadow-xl shadow-primary/20" onClick={() => { setIsOpen(false); setShowLeadForm(true); }}>Book Free Consultation</Button>
+                    <Link href="/login" onClick={() => setIsOpen(false)}>
+                      <Button variant="ghost" className="w-full h-12 font-bold text-slate-400">Admin Login</Button>
+                    </Link>
                  </div>
               </div>
             </motion.div>
