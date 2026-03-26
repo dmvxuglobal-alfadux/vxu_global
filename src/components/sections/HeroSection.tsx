@@ -61,28 +61,37 @@ export function HeroSection() {
               <motion.div
                 animate={{ 
                   scale: [1, 1.05, 1],
-                  boxShadow: [
-                    "0 0 0 rgba(0,0,0,0)",
-                    "0 0 20px rgba(59,130,246,0.3)",
-                    "0 0 0 rgba(0,0,0,0)"
-                  ]
                 }}
                 transition={{ 
                   duration: 2,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto relative"
               >
+                {/* Visual Glow Layer */}
+                <motion.div 
+                   animate={{ 
+                     opacity: [0, 0.5, 0],
+                     scale: [1, 1.1, 1]
+                   }}
+                   transition={{ 
+                     duration: 2,
+                     repeat: Infinity,
+                     ease: "easeInOut"
+                   }}
+                   className="absolute inset-0 bg-primary/20 rounded-full blur-xl -z-10"
+                />
+                
                 <Button 
                   size="lg" 
                   variant="outline" 
                   onClick={() => window.dispatchEvent(new CustomEvent("trigger-lead-form"))}
-                  className="h-14 px-8 text-lg rounded-full bg-white hover:bg-slate-50 border-primary/20 hover:border-primary text-primary font-bold shadow-sm w-full sm:w-auto relative overflow-hidden group"
+                  className="h-14 px-8 text-lg rounded-full bg-white hover:bg-slate-50 border-primary/20 hover:border-primary text-primary font-bold shadow-sm w-full sm:w-auto relative overflow-hidden group transition-all"
                 >
                   <span className="relative z-10">Book Free Counselling</span>
                   <motion.div 
-                    className="absolute inset-0 bg-primary/5 transition-transform duration-300 translate-x-[-100%] group-hover:translate-x-0" 
+                    className="absolute inset-0 bg-primary/5 transition-transform duration-300 translate-x-[-100%] group-hover:translate-x-0 rounded-full" 
                   />
                 </Button>
               </motion.div>
