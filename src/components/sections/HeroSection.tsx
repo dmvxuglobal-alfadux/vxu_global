@@ -58,14 +58,34 @@ export function HeroSection() {
                   Explore Programs <ArrowRight size={20} />
                 </Button>
               </Link>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                onClick={() => window.dispatchEvent(new CustomEvent("trigger-lead-form"))}
-                className="h-14 px-8 text-lg rounded-full bg-white/50 backdrop-blur-sm hover:bg-white border-slate-200 shadow-sm"
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  boxShadow: [
+                    "0 0 0 rgba(0,0,0,0)",
+                    "0 0 20px rgba(59,130,246,0.3)",
+                    "0 0 0 rgba(0,0,0,0)"
+                  ]
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="w-full sm:w-auto"
               >
-                Book Free Counselling
-              </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  onClick={() => window.dispatchEvent(new CustomEvent("trigger-lead-form"))}
+                  className="h-14 px-8 text-lg rounded-full bg-white hover:bg-slate-50 border-primary/20 hover:border-primary text-primary font-bold shadow-sm w-full sm:w-auto relative overflow-hidden group"
+                >
+                  <span className="relative z-10">Book Free Counselling</span>
+                  <motion.div 
+                    className="absolute inset-0 bg-primary/5 transition-transform duration-300 translate-x-[-100%] group-hover:translate-x-0" 
+                  />
+                </Button>
+              </motion.div>
             </div>
 
             <div className="mt-10 flex items-center gap-6 text-sm text-primary/70 font-medium">
