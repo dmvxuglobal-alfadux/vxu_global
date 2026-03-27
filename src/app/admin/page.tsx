@@ -17,11 +17,20 @@ export default function AdminDashboard() {
 
   // Auth check
   React.useEffect(() => {
-    if (sessionStorage.getItem("vxu_auth") !== "true") {
-      router.push("/login")
-    } else {
-      fetchData()
+    const checkAuth = async () => {
+      const { getAuth, onAuthStateChanged } = await import("firebase/auth")
+      const { app } = await import("@/lib/firebase")
+      const auth = getAuth(app)
+      
+      onAuthStateChanged(auth, (user) => {
+        if (!user && sessionStorage.getItem("vxu_auth") !== "true") {
+          router.push("/login")
+        } else {
+          fetchData()
+        }
+      })
     }
+    checkAuth()
   }, [router])
 
   const fetchData = async () => {
@@ -118,21 +127,30 @@ export default function AdminDashboard() {
                        <h2 className="text-xl font-bold mb-6">{editingItem ? 'Edit' : 'Create New'} {activeTab.slice(0, -1)}</h2>
                        
                        {activeTab === "blogs" && <BlogForm initialData={editingItem} onSave={async (obj: any) => { 
-                         if(editingItem) await db.updateBlog(editingItem.id, obj);
-                         else await db.addBlog(obj); 
-                         closeForm(); fetchData(); 
+                         try {
+                           if(editingItem) await db.updateBlog(editingItem.id, obj);
+                           else await db.addBlog(obj); 
+                           alert("Success: Blog updated!");
+                           closeForm(); fetchData(); 
+                         } catch (e: any) { alert("Error saving: " + e.message); }
                        }} onCancel={closeForm} />}
                        
                        {activeTab === "mentors" && <MentorForm initialData={editingItem} onSave={async (obj: any) => { 
-                         if(editingItem) await db.updateMentor(editingItem.id, obj);
-                         else await db.addMentor(obj); 
-                         closeForm(); fetchData(); 
+                         try {
+                           if(editingItem) await db.updateMentor(editingItem.id, obj);
+                           else await db.addMentor(obj); 
+                           alert("Success: Mentor added!");
+                           closeForm(); fetchData(); 
+                         } catch (e: any) { alert("Error saving: " + e.message); }
                        }} onCancel={closeForm} />}
                        
                        {activeTab === "ambassadors" && <AmbassadorForm initialData={editingItem} onSave={async (obj: any) => { 
-                         if(editingItem) await db.updateAmbassador(editingItem.id, obj);
-                         else await db.addAmbassador(obj); 
-                         closeForm(); fetchData(); 
+                         try {
+                           if(editingItem) await db.updateAmbassador(editingItem.id, obj);
+                           else await db.addAmbassador(obj); 
+                           alert("Success: Ambassador added!");
+                           closeForm(); fetchData(); 
+                         } catch (e: any) { alert("Error saving: " + e.message); }
                        }} onCancel={closeForm} />}
                     </div>
                   </motion.div>

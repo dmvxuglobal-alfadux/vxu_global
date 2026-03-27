@@ -17,17 +17,22 @@ export default function LoginPage() {
     setLoading(true)
     setError("")
     
-    // Mock Authentication
+    // Real Firebase Authentication
     const formData = new FormData(e.currentTarget)
     const email = formData.get("email") as string
     const password = formData.get("password") as string
 
-    // Super simple mock credentials
-    if (email === "admin@vxuglobal.com" && password === "admin123") {
+    try {
+      const { getAuth, signInWithEmailAndPassword } = await import("firebase/auth")
+      const { app } = await import("@/lib/firebase")
+      const auth = getAuth(app)
+      
+      await signInWithEmailAndPassword(auth, email, password)
       sessionStorage.setItem("vxu_auth", "true")
       router.push("/admin")
-    } else {
-      setError("Invalid credentials. Try admin@vxuglobal.com / admin123")
+    } catch (err: any) {
+      console.error("Login Error:", err)
+      setError(err.message || "Invalid credentials. Try your Firebase Console account.")
       setLoading(false)
     }
   }
