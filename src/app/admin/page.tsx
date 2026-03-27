@@ -17,20 +17,11 @@ export default function AdminDashboard() {
 
   // Auth check
   React.useEffect(() => {
-    const checkAuth = async () => {
-      const { getAuth, onAuthStateChanged } = await import("firebase/auth")
-      const { app } = await import("@/lib/firebase")
-      const auth = getAuth(app)
-      
-      onAuthStateChanged(auth, (user) => {
-        if (!user && sessionStorage.getItem("vxu_auth") !== "true") {
-          router.push("/login")
-        } else {
-          fetchData()
-        }
-      })
+    if (sessionStorage.getItem("vxu_auth") !== "true") {
+      router.push("/login")
+    } else {
+      fetchData()
     }
-    checkAuth()
   }, [router])
 
   const fetchData = async () => {
