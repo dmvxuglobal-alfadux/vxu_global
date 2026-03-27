@@ -279,10 +279,10 @@ function BlogForm({ initialData, onSave, onCancel }: any) {
        <ImageUpload defaultImage={imageBase64} onImageSelected={setImageBase64} />
        
        <Textarea name="content" defaultValue={initialData?.content} placeholder="Full Blog Content" rows={6} required className="resize-y" />
-       <div className="flex gap-4 justify-end pt-4">
-          <Button type="button" variant="outline" onClick={onCancel}>Cancel</Button>
-          <Button type="submit" variant="gradient">{initialData ? 'Update Blog' : 'Save Blog Draft'}</Button>
-       </div>
+        <div className="flex gap-4 justify-end pt-4">
+           <Button type="button" variant="outline" onClick={onCancel}>Cancel</Button>
+           <Button type="submit" variant="gradient">{initialData ? 'Update Blog' : 'Save Blog Draft'}</Button>
+        </div>
     </form>
   )
 }
@@ -313,10 +313,10 @@ function MentorForm({ initialData, onSave, onCancel }: any) {
        
        <ImageUpload defaultImage={imageBase64} onImageSelected={setImageBase64} />
        
-       <div className="flex gap-4 justify-end pt-4">
-          <Button type="button" variant="outline" onClick={onCancel}>Cancel</Button>
-          <Button type="submit" variant="gradient">{initialData ? 'Update Mentor' : 'Add Mentor'}</Button>
-       </div>
+        <div className="flex gap-4 justify-end pt-4">
+           <Button type="button" variant="outline" onClick={onCancel}>Cancel</Button>
+           <Button type="submit" variant="gradient">{initialData ? 'Update Mentor' : 'Add Mentor'}</Button>
+        </div>
     </form>
   )
 }
@@ -342,10 +342,10 @@ function AmbassadorForm({ initialData, onSave, onCancel }: any) {
        
        <ImageUpload defaultImage={imageBase64} onImageSelected={setImageBase64} />
        
-       <div className="flex gap-4 justify-end pt-4">
-          <Button type="button" variant="outline" onClick={onCancel}>Cancel</Button>
-          <Button type="submit" variant="gradient">{initialData ? 'Update Ambassador' : 'Add Ambassador'}</Button>
-       </div>
+        <div className="flex gap-4 justify-end pt-4">
+           <Button type="button" variant="outline" onClick={onCancel}>Cancel</Button>
+           <Button type="submit" variant="gradient">{initialData ? 'Update Ambassador' : 'Add Ambassador'}</Button>
+        </div>
     </form>
   )
 }
