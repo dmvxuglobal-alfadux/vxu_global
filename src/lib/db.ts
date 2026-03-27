@@ -1,244 +1,204 @@
-import { supabase } from './supabase'
+import { db } from './firebase';
+import { 
+  collection, 
+  getDocs, 
+  getDoc, 
+  setDoc, 
+  addDoc, 
+  deleteDoc, 
+  updateDoc, 
+  doc, 
+  query, 
+  orderBy, 
+  where,
+  limit
+} from "firebase/firestore";
 
 export interface BlogPost {
-  id: string
-  title: string
-  slug: string
-  content: string
-  image: string
-  category: string
-  date: string
-  tags: string[]
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  image: string;
+  category: string;
+  date: string;
+  tags: string[];
 }
 
 export interface Mentor {
-  id: string
-  name: string
-  expertise: string
-  experience: string
-  company: string
-  photo: string
-  linkedinUrl?: string
+  id: string;
+  name: string;
+  expertise: string;
+  experience: string;
+  company: string;
+  photo: string;
+  linkedinUrl?: string;
 }
 
 export interface Ambassador {
-  id: string
-  name: string
-  college: string
-  country: string
-  photo: string
+  id: string;
+  name: string;
+  college: string;
+  country: string;
+  photo: string;
 }
 
 export interface Announcement {
-  text: string
-  link: string
-  isActive: boolean
+  text: string;
+  link: string;
+  isActive: boolean;
 }
 
-// ---- FALLBACK LOCAL STORAGE IMPLEMENTATION ----
-const MOCK_DELAY = 400
-const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
-
-const getStorage = (key: string, defaultVal: any) => {
-  if (typeof window === 'undefined') return defaultVal
-  const str = localStorage.getItem(key)
-  return str ? JSON.parse(str) : defaultVal
-}
-
-const setStorage = (key: string, val: any) => {
-  if (typeof window !== 'undefined') {
-    localStorage.setItem(key, JSON.stringify(val))
-  }
-}
-
-// Initial Mock Data (unchanged)
+// Initial Mock Data (used if Firestore is empty)
 const initialBlogs = [
-  { id: '1', title: 'Why Germany is Top Destination', slug: 'why-germany', content: 'Germany offers tuition-free education...', image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b', category: 'Study Abroad', date: '2023-10-01', tags: ['Germany'] },
-  { id: '2', title: 'AI Engineering Salaries in 2024', slug: 'ai-salaries', content: 'AI engineers are earning upwards of...', image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b', category: 'Upskilling', date: '2023-10-15', tags: ['AI'] }
-]
+  { title: 'Why Germany is Top Destination', slug: 'why-germany', content: 'Germany offers tuition-free education...', image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b', category: 'Study Abroad', date: new Date().toISOString(), tags: ['Germany'] },
+  { title: 'AI Engineering Salaries in 2024', slug: 'ai-salaries', content: 'AI engineers are earning upwards of...', image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b', category: 'Upskilling', date: new Date().toISOString(), tags: ['AI'] }
+];
+
 const initialMentors = [
-  { id: '1', name: 'Dr. Sarah Jenkins', expertise: 'Machine Learning', experience: '15+ Years', company: 'Google', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2', linkedinUrl: '#' },
-  { id: '2', name: 'Mark Roberts', expertise: 'Cloud Architecture', experience: '12+ Years', company: 'AWS', photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a', linkedinUrl: '#' }
-]
+  { name: 'Dr. Sarah Jenkins', expertise: 'Machine Learning', experience: '15+ Years', company: 'Google', photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2', linkedinUrl: '#' },
+  { name: 'Mark Roberts', expertise: 'Cloud Architecture', experience: '12+ Years', company: 'AWS', photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a', linkedinUrl: '#' }
+];
+
 const initialAmbassadors = [
-  { id: '1', name: 'Aiden Smith', college: 'Stanford University', country: 'USA', photo: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79' },
-  { id: '2', name: 'Priya Sharma', college: 'Technical University of Munich', country: 'Germany', photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956' }
-]
+  { name: 'Aiden Smith', college: 'Stanford University', country: 'USA', photo: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79' },
+  { name: 'Priya Sharma', college: 'Technical University of Munich', country: 'Germany', photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956' }
+];
 
 const initialAnnouncement: Announcement = {
   text: "🌟 Applications now open for Fall 2026 Batch! Get up to 40% scholarships on early enrollment.",
   link: "/job-ready-programs",
   isActive: true
-}
+};
 
-// ---- MAIN DATABASE ABSTRACTION ROUTER ----
-// Detects if Supabase has been hooked up by checking if the client exists
-const isSupabaseLive = !!supabase
-
-export const db = {
+export const vxuDb = {
   // Blogs
   getBlogs: async (): Promise<BlogPost[]> => {
-    if (isSupabaseLive) {
-      const { data, error } = await supabase!.from('blogs').select('*').order('date', { ascending: false })
-      if (error) console.error(error)
-      return data || []
+    try {
+      const q = query(collection(db, "blogs"), orderBy("date", "desc"));
+      const snapshot = await getDocs(q);
+      const blogs = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as BlogPost));
+      
+      // Seed initial data if empty
+      if (blogs.length === 0) {
+        for (const b of initialBlogs) {
+          await addDoc(collection(db, "blogs"), b);
+        }
+        return vxuDb.getBlogs();
+      }
+      return blogs;
+    } catch (e) {
+      console.error("Firestore getBlogs error:", e);
+      return [];
     }
-    await wait(MOCK_DELAY)
-    return getStorage("vxu_blogs", initialBlogs)
   },
   
   getBlog: async (slug: string): Promise<BlogPost | undefined> => {
-    if (isSupabaseLive) {
-      const { data } = await supabase!.from('blogs').select('*').eq('slug', slug).single()
-      return data
+    try {
+      const q = query(collection(db, "blogs"), where("slug", "==", slug), limit(1));
+      const snapshot = await getDocs(q);
+      if (snapshot.empty) return undefined;
+      return { id: snapshot.docs[0].id, ...snapshot.docs[0].data() } as BlogPost;
+    } catch (e) {
+      console.error("Firestore getBlog error:", e);
+      return undefined;
     }
-    await wait(MOCK_DELAY)
-    const blogs = getStorage("vxu_blogs", initialBlogs)
-    return blogs.find((b: BlogPost) => b.slug === slug)
   },
 
   addBlog: async (blog: Omit<BlogPost, 'id'>): Promise<void> => {
-    if (isSupabaseLive) {
-      await supabase!.from('blogs').insert([blog])
-      return
-    }
-    await wait(MOCK_DELAY)
-    const newBlog = { ...blog, id: Date.now().toString() }
-    const blogs = getStorage("vxu_blogs", initialBlogs)
-    setStorage("vxu_blogs", [newBlog, ...blogs])
+    await addDoc(collection(db, "blogs"), blog);
   },
 
   deleteBlog: async (id: string): Promise<void> => {
-    if (isSupabaseLive) {
-      await supabase!.from('blogs').delete().eq('id', id)
-      return
-    }
-    await wait(MOCK_DELAY)
-    const blogs = getStorage("vxu_blogs", initialBlogs).filter((b: BlogPost) => b.id !== id)
-    setStorage("vxu_blogs", blogs)
+    await deleteDoc(doc(db, "blogs", id));
   },
 
   updateBlog: async (id: string, blog: Partial<BlogPost>): Promise<void> => {
-    if (isSupabaseLive) {
-      await supabase!.from('blogs').update(blog).eq('id', id)
-      return
-    }
-    await wait(MOCK_DELAY)
-    const blogs = getStorage("vxu_blogs", initialBlogs)
-    const index = blogs.findIndex((b: BlogPost) => b.id === id)
-    if (index !== -1) {
-      blogs[index] = { ...blogs[index], ...blog }
-      setStorage("vxu_blogs", blogs)
-    }
+    await updateDoc(doc(db, "blogs", id), blog);
   },
 
   // Mentors
   getMentors: async (): Promise<Mentor[]> => {
-    if (isSupabaseLive) {
-      const { data } = await supabase!.from('mentors').select('*')
-      return data || []
+    try {
+      const snapshot = await getDocs(collection(db, "mentors"));
+      const mentors = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as Mentor));
+      
+      if (mentors.length === 0) {
+        for (const m of initialMentors) {
+          await addDoc(collection(db, "mentors"), m);
+        }
+        return vxuDb.getMentors();
+      }
+      return mentors;
+    } catch (e) {
+      console.error("Firestore getMentors error:", e);
+      return [];
     }
-    await wait(MOCK_DELAY)
-    return getStorage("vxu_mentors", initialMentors)
   },
 
   addMentor: async (mentor: Omit<Mentor, 'id'>): Promise<void> => {
-    if (isSupabaseLive) {
-      await supabase!.from('mentors').insert([mentor])
-      return
-    }
-    await wait(MOCK_DELAY)
-    const newMentor = { ...mentor, id: Date.now().toString() }
-    const mentors = getStorage("vxu_mentors", initialMentors)
-    setStorage("vxu_mentors", [newMentor, ...mentors])
+    await addDoc(collection(db, "mentors"), mentor);
   },
 
   deleteMentor: async (id: string): Promise<void> => {
-    if (isSupabaseLive) {
-      await supabase!.from('mentors').delete().eq('id', id)
-      return
-    }
-    await wait(MOCK_DELAY)
-    const mentors = getStorage("vxu_mentors", initialMentors).filter((m: Mentor) => m.id !== id)
-    setStorage("vxu_mentors", mentors)
+    await deleteDoc(doc(db, "mentors", id));
   },
 
   updateMentor: async (id: string, mentor: Partial<Mentor>): Promise<void> => {
-    if (isSupabaseLive) {
-      await supabase!.from('mentors').update(mentor).eq('id', id)
-      return
-    }
-    await wait(MOCK_DELAY)
-    const mentors = getStorage("vxu_mentors", initialMentors)
-    const index = mentors.findIndex((m: Mentor) => m.id === id)
-    if (index !== -1) {
-      mentors[index] = { ...mentors[index], ...mentor }
-      setStorage("vxu_mentors", mentors)
-    }
+    await updateDoc(doc(db, "mentors", id), mentor);
   },
 
   // Ambassadors
   getAmbassadors: async (): Promise<Ambassador[]> => {
-    if (isSupabaseLive) {
-      const { data } = await supabase!.from('ambassadors').select('*')
-      return data || []
+    try {
+      const snapshot = await getDocs(collection(db, "ambassadors"));
+      const ambassadors = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as Ambassador));
+      
+      if (ambassadors.length === 0) {
+        for (const a of initialAmbassadors) {
+          await addDoc(collection(db, "ambassadors"), a);
+        }
+        return vxuDb.getAmbassadors();
+      }
+      return ambassadors;
+    } catch (e) {
+      console.error("Firestore getAmbassadors error:", e);
+      return [];
     }
-    await wait(MOCK_DELAY)
-    return getStorage("vxu_ambassadors", initialAmbassadors)
   },
 
   addAmbassador: async (ambassador: Omit<Ambassador, 'id'>): Promise<void> => {
-    if (isSupabaseLive) {
-      await supabase!.from('ambassadors').insert([ambassador])
-      return
-    }
-    await wait(MOCK_DELAY)
-    const newAmbassador = { ...ambassador, id: Date.now().toString() }
-    const ambassadors = getStorage("vxu_ambassadors", initialAmbassadors)
-    setStorage("vxu_ambassadors", [newAmbassador, ...ambassadors])
+    await addDoc(collection(db, "ambassadors"), ambassador);
   },
 
   deleteAmbassador: async (id: string): Promise<void> => {
-    if (isSupabaseLive) {
-      await supabase!.from('ambassadors').delete().eq('id', id)
-      return
-    }
-    await wait(MOCK_DELAY)
-    const ambassadors = getStorage("vxu_ambassadors", initialAmbassadors).filter((a: Ambassador) => a.id !== id)
-    setStorage("vxu_ambassadors", ambassadors)
+    await deleteDoc(doc(db, "ambassadors", id));
   },
 
   updateAmbassador: async (id: string, ambassador: Partial<Ambassador>): Promise<void> => {
-    if (isSupabaseLive) {
-      await supabase!.from('ambassadors').update(ambassador).eq('id', id)
-      return
-    }
-    await wait(MOCK_DELAY)
-    const ambassadors = getStorage("vxu_ambassadors", initialAmbassadors)
-    const index = ambassadors.findIndex((a: Ambassador) => a.id === id)
-    if (index !== -1) {
-      ambassadors[index] = { ...ambassadors[index], ...ambassador }
-      setStorage("vxu_ambassadors", ambassadors)
-    }
+    await updateDoc(doc(db, "ambassadors", id), ambassador);
   },
 
   // Announcement
   getAnnouncement: async (): Promise<Announcement> => {
-    if (isSupabaseLive) {
-      const { data } = await supabase!.from('settings').select('*').eq('id', 'announcement').single()
-      return data || initialAnnouncement
+    try {
+      const d = await getDoc(doc(db, "settings", "announcement"));
+      if (d.exists()) return d.data() as Announcement;
+      
+      // Default & Save
+      await setDoc(doc(db, "settings", "announcement"), initialAnnouncement);
+      return initialAnnouncement;
+    } catch (e) {
+      console.error("Firestore getAnnouncement error:", e);
+      return initialAnnouncement;
     }
-    await wait(MOCK_DELAY)
-    return getStorage("vxu_announcement", initialAnnouncement)
   },
 
   updateAnnouncement: async (announcement: Partial<Announcement>): Promise<void> => {
-    if (isSupabaseLive) {
-      await supabase!.from('settings').upsert({ id: 'announcement', ...announcement })
-      return
-    }
-    await wait(MOCK_DELAY)
-    const current = getStorage("vxu_announcement", initialAnnouncement)
-    setStorage("vxu_announcement", { ...current, ...announcement })
+    await setDoc(doc(db, "settings", "announcement"), announcement, { merge: true });
   }
-}
+};
+
+export const db_deprecated = vxuDb; // for backward compatibility if needed
+export const db_instance = vxuDb;
+export { vxuDb as db }
