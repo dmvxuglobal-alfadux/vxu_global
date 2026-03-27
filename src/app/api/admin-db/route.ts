@@ -29,12 +29,16 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: true });
     }
 
-    if (action === "upsert") {
-      await adminDb.collection(collection).doc(id).set({
-        ...data,
-        updatedAt: new Date().toISOString()
-      }, { merge: true });
-      return NextResponse.json({ success: true });
+    if (action === "list") {
+      const snapshot = await adminDb.collection(collection).orderBy("updatedAt", "desc").get();
+      const docs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      return NextResponse.json({ success: true, data: docs });
+    }
+
+    if (action === "get") {
+      const doc = await adminDb.collection(collection).doc(id).get();
+      if (!doc.exists) return NextResponse.json({ success: false, error: "Not found" }, { status: 404 });
+      return NextResponse.json({ success: true, data: { id: doc.id, ...doc.data() } });
     }
 
     return NextResponse.json({ success: false, error: "Invalid action" }, { status: 400 });

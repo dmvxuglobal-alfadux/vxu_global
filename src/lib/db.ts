@@ -84,11 +84,9 @@ export const vxuDb = {
   // Blogs
   getBlogs: async (): Promise<BlogPost[]> => {
     try {
-      const q = query(collection(db, "blogs"), orderBy("date", "desc"));
-      const snapshot = await getDocs(q);
-      const blogs = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as BlogPost));
+      const res = await proxyDb("list", "blogs");
+      const blogs = res.data || [];
       if (blogs.length === 0) {
-        // Seeding done via proxy to bypass client permission errors
         for (const b of initialBlogs) await proxyDb("add", "blogs", b);
         return vxuDb.getBlogs();
       }
@@ -98,10 +96,8 @@ export const vxuDb = {
   
   getBlog: async (slug: string): Promise<BlogPost | undefined> => {
     try {
-      const q = query(collection(db, "blogs"), where("slug", "==", slug), limit(1));
-      const snapshot = await getDocs(q);
-      if (snapshot.empty) return undefined;
-      return { id: snapshot.docs[0].id, ...snapshot.docs[0].data() } as BlogPost;
+      const blogs = await vxuDb.getBlogs();
+      return blogs.find(b => b.slug === slug);
     } catch (e) { return undefined; }
   },
 
@@ -120,8 +116,8 @@ export const vxuDb = {
   // Mentors
   getMentors: async (): Promise<Mentor[]> => {
     try {
-      const snapshot = await getDocs(collection(db, "mentors"));
-      const mentors = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as Mentor));
+      const res = await proxyDb("list", "mentors");
+      const mentors = res.data || [];
       if (mentors.length === 0) {
         for (const m of initialMentors) await proxyDb("add", "mentors", m);
         return vxuDb.getMentors();
@@ -145,8 +141,8 @@ export const vxuDb = {
   // Ambassadors
   getAmbassadors: async (): Promise<Ambassador[]> => {
     try {
-      const snapshot = await getDocs(collection(db, "ambassadors"));
-      const ambassadors = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as Ambassador));
+      const res = await proxyDb("list", "ambassadors");
+      const ambassadors = res.data || [];
       if (ambassadors.length === 0) {
         for (const a of initialAmbassadors) await proxyDb("add", "ambassadors", a);
         return vxuDb.getAmbassadors();
@@ -170,11 +166,14 @@ export const vxuDb = {
   // Announcement
   getAnnouncement: async (): Promise<Announcement> => {
     try {
-      const d = await getDoc(doc(db, "settings", "announcement"));
-      if (d.exists()) return d.data() as Announcement;
-      await proxyDb("upsert", "settings", initialAnnouncement, "announcement");
-      return initialAnnouncement;
-    } catch (e) { return initialAnnouncement; }
+      const res = await proxyDb("get", "settings", undefined, "announcement");
+      return res.data || initialAnnouncement;
+    } catch (e) { 
+      try {
+        await proxyDb("upsert", "settings", initialAnnouncement, "announcement");
+        return initialAnnouncement;
+      } catch { return initialAnnouncement; }
+    }
   },
 
   updateAnnouncement: async (announcement: Partial<Announcement>): Promise<void> => {
