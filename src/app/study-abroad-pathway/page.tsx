@@ -64,7 +64,7 @@ const studyAbroadData = [
   {
     country: "Finland",
     flag: "🇫🇮",
-    image: "https://images.pexels.com/photos/6152317/pexels-photo-6152317.jpeg?auto=compress&cs=tinysrgb&w=800",
+    image: "https://images.pexels.com/photos/1701595/pexels-photo-1701595.jpeg?auto=compress&cs=tinysrgb&w=800",
     programs: [
       { name: "MBA (Business Informatics)", university: "Metropolia University of Applied Sciences" },
       { name: "MBA (International Business Management)", university: "Seinäjoki University of Applied Sciences (SeAMK)" }
