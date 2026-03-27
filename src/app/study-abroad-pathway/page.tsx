@@ -64,7 +64,7 @@ const studyAbroadData = [
   {
     country: "Finland",
     flag: "🇫🇮",
-    image: "https://images.unsplash.com/photo-1528644012132-59cd871fc3fc?w=800&fit=crop",
+    image: "https://images.unsplash.com/photo-1517582082532-16a09292839f?w=800&fit=crop",
     programs: [
       { name: "MBA (Business Informatics)", university: "Metropolia University of Applied Sciences" },
       { name: "MBA (International Business Management)", university: "Seinäjoki University of Applied Sciences (SeAMK)" }
@@ -224,7 +224,7 @@ export default function StudyAbroadPathwayPage() {
         <div className="container mx-auto px-4 text-center mb-12">
            <h2 className="text-4xl font-black text-primary mb-4">🌏 40% Cost Saving Countries</h2>
            <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10">High-quality education, strong job markets, and global career exposure at a fraction of the cost.</p>
-           <div className="flex flex-wrap justify-center gap-6 md:gap-12 items-center mb-16">
+           <div className="flex flex-wrap justify-center gap-6 md:gap-12 items-center mb-16 group/marquee">
               <CountryFlag flag="🇺🇸" name="USA" />
               <CountryFlag flag="🇨🇦" name="Canada" />
               <CountryFlag flag="🇬🇧" name="UK" />
@@ -421,9 +421,9 @@ function TableRow({label, v1, v2}: any) {
 
 function CountryFlag({flag, name}: any) {
   return (
-    <div className="flex flex-col items-center gap-3 group">
-       <div className="text-6xl group-hover:scale-125 transition-transform cursor-default grayscale group-hover:grayscale-0">{flag}</div>
-       <span className="text-xs font-black text-slate-400 group-hover:text-primary uppercase tracking-tighter">{name}</span>
+    <div className="flex flex-col items-center gap-3 transition-all duration-300 hover:z-10 hover:scale-125 group-hover/marquee:grayscale group-hover/marquee:opacity-50 hover:!grayscale-0 hover:!opacity-100 cursor-default">
+       <div className="text-6xl drop-shadow-md">{flag}</div>
+       <span className="text-xs font-black text-slate-400 uppercase tracking-tighter">{name}</span>
     </div>
   )
 }
@@ -455,12 +455,12 @@ function CountryCard({icon, title, desc}: any) {
 
 function PSWItem({flag, country, psw}: any) {
    return (
-     <div className="bg-white/10 p-4 rounded-2xl border border-white/20">
+     <div className="bg-white/10 p-4 rounded-2xl border border-white/20 hover:bg-white transition-all group/psw">
         <div className="flex items-center gap-2 mb-1">
            <span className="text-xl">{flag}</span>
-           <span className="font-bold text-sm tracking-wide">{country}</span>
+           <span className="font-bold text-sm tracking-wide group-hover/psw:text-primary">{country}</span>
         </div>
-        <div className="text-sm font-black text-secondary uppercase tracking-tighter shadow-sm">{psw}</div>
+        <div className="text-xs font-black bg-white text-secondary px-2 py-1 rounded inline-block uppercase tracking-tighter shadow-sm">{psw}</div>
      </div>
    )
 }
