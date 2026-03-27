@@ -93,7 +93,7 @@ export function Footer() {
             © {new Date().getFullYear()} VXU Global Consulting.<br />A division of AruNex Gen Solutions Pvt. Ltd. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="#" className="text-sm text-white/60 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/privacy-policy" className="text-sm text-white/60 hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="#" className="text-sm text-white/60 hover:text-white transition-colors">Terms of Service</Link>
             <Link href="#" className="text-sm text-white/60 hover:text-white transition-colors">Cookie Policy</Link>
           </div>
