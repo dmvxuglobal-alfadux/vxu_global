@@ -13,10 +13,10 @@ const mbbsData = {
   duration: "5 Years Course + 1 Year Internship",
   approvals: "WHO & NMC (MCI) Approved",
   destinations: [
-    { country: "Kazakhstan", image: "https://images.unsplash.com/photo-1549416878-b99b5952f50b?w=800&fit=crop", universities: ["West Marat Ospanov Medical University", "Semey State Medical University", "IMS Almaty"] },
-    { country: "Kyrgyz Republic", image: "https://images.unsplash.com/photo-1569428034239-f9565e32e224?w=800&fit=crop", universities: ["Osh State Medical University", "Jalal-Abad State Medical University", "International School of Medicine (ISM)"] },
-    { country: "Uzbekistan", image: "https://images.unsplash.com/photo-1528644012132-59cd871fc3fc?w=800&fit=crop", universities: ["Samarkand State Medical University", "Tashkent Medical Academy"] },
-    { country: "Tajikistan", image: "https://images.unsplash.com/photo-1563206767-5b18f218e0de?w=800&fit=crop", universities: ["Avicenna Tajik State Medical University"] }
+    { country: "Kazakhstan", image: "https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800&fit=crop", universities: ["West Marat Ospanov Medical University", "Semey State Medical University", "IMS Almaty"] },
+    { country: "Kyrgyz Republic", image: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&fit=crop", universities: ["Osh State Medical University", "Jalal-Abad State Medical University", "International School of Medicine (ISM)"] },
+    { country: "Uzbekistan", image: "https://images.unsplash.com/photo-1532187863486-abf9d3971953?w=800&fit=crop", universities: ["Samarkand State Medical University", "Tashkent Medical Academy"] },
+    { country: "Tajikistan", image: "https://images.unsplash.com/photo-1535090467336-9501f96eef89?w=800&fit=crop", universities: ["Avicenna Tajik State Medical University"] }
   ],
   eligibility: [
     "12th Standard with minimum 50% in PCB",
