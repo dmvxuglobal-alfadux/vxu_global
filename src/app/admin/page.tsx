@@ -95,13 +95,16 @@ export default function AdminDashboard() {
             <>
               {/* Header */}
               <div className="flex items-center justify-between pb-6 border-b border-slate-200">
-                <h1 className="text-3xl font-bold text-primary capitalize flex items-center gap-3">
-                  {activeTab === "blogs" && <FileText className="text-blue-600"/>}
-                  {activeTab === "mentors" && <Users className="text-blue-600"/>}
-                  {activeTab === "ambassadors" && <Award className="text-blue-600"/>}
-                  {activeTab === "announcement" && <Bell className="text-blue-600"/>}
-                  Manage {activeTab}
-                </h1>
+                <div className="flex items-center gap-4">
+                  <h1 className="text-3xl font-bold text-primary capitalize flex items-center gap-3">
+                    {activeTab === "blogs" && <FileText className="text-blue-600"/>}
+                    {activeTab === "mentors" && <Users className="text-blue-600"/>}
+                    {activeTab === "ambassadors" && <Award className="text-blue-600"/>}
+                    {activeTab === "announcement" && <Bell className="text-blue-600"/>}
+                    Manage {activeTab}
+                  </h1>
+                  <Button variant="outline" size="sm" onClick={fetchData} className="text-xs h-7 px-2">Reload List</Button>
+                </div>
                 
                 {!showForm && activeTab !== "announcement" && (
                   <Button onClick={openAddForm} variant="gradient" className="gap-2">
@@ -121,8 +124,9 @@ export default function AdminDashboard() {
                          try {
                            if(editingItem) await db.updateBlog(editingItem.id, obj);
                            else await db.addBlog(obj); 
-                           alert("Success: Blog updated!");
-                           closeForm(); fetchData(); 
+                           alert("Success: Blog saved!");
+                           closeForm();
+                           await fetchData(); // Force re-fetch
                          } catch (e: any) { alert("Error saving: " + e.message); }
                        }} onCancel={closeForm} />}
                        
@@ -131,7 +135,8 @@ export default function AdminDashboard() {
                            if(editingItem) await db.updateMentor(editingItem.id, obj);
                            else await db.addMentor(obj); 
                            alert("Success: Mentor added!");
-                           closeForm(); fetchData(); 
+                           closeForm(); 
+                           await fetchData(); // Force re-fetch
                          } catch (e: any) { alert("Error saving: " + e.message); }
                        }} onCancel={closeForm} />}
                        
@@ -140,7 +145,8 @@ export default function AdminDashboard() {
                            if(editingItem) await db.updateAmbassador(editingItem.id, obj);
                            else await db.addAmbassador(obj); 
                            alert("Success: Ambassador added!");
-                           closeForm(); fetchData(); 
+                           closeForm(); 
+                           await fetchData(); // Force re-fetch
                          } catch (e: any) { alert("Error saving: " + e.message); }
                        }} onCancel={closeForm} />}
                     </div>
