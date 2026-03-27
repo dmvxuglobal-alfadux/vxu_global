@@ -1,7 +1,10 @@
+"use client"
+
 import * as React from "react"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
 import { Button } from "@/components/ui/button"
+import { LeadPopup } from "@/components/floating/LeadPopup"
 import { 
   Target, Eye, ShieldCheck, HeartHandshake, Zap, 
   Globe2, CheckCircle2, Scale, Headset, Banknote, 
@@ -14,6 +17,7 @@ export const metadata = {
 }
 
 export default function AboutUsPage() {
+  const [isLeadPopupOpen, setIsLeadPopupOpen] = React.useState(false)
   const coreValues = [
     { icon: <ShieldCheck size={28} className="text-secondary" />, title: "Commitment to Excellence", desc: "We uphold the highest standards in every service, refining programs to deliver exceptional outcomes." },
     { icon: <Scale size={28} className="text-secondary" />, title: "Integrity & Accountability", desc: "We act with transparency and ethical rigor—providing clear guidance on costs, timelines, and expectations." },
@@ -221,7 +225,11 @@ export default function AboutUsPage() {
               Whether you’re in Vanasthalipuram or Vancouver, our Hyderabad-based team is just a WhatsApp ping away. Ready to see just how far you can go when acceleration meets excellence?
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button size="lg" className="bg-secondary text-white hover:bg-white hover:text-primary transition-all font-bold h-14 px-8 text-lg">
+              <Button 
+                onClick={() => setIsLeadPopupOpen(true)}
+                size="lg" 
+                className="bg-secondary text-white hover:bg-white hover:text-primary transition-all font-bold h-14 px-8 text-lg"
+              >
                 Book Free Consultation
               </Button>
             </div>
@@ -229,6 +237,7 @@ export default function AboutUsPage() {
       </section>
 
       <Footer />
+      <LeadPopup isOpen={isLeadPopupOpen} onClose={() => setIsLeadPopupOpen(false)} />
     </div>
   )
 }

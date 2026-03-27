@@ -199,7 +199,7 @@ export function Navbar() {
                 <div className="pt-8 border-t border-slate-100 grid grid-cols-1 gap-4">
                   <Button variant="gradient" className="w-full h-14 text-lg font-black rounded-2xl shadow-xl shadow-primary/20" onClick={() => { setIsOpen(false); setShowLeadForm(true); }}>Book Free Consultation</Button>
                   <Link href="/login" onClick={() => setIsOpen(false)}>
-                    <Button variant="ghost" className="w-full h-12 font-bold text-slate-400">Admin Login</Button>
+                    <Button variant="ghost" className="w-full h-12 font-bold text-slate-400"></Button>
                   </Link>
                 </div>
               </div>
