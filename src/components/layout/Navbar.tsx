@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, ArrowRight, ChevronDown } from "lucide-react"
+import { Menu, X, ArrowRight, ChevronDown, TrendingUp, Trophy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { db, Announcement } from "@/lib/db"
 import { LeadPopup } from "@/components/floating/LeadPopup"
@@ -136,6 +136,36 @@ export function Navbar() {
                   </div>
                 </div>
 
+                {/* Working Professionals MBA Dropdown */}
+                <div className="relative group py-8">
+                  <span className="text-sm font-bold text-slate-800 cursor-pointer flex items-center gap-1 group-hover:text-primary transition-colors">
+                    MBA Professionals <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
+                  </span>
+                  
+                  <div className="absolute top-full left-0 w-[320px] bg-white shadow-2xl rounded-3xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-4 group-hover:translate-y-0 z-50 overflow-hidden border border-slate-100 p-4 pointer-events-auto">
+                    <div className="space-y-1">
+                       <Link href="/early-career-professionals" className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors group/item">
+                          <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-primary group-hover/item:bg-primary group-hover/item:text-white transition-colors">
+                             <TrendingUp size={20} />
+                          </div>
+                          <div>
+                            <p className="font-bold text-sm text-slate-800">Ascent Program</p>
+                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">0-3 Years Exp</p>
+                          </div>
+                       </Link>
+                       <Link href="/mid-career-professionals" className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors group/item">
+                          <div className="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary group-hover/item:bg-secondary group-hover/item:text-white transition-colors">
+                             <Trophy size={20} />
+                          </div>
+                          <div>
+                            <p className="font-bold text-sm text-slate-800">Elevate Program</p>
+                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">3+ Years Exp</p>
+                          </div>
+                       </Link>
+                    </div>
+                  </div>
+                </div>
+
                 <Link href="/study-abroad-pathway" className="text-sm font-bold text-slate-800 hover:text-primary relative group">
                   Pathway Program
                   <span className="absolute -top-4 -right-2 bg-secondary text-white text-[8px] px-1.5 py-0.5 rounded-full animate-pulse font-black shadow-sm">NEW</span>
@@ -187,6 +217,16 @@ export function Navbar() {
                   {navLinks.slice(0, 1).map(l => (
                     <Link key={l.href} href={l.href} onClick={() => setIsOpen(false)} className="block text-lg font-bold text-slate-900">{l.name}</Link>
                   ))}
+                </div>
+
+                <div className="space-y-4">
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b border-slate-50 pb-2">MBA & Professionals</div>
+                  <Link href="/early-career-professionals" onClick={() => setIsOpen(false)} className="block text-lg font-black text-primary flex items-center justify-between">
+                    Ascent (0-3 yrs) <span className="text-[8px] bg-blue-100 text-primary px-2 py-1 rounded-full font-bold">FAST-TRACK</span>
+                  </Link>
+                  <Link href="/mid-career-professionals" onClick={() => setIsOpen(false)} className="block text-lg font-black text-primary flex items-center justify-between">
+                    Elevate (3+ yrs) <span className="text-[8px] bg-secondary/10 text-secondary px-2 py-1 rounded-full font-bold">EXECUTIVE</span>
+                  </Link>
                 </div>
 
                 <div className="space-y-4">
