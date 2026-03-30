@@ -20,17 +20,17 @@ const mbbsData = {
     },
     { 
       country: "Kyrgyz Republic", 
-      image: "https://oshstatemedicaluniversity.org/wp-content/uploads/2023/04/Osh-State-University-Main-Building.jpg", 
+      image: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Osh_state_university.jpg", 
       universities: ["Osh State Medical University", "Jalal-Abad State Medical University", "International School of Medicine (ISM)"] 
     },
     { 
       country: "Uzbekistan", 
-      image: "https://www.themdhouse.com/wp-content/uploads/2023/10/samarkand-state-medical-university-uzbekistan.jpg", 
+      image: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Samarkand_State_Medical_University_New_building.png", 
       universities: ["Samarkand State Medical University", "Tashkent Medical Academy"] 
     },
     { 
       country: "Tajikistan", 
-      image: "https://ewings.co.in/images/avicenna-tajik-state-medical-university.jpg", 
+      image: "https://upload.wikimedia.org/wikipedia/commons/3/38/Medical_university_of_a_name_of_Avicenna_in_Dushanbe.JPG", 
       universities: ["Avicenna Tajik State Medical University"] 
     }
   ],
