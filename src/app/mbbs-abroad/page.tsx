@@ -20,7 +20,7 @@ const mbbsData = {
     },
     { 
       country: "Kyrgyz Republic", 
-      image: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Osh_state_university.jpg", 
+      image: "https://upload.wikimedia.org/wikipedia/commons/4/44/Osh_state_university.jpg", 
       universities: ["Osh State Medical University", "Jalal-Abad State Medical University", "International School of Medicine (ISM)"] 
     },
     { 
