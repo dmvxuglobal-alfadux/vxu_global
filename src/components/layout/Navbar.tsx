@@ -137,34 +137,9 @@ export function Navbar() {
                 </div>
 
                 {/* Working Professionals MBA Dropdown */}
-                <div className="relative group py-8">
-                  <span className="text-sm font-bold text-slate-800 cursor-pointer flex items-center gap-1 group-hover:text-primary transition-colors">
-                    MBA Professionals <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
-                  </span>
-                  
-                  <div className="absolute top-full left-0 w-[320px] bg-white shadow-2xl rounded-3xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-4 group-hover:translate-y-0 z-50 overflow-hidden border border-slate-100 p-4 pointer-events-auto">
-                    <div className="space-y-1">
-                       <Link href="/early-career-professionals" className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors group/item">
-                          <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-primary group-hover/item:bg-primary group-hover/item:text-white transition-colors">
-                             <TrendingUp size={20} />
-                          </div>
-                          <div>
-                            <p className="font-bold text-sm text-slate-800">Ascent Program</p>
-                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">0-3 Years Exp</p>
-                          </div>
-                       </Link>
-                       <Link href="/mid-career-professionals" className="flex items-center gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors group/item">
-                          <div className="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center text-secondary group-hover/item:bg-secondary group-hover/item:text-white transition-colors">
-                             <Trophy size={20} />
-                          </div>
-                          <div>
-                            <p className="font-bold text-sm text-slate-800">Elevate Program</p>
-                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">3+ Years Exp</p>
-                          </div>
-                       </Link>
-                    </div>
-                  </div>
-                </div>
+                <Link href="/mba-leadership-programs" className="text-sm font-bold text-slate-800 hover:text-primary transition-colors">
+                  MBA & Leadership
+                </Link>
 
                 <Link href="/study-abroad-pathway" className="text-sm font-bold text-slate-800 hover:text-primary relative group">
                   Pathway Program
@@ -177,9 +152,6 @@ export function Navbar() {
               </div>
 
               <div className="flex items-center gap-4">
-                <Link href="/login" className="hidden lg:block">
-                  <Button variant="ghost" className="text-slate-600 font-bold hover:text-primary">Admin Login</Button>
-                </Link>
                 <Button variant="gradient" onClick={() => setShowLeadForm(true)} className="rounded-full px-6 md:px-8 font-bold shadow-xl shadow-primary/20 scale-90 md:scale-100">Book Now</Button>
                 <button className="md:hidden p-2 text-slate-800" onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
               </div>
@@ -220,12 +192,9 @@ export function Navbar() {
                 </div>
 
                 <div className="space-y-4">
-                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b border-slate-50 pb-2">MBA & Professionals</div>
-                  <Link href="/early-career-professionals" onClick={() => setIsOpen(false)} className="block text-lg font-black text-primary flex items-center justify-between">
-                    Ascent (0-3 yrs) <span className="text-[8px] bg-blue-100 text-primary px-2 py-1 rounded-full font-bold">FAST-TRACK</span>
-                  </Link>
-                  <Link href="/mid-career-professionals" onClick={() => setIsOpen(false)} className="block text-lg font-black text-primary flex items-center justify-between">
-                    Elevate (3+ yrs) <span className="text-[8px] bg-secondary/10 text-secondary px-2 py-1 rounded-full font-bold">EXECUTIVE</span>
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b border-slate-50 pb-2">Professional Growth</div>
+                  <Link href="/mba-leadership-programs" onClick={() => setIsOpen(false)} className="block text-lg font-black text-primary flex items-center justify-between">
+                    MBA & Leadership <span className="text-[8px] bg-secondary text-white px-2 py-1 rounded-full font-black">FAST-TRACK</span>
                   </Link>
                 </div>
 
@@ -238,9 +207,6 @@ export function Navbar() {
 
                 <div className="pt-8 border-t border-slate-100 grid grid-cols-1 gap-4">
                   <Button variant="gradient" className="w-full h-14 text-lg font-black rounded-2xl shadow-xl shadow-primary/20" onClick={() => { setIsOpen(false); setShowLeadForm(true); }}>Book Free Consultation</Button>
-                  <Link href="/login" onClick={() => setIsOpen(false)}>
-                    <Button variant="ghost" className="w-full h-12 font-bold text-slate-400"></Button>
-                  </Link>
                 </div>
               </div>
             </motion.div>

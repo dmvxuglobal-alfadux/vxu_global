@@ -31,6 +31,15 @@ export function ChoosePath() {
       border: "border-blue-100",
       href: "/job-ready-programs",
       delay: 0.3
+    },
+    {
+      title: "MBA & Leadership",
+      description: "Elite Global MBAs and Doctorates for early and mid-career growth.",
+      icon: <Briefcase className="w-8 h-8 text-secondary" />,
+      color: "bg-red-50",
+      border: "border-red-100",
+      href: "/mba-leadership-programs",
+      delay: 0.4
     }
   ]
 
