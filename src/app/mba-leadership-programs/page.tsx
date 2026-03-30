@@ -94,27 +94,46 @@ export default function MBALeadershipPage() {
               <p className="text-xs font-black text-secondary tracking-widest mb-6 uppercase border-b border-slate-200 pb-4">0-3 Years Experience</p>
               
               <h3 className="text-2xl font-black mb-6 text-slate-800">Boring job? Meagre salary? <span className="text-primary underline">Rise Above.</span></h3>
-              <p className="text-slate-600 mb-8 font-medium leading-relaxed">Most professionals wait years for a 10% hike. Ascent candidates leapfrog the hierarchy by mastering the skills Google, Microsoft, and Amazon are actually hiring for.</p>
+              <p className="text-slate-600 mb-8 font-medium leading-relaxed">Most professionals wait years for a 10% hike. Ascent candidates leapfrog the hierarchy by mastering core tech and management skills.</p>
               
-              <div className="space-y-6 mb-12 flex-grow">
-                {ascentFeatures.map((f, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="bg-white p-3 rounded-xl shadow-sm border border-slate-100">
-                      {f.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-primary">{f.title}</h4>
-                      <p className="text-sm text-slate-400">{f.desc}</p>
-                    </div>
-                  </div>
-                ))}
+              <div className="space-y-8 mb-12 flex-grow">
+                <div>
+                   <h4 className="text-xs font-black text-primary/40 uppercase tracking-widest mb-4">AI & Data Science (IIT Delhi/Harvard)</h4>
+                   <ul className="grid grid-cols-1 gap-3">
+                      {["Quantum Computing & ML", "Generative AI (5 Months)", "AI for Business Management"].map(c => (
+                        <li key={c} className="flex items-center gap-3 text-sm font-bold text-slate-700">
+                           <CheckCircle2 className="text-green-500 w-4 h-4 flex-shrink-0" /> {c}
+                        </li>
+                      ))}
+                   </ul>
+                </div>
+                <div>
+                   <h4 className="text-xs font-black text-primary/40 uppercase tracking-widest mb-4">Software & Tech (IIIT-B)</h4>
+                   <ul className="grid grid-cols-1 gap-3">
+                      {["Software Engineering", "Cyber Security", "Full Stack Development"].map(c => (
+                        <li key={c} className="flex items-center gap-3 text-sm font-bold text-slate-700">
+                           <CheckCircle2 className="text-green-500 w-4 h-4 flex-shrink-0" /> {c}
+                        </li>
+                      ))}
+                   </ul>
+                </div>
+                <div>
+                   <h4 className="text-xs font-black text-primary/40 uppercase tracking-widest mb-4">Management & Marketing</h4>
+                   <ul className="grid grid-cols-1 gap-3">
+                      {["Digital Marketing Leadership", "Supply Chain Management", "HR Analytics", "Equity Research"].map(c => (
+                        <li key={c} className="flex items-center gap-3 text-sm font-bold text-slate-700">
+                           <CheckCircle2 className="text-green-500 w-4 h-4 flex-shrink-0" /> {c}
+                        </li>
+                      ))}
+                   </ul>
+                </div>
               </div>
 
               <div className="bg-white p-6 rounded-2xl border border-slate-200 mb-10">
-                <p className="text-xs font-black text-slate-400 mb-4 uppercase">Elite Certifications</p>
-                <div className="flex flex-wrap gap-2">
-                  {['IIT Delhi', 'Harvard Business', 'IIIT-B', 'IIM Brands'].map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-slate-50 rounded-full text-xs font-bold text-primary border border-slate-100">{tag}</span>
+                <p className="text-xs font-black text-slate-400 mb-4 uppercase">Elite Partners</p>
+                <div className="flex flex-wrap gap-2 text-[10px] font-bold">
+                  {['IIT Delhi', 'Harvard Business', 'IIIT-B', 'IIM'].map(tag => (
+                    <span key={tag} className="px-3 py-1 bg-slate-50 rounded-full text-primary border border-slate-100">{tag}</span>
                   ))}
                 </div>
               </div>
@@ -132,31 +151,50 @@ export default function MBALeadershipPage() {
               <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8">
                 <Trophy className="text-secondary" size={32} />
               </div>
-              <h2 className="text-4xl font-black mb-4 italic">Elevate Program</h2>
-              <p className="text-xs font-black text-secondary tracking-widest mb-6 uppercase border-b border-white/10 pb-4">3+ Years Experience</p>
+              <h2 className="text-4xl font-black mb-4 italic text-secondary">Elevate Program</h2>
+              <p className="text-xs font-black text-white/40 tracking-widest mb-6 uppercase border-b border-white/10 pb-4">3+ Years Experience</p>
               
-              <h3 className="text-2xl font-black mb-6">Promotion Delayed? Layoff Fear? <span className="text-secondary">Rise & Rule.</span></h3>
-              <p className="text-white/70 mb-8 font-medium leading-relaxed">The highest earners work with higher credentials. Elevate helps you transition to C-Suite roles with Global MBAs and DBAs recognized by Ivy League standards.</p>
+              <h3 className="text-2xl font-black mb-6">Promotion Delayed? <span className="text-secondary">Rise & Rule.</span></h3>
+              <p className="text-white/70 mb-8 font-medium leading-relaxed">Transition into leadership with Doctorates and Global MBAs recognized worldwide.</p>
               
-              <div className="space-y-6 mb-12 flex-grow">
-                {elevateFeatures.map((f, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="bg-white/10 p-3 rounded-xl border border-white/10">
-                      {f.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white">{f.title}</h4>
-                      <p className="text-sm text-white/50">{f.desc}</p>
-                    </div>
-                  </div>
-                ))}
+              <div className="space-y-8 mb-12 flex-grow">
+                <div>
+                   <h4 className="text-xs font-black text-white/30 uppercase tracking-widest mb-4">Doctorates & MBAs (Swiss/USA/Paris)</h4>
+                   <ul className="grid grid-cols-1 gap-3 text-white/90">
+                      {["Global DBA (SSBM Swiss)", "DBA (Golden Gate USA)", "Executive MBA (SPJIMR)", "Global MBA (Paris/GGU)"].map(c => (
+                        <li key={c} className="flex items-center gap-3 text-sm font-bold">
+                           <CheckCircle2 className="text-secondary w-4 h-4 flex-shrink-0" /> {c}
+                        </li>
+                      ))}
+                   </ul>
+                </div>
+                <div>
+                   <h4 className="text-xs font-black text-white/30 uppercase tracking-widest mb-4">Advanced Tech & Masters (USA)</h4>
+                   <ul className="grid grid-cols-1 gap-3 text-white/90">
+                      {["MS - Arizona State University", "MS - Project Management (Paris)", "Cloud & DevOps Leadership", "AI-Powered Full Stack"].map(c => (
+                        <li key={c} className="flex items-center gap-3 text-sm font-bold">
+                           <CheckCircle2 className="text-secondary w-4 h-4 flex-shrink-0" /> {c}
+                        </li>
+                      ))}
+                   </ul>
+                </div>
+                <div>
+                   <h4 className="text-xs font-black text-white/30 uppercase tracking-widest mb-4">Strategic Finance & CXO</h4>
+                   <ul className="grid grid-cols-1 gap-3 text-white/90">
+                      {["Financial Risk Management (FRM)", "UI/UX Design Leadership", "Advanced Data Analytics", "Supply Chain Management"].map(c => (
+                        <li key={c} className="flex items-center gap-3 text-sm font-bold">
+                           <CheckCircle2 className="text-secondary w-4 h-4 flex-shrink-0" /> {c}
+                        </li>
+                      ))}
+                   </ul>
+                </div>
               </div>
 
               <div className="bg-white/5 p-6 rounded-2xl border border-white/10 mb-10">
-                <p className="text-xs font-black text-white/30 mb-4 uppercase tracking-widest">Premium Credentials</p>
-                <div className="flex flex-wrap gap-2">
-                  {['SSBM Switzerland', 'Paris School of Biz', 'GGU USA', 'SPJIMR Executive'].map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-white/10 rounded-full text-xs font-bold text-white border border-white/10">{tag}</span>
+                <p className="text-xs font-black text-white/30 mb-4 uppercase tracking-widest">Global Accreditation</p>
+                <div className="flex flex-wrap gap-2 text-[10px] font-bold">
+                  {['SSBM', 'Paris School', 'ASU USA', 'GGU USA'].map(tag => (
+                    <span key={tag} className="px-3 py-1 bg-white/10 rounded-full text-white border border-white/10">{tag}</span>
                   ))}
                 </div>
               </div>
