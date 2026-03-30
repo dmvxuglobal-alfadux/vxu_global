@@ -41,6 +41,39 @@ export default function MBALeadershipPage() {
     }
   ]
 
+  const programStreams = [
+    {
+      title: "AI & Data Science",
+      partner: "IIT Delhi & Harvard",
+      courses: ["Quantum Computing & ML", "Generative AI (5 Months)", "AI for Business Management"]
+    },
+    {
+      title: "Software & Tech",
+      partner: "IIIT Bangalore",
+      courses: ["Software Engineering", "Cyber Security Expert", "Full Stack Development"]
+    },
+    {
+      title: "Global MBAs",
+      partner: "Swiss & Paris Schools",
+      courses: ["Global MBA (Paris)", "Executive MBA (SPJIMR)", "MBA (Golden Gate USA)"]
+    },
+    {
+      title: "Direct Doctorates",
+      partner: "Swiss & USA Brands",
+      courses: ["Global DBA (Swiss SSBM)", "DBA (Golden Gate USA)", "Direct PhD Pathways"]
+    },
+    {
+      title: "Advanced Masters",
+      partner: "Arizona State & NJIT",
+      courses: ["MS - Arizona State University", "MS - Project Management (Paris)", "Cloud & DevOps Leadership"]
+    },
+    {
+      title: "Strategic Management",
+      partner: "IIM & Elite Brands",
+      courses: ["Financial Risk Management", "Equity Research (Advanced)", "Supply Chain Strategy"]
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-white font-[var(--font-sans)]">
       <Navbar />
@@ -77,7 +110,7 @@ export default function MBALeadershipPage() {
         </div>
       </section>
 
-      {/* Path Choice Tabs-style Section */}
+      {/* Main Pathways Section */}
       <section className="py-24 bg-white relative">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
@@ -87,58 +120,30 @@ export default function MBALeadershipPage() {
               whileHover={{ y: -10 }}
               className="p-10 rounded-[3rem] bg-slate-50 border border-slate-100 flex flex-col h-full"
             >
-              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-8">
-                <TrendingUp className="text-primary" size={32} />
+              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-8 text-primary shadow-sm">
+                <TrendingUp size={32} />
               </div>
               <h2 className="text-4xl font-black text-primary mb-4 italic">Ascent Program</h2>
               <p className="text-xs font-black text-secondary tracking-widest mb-6 uppercase border-b border-slate-200 pb-4">0-3 Years Experience</p>
               
               <h3 className="text-2xl font-black mb-6 text-slate-800">Boring job? Meagre salary? <span className="text-primary underline">Rise Above.</span></h3>
-              <p className="text-slate-600 mb-8 font-medium leading-relaxed">Most professionals wait years for a 10% hike. Ascent candidates leapfrog the hierarchy by mastering core tech and management skills.</p>
+              <p className="text-slate-600 mb-8 font-medium leading-relaxed">Most professionals wait years for a 10% hike. Ascent candidates leapfrog the hierarchy by mastering core technology and management skills.</p>
               
-              <div className="space-y-8 mb-12 flex-grow">
-                <div>
-                   <h4 className="text-xs font-black text-primary/40 uppercase tracking-widest mb-4">AI & Data Science (IIT Delhi/Harvard)</h4>
-                   <ul className="grid grid-cols-1 gap-3">
-                      {["Quantum Computing & ML", "Generative AI (5 Months)", "AI for Business Management"].map(c => (
-                        <li key={c} className="flex items-center gap-3 text-sm font-bold text-slate-700">
-                           <CheckCircle2 className="text-green-500 w-4 h-4 flex-shrink-0" /> {c}
-                        </li>
-                      ))}
-                   </ul>
-                </div>
-                <div>
-                   <h4 className="text-xs font-black text-primary/40 uppercase tracking-widest mb-4">Software & Tech (IIIT-B)</h4>
-                   <ul className="grid grid-cols-1 gap-3">
-                      {["Software Engineering", "Cyber Security", "Full Stack Development"].map(c => (
-                        <li key={c} className="flex items-center gap-3 text-sm font-bold text-slate-700">
-                           <CheckCircle2 className="text-green-500 w-4 h-4 flex-shrink-0" /> {c}
-                        </li>
-                      ))}
-                   </ul>
-                </div>
-                <div>
-                   <h4 className="text-xs font-black text-primary/40 uppercase tracking-widest mb-4">Management & Marketing</h4>
-                   <ul className="grid grid-cols-1 gap-3">
-                      {["Digital Marketing Leadership", "Supply Chain Management", "HR Analytics", "Equity Research"].map(c => (
-                        <li key={c} className="flex items-center gap-3 text-sm font-bold text-slate-700">
-                           <CheckCircle2 className="text-green-500 w-4 h-4 flex-shrink-0" /> {c}
-                        </li>
-                      ))}
-                   </ul>
-                </div>
+              <div className="space-y-6 mb-12 flex-grow">
+                {ascentFeatures.map((f, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="bg-white p-3 rounded-xl shadow-sm border border-slate-100">
+                      {f.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-primary">{f.title}</h4>
+                      <p className="text-sm text-slate-400">{f.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              <div className="bg-white p-6 rounded-2xl border border-slate-200 mb-10">
-                <p className="text-xs font-black text-slate-400 mb-4 uppercase">Elite Partners</p>
-                <div className="flex flex-wrap gap-2 text-[10px] font-bold">
-                  {['IIT Delhi', 'Harvard Business', 'IIIT-B', 'IIM'].map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-slate-50 rounded-full text-primary border border-slate-100">{tag}</span>
-                  ))}
-                </div>
-              </div>
-
-              <Button onClick={() => setIsLeadPopupOpen(true)} className="w-full h-16 text-lg font-black rounded-2xl bg-primary hover:bg-secondary">Fast-Track My Career</Button>
+              <Button onClick={() => setIsLeadPopupOpen(true)} className="w-full h-16 text-lg font-black rounded-2xl bg-primary hover:bg-secondary transition-all">Fast-Track My Career</Button>
             </motion.div>
 
             {/* Elevate Pathway */}
@@ -148,55 +153,27 @@ export default function MBALeadershipPage() {
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-bl-full -mr-32 -mt-32 group-hover:scale-110 transition-transform"></div>
               
-              <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8">
-                <Trophy className="text-secondary" size={32} />
+              <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 text-secondary border border-white/10 shadow-lg">
+                <Trophy size={32} />
               </div>
               <h2 className="text-4xl font-black mb-4 italic text-secondary">Elevate Program</h2>
               <p className="text-xs font-black text-white/40 tracking-widest mb-6 uppercase border-b border-white/10 pb-4">3+ Years Experience</p>
               
               <h3 className="text-2xl font-black mb-6">Promotion Delayed? <span className="text-secondary">Rise & Rule.</span></h3>
-              <p className="text-white/70 mb-8 font-medium leading-relaxed">Transition into leadership with Doctorates and Global MBAs recognized worldwide.</p>
+              <p className="text-white/70 mb-8 font-medium leading-relaxed">Transition into leadership with Doctorates and Global MBAs recognized by Ivy League standards.</p>
               
-              <div className="space-y-8 mb-12 flex-grow">
-                <div>
-                   <h4 className="text-xs font-black text-white/30 uppercase tracking-widest mb-4">Doctorates & MBAs (Swiss/USA/Paris)</h4>
-                   <ul className="grid grid-cols-1 gap-3 text-white/90">
-                      {["Global DBA (SSBM Swiss)", "DBA (Golden Gate USA)", "Executive MBA (SPJIMR)", "Global MBA (Paris/GGU)"].map(c => (
-                        <li key={c} className="flex items-center gap-3 text-sm font-bold">
-                           <CheckCircle2 className="text-secondary w-4 h-4 flex-shrink-0" /> {c}
-                        </li>
-                      ))}
-                   </ul>
-                </div>
-                <div>
-                   <h4 className="text-xs font-black text-white/30 uppercase tracking-widest mb-4">Advanced Tech & Masters (USA)</h4>
-                   <ul className="grid grid-cols-1 gap-3 text-white/90">
-                      {["MS - Arizona State University", "MS - Project Management (Paris)", "Cloud & DevOps Leadership", "AI-Powered Full Stack"].map(c => (
-                        <li key={c} className="flex items-center gap-3 text-sm font-bold">
-                           <CheckCircle2 className="text-secondary w-4 h-4 flex-shrink-0" /> {c}
-                        </li>
-                      ))}
-                   </ul>
-                </div>
-                <div>
-                   <h4 className="text-xs font-black text-white/30 uppercase tracking-widest mb-4">Strategic Finance & CXO</h4>
-                   <ul className="grid grid-cols-1 gap-3 text-white/90">
-                      {["Financial Risk Management (FRM)", "UI/UX Design Leadership", "Advanced Data Analytics", "Supply Chain Management"].map(c => (
-                        <li key={c} className="flex items-center gap-3 text-sm font-bold">
-                           <CheckCircle2 className="text-secondary w-4 h-4 flex-shrink-0" /> {c}
-                        </li>
-                      ))}
-                   </ul>
-                </div>
-              </div>
-
-              <div className="bg-white/5 p-6 rounded-2xl border border-white/10 mb-10">
-                <p className="text-xs font-black text-white/30 mb-4 uppercase tracking-widest">Global Accreditation</p>
-                <div className="flex flex-wrap gap-2 text-[10px] font-bold">
-                  {['SSBM', 'Paris School', 'ASU USA', 'GGU USA'].map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-white/10 rounded-full text-white border border-white/10">{tag}</span>
-                  ))}
-                </div>
+              <div className="space-y-6 mb-12 flex-grow">
+                {elevateFeatures.map((f, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="bg-white/10 p-3 rounded-xl border border-white/10">
+                      {f.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-white">{f.title}</h4>
+                      <p className="text-sm text-white/50">{f.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
 
               <Button onClick={() => setIsLeadPopupOpen(true)} className="w-full h-16 text-lg font-black rounded-2xl bg-secondary text-white hover:bg-white hover:text-primary transition-all shadow-xl shadow-secondary/20">Secure My Advance</Button>
@@ -206,38 +183,53 @@ export default function MBALeadershipPage() {
         </div>
       </section>
 
-      {/* Global Hiring Network */}
+      {/* Program Core - Courses Catalog */}
       <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-black text-primary mb-6">Elite Hiring Network</h2>
-          <p className="text-lg text-slate-500 mb-16 max-w-2xl mx-auto font-medium">Join 50,000+ Alumni across 1800+ Top MNCs worldwide.</p>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 opacity-40 hover:opacity-100 transition-opacity">
-            {['GOOGLE', 'AMAZON', 'PWC', 'P&G', 'KPMG', 'META'].map(logo => (
-              <div key={logo} className="p-8 border border-slate-200 rounded-3xl bg-white text-primary font-black text-lg hover:border-secondary transition-all">
-                {logo}
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h2 className="text-4xl font-black text-primary mb-6">Detailed Program Catalog</h2>
+            <p className="text-lg text-slate-500 font-medium">Industry-aligned curriculums designed for high-ROI careers.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {programStreams.map((s, i) => (
+              <div key={i} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group flex flex-col h-full border-b-[6px] hover:border-b-secondary">
+                <h4 className="text-[10px] font-black text-secondary uppercase tracking-[0.2em] mb-4 bg-secondary/10 px-3 py-1.5 rounded-full inline-block self-start">
+                   {s.partner}
+                </h4>
+                <h3 className="text-2xl font-black text-primary mb-6">{s.title}</h3>
+                <ul className="space-y-4 mb-8 flex-grow">
+                  {s.courses.map(c => (
+                    <li key={c} className="flex items-center gap-3 text-sm font-bold text-slate-600 group-hover:text-primary transition-colors">
+                      <CheckCircle2 className="text-green-500 w-4 h-4 flex-shrink-0" /> {c}
+                    </li>
+                  ))}
+                </ul>
+                <Button 
+                  onClick={() => setIsLeadPopupOpen(true)}
+                  className="w-full rounded-2xl font-black py-7 border-slate-200 hover:bg-primary hover:text-white transition-all"
+                  variant="outline"
+                >
+                  Download Curriculum
+                </Button>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Results Section */}
+      {/* Global Hiring Network */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-            <div>
-              <div className="text-5xl font-black text-primary mb-2">400%+</div>
-              <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Average ROI</p>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-primary mb-2">1800+</div>
-              <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Hiring Partners</p>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-primary mb-2">14+</div>
-              <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Salary Multiplier</p>
-            </div>
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-black text-primary mb-6">Elite Hiring Network</h2>
+          <p className="text-lg text-slate-500 mb-16 max-w-2xl mx-auto font-medium">Join 50,000+ Alumni across 1800+ Top MNCs worldwide.</p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 opacity-40 hover:opacity-100 transition-opacity">
+            {['GOOGLE', 'AMAZON', 'PWC', 'P&G', 'KPMG', 'META'].map(logo => (
+              <div key={logo} className="p-8 border border-slate-200 rounded-3xl bg-slate-50 text-primary font-black text-lg hover:border-secondary transition-all">
+                {logo}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -246,7 +238,7 @@ export default function MBALeadershipPage() {
       <section className="py-28 bg-slate-900 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient text-white mix-blend-overlay opacity-10"></div>
         <div className="container mx-auto px-4 max-w-3xl relative z-10">
-          <div className="w-24 h-24 bg-white/10 rounded-[2rem] flex items-center justify-center mx-auto mb-10 border border-white/20">
+          <div className="w-24 h-24 bg-white/10 rounded-[2rem] flex items-center justify-center mx-auto mb-10 border border-white/20 shadow-2xl rotate-3">
             <Users size={48} className="text-secondary" />
           </div>
           <h2 className="text-5xl font-black text-white mb-8 tracking-tight uppercase">Ready to Rise?</h2>
@@ -260,6 +252,9 @@ export default function MBALeadershipPage() {
           >
             Secure Free Consultation
           </Button>
+          <p className="mt-8 text-white/40 text-sm font-bold flex items-center justify-center gap-2">
+            <ShieldCheck size={18} className="text-green-500" /> Safe & Secure Path Powered by VXU Global
+          </p>
         </div>
       </section>
 
