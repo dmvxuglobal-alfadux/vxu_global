@@ -143,7 +143,7 @@ export function Navbar() {
 
                 <Link href="/study-abroad-pathway" className="text-sm font-bold text-slate-800 hover:text-primary relative group">
                   Pathway Program
-                  <span className="absolute -top-4 -right-2 bg-secondary text-white text-[8px] px-1.5 py-0.5 rounded-full animate-pulse font-black shadow-sm">NEW</span>
+                  <span className="absolute -top-4 -right-2 bg-secondary text-white text-[8px] px-1.5 py-0.5 rounded-full animate-pulse font-black shadow-sm">40% Lesser Cost</span>
                 </Link>
 
                 {navLinks.map(l => (

@@ -2,7 +2,7 @@ import Link from "next/link"
 import { 
   Facebook, Twitter, Instagram, Linkedin, MapPin, 
   Mail, Phone, ArrowRight, ExternalLink, Globe,
-  MessageCircle, Award, ShieldCheck, Zap
+  MessageCircle, Award, ShieldCheck, Zap, Youtube
 } from "lucide-react"
 
 export function Footer() {
@@ -72,11 +72,21 @@ export function Footer() {
               Accelerating futures with elite global education, AI upskilling, and direct migration pathways. Trusted by 50,000+ students worldwide.
             </p>
             <div className="flex gap-4">
-               {[Facebook, Instagram, Linkedin, Twitter].map((Icon, idx) => (
-                 <Link key={idx} href="#" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all hover:-translate-y-1">
-                   <Icon size={18} />
-                 </Link>
-               ))}
+               <Link href="https://www.facebook.com/profile.php?id=61562120493658" target="_blank" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all hover:-translate-y-1">
+                 <Facebook size={18} />
+               </Link>
+               <Link href="https://www.instagram.com/vxu.global/" target="_blank" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all hover:-translate-y-1">
+                 <Instagram size={18} />
+               </Link>
+               <Link href="https://www.linkedin.com/company/vxuglobal/" target="_blank" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all hover:-translate-y-1">
+                 <Linkedin size={18} />
+               </Link>
+               <Link href="https://x.com/vxu_global" target="_blank" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all hover:-translate-y-1">
+                 <Twitter size={18} />
+               </Link>
+               <Link href="https://www.youtube.com/@VXUGLOBALConsulting" target="_blank" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-secondary hover:text-white transition-all hover:-translate-y-1">
+                 <Youtube size={18} />
+               </Link>
             </div>
             <div className="pt-4 border-t border-white/5">
                 <div className="flex items-center gap-2 text-secondary font-black text-xs uppercase tracking-widest brightness-125">
