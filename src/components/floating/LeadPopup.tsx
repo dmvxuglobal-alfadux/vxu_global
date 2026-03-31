@@ -13,7 +13,7 @@ export function LeadPopup({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     const formData = new FormData(e.currentTarget)
     const payload = {
       name: formData.get("name"),
@@ -29,7 +29,7 @@ export function LeadPopup({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       })
-      
+
       if (res.ok) {
         setShowSuccess(true)
         // Keep screen visible for 5 seconds then close
@@ -65,14 +65,14 @@ export function LeadPopup({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
             </button>
 
             <div className="h-1.5 bg-gradient w-full"></div>
-            
+
             <div className="p-8">
               <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-5">
                 <Globe2 className="text-primary w-6 h-6" />
               </div>
 
               {showSuccess ? (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center py-8 text-center"
@@ -97,12 +97,13 @@ export function LeadPopup({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
                     <Input name="name" placeholder="Full Name" required className="h-11 text-xs rounded-lg bg-slate-50 border-slate-200" />
                     <Input name="email" type="email" placeholder="Email Address" required className="h-11 text-xs rounded-lg bg-slate-50 border-slate-200" />
                     <Input name="phone" type="tel" placeholder="WhatsApp Number" required className="h-11 text-xs rounded-lg bg-slate-50 border-slate-200" />
-                    
+
                     <select name="interest" defaultValue="" className="flex h-11 w-full rounded-lg border border-slate-200 bg-slate-50 py-2 px-3 text-xs font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary/20">
                       <option value="" disabled>Select Interest...</option>
                       <option value="study-abroad">Study Abroad Programs</option>
                       <option value="job-ready">Job Ready Programs</option>
                       <option value="mbbs">MBBS Abroad</option>
+                      <option value="MBA">Working Professionals MBA</option>
                     </select>
 
                     <select name="qualification" required defaultValue="" className="flex h-11 w-full rounded-lg border border-slate-200 bg-slate-50 py-2 px-3 text-xs font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary/20">
@@ -113,14 +114,14 @@ export function LeadPopup({ isOpen, onClose }: { isOpen: boolean, onClose: () =>
                       <option value="working">Working Professional</option>
                     </select>
 
-                    <Button 
-                      type="submit" 
+                    <Button
+                      type="submit"
                       disabled={isSubmitting}
                       className="w-full text-sm font-bold py-5 rounded-xl bg-gradient hover:opacity-90 transition-all shadow-lg shadow-primary/20 mt-2"
                     >
                       {isSubmitting ? "Processing..." : "Book Now"}
                     </Button>
-                    
+
                     <p className="text-[9px] text-center text-primary/40 mt-3 px-2">By submitting, you agree to receive updates via WhatsApp/Email.</p>
                   </form>
                 </>
