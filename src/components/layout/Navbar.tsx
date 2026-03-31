@@ -182,6 +182,13 @@ export function Navbar() {
                 </div>
 
                 <div className="space-y-4">
+                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b border-slate-50 pb-2">Professional Growth</div>
+                  <Link href="/mba-leadership-programs" onClick={() => setIsOpen(false)} className="block text-lg font-black text-primary flex items-center justify-between">
+                    Working professionals MBA <span className="text-[8px] bg-secondary text-white px-2 py-1 rounded-full font-black">FAST-TRACK</span>
+                  </Link>
+                </div>
+
+                <div className="space-y-4">
                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b border-slate-50 pb-2">Programs</div>
                   <Link href="/study-abroad-pathway" className="block text-lg font-black text-primary flex items-center justify-between" onClick={() => setIsOpen(false)}>
                     Pathway Program <span className="text-[6px] bg-secondary text-white px-1.5 py-0.5 rounded-full">40% Lesser Cost</span>
@@ -191,12 +198,7 @@ export function Navbar() {
                   ))}
                 </div>
 
-                <div className="space-y-4">
-                  <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b border-slate-50 pb-2">Professional Growth</div>
-                  <Link href="/mba-leadership-programs" onClick={() => setIsOpen(false)} className="block text-lg font-black text-primary flex items-center justify-between">
-                    MBA & Leadership <span className="text-[8px] bg-secondary text-white px-2 py-1 rounded-full font-black">FAST-TRACK</span>
-                  </Link>
-                </div>
+
 
                 <div className="space-y-4">
                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b border-slate-50 pb-2">Resources</div>
