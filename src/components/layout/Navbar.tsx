@@ -138,7 +138,7 @@ export function Navbar() {
 
                 {/* Working Professionals MBA Dropdown */}
                 <Link href="/mba-leadership-programs" className="text-sm font-bold text-slate-800 hover:text-primary transition-colors">
-                  MBA & Leadership
+                  Working Professionals MBA
                 </Link>
 
                 <Link href="/study-abroad-pathway" className="text-sm font-bold text-slate-800 hover:text-primary relative group">
@@ -184,7 +184,7 @@ export function Navbar() {
                 <div className="space-y-4">
                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b border-slate-50 pb-2">Professional Growth</div>
                   <Link href="/mba-leadership-programs" onClick={() => setIsOpen(false)} className="block text-lg font-black text-primary flex items-center justify-between">
-                    Working professionals MBA <span className="text-[8px] bg-secondary text-white px-2 py-1 rounded-full font-black">FAST-TRACK</span>
+                    Working Professionals MBA <span className="text-[8px] bg-secondary text-white px-2 py-1 rounded-full font-black">FAST-TRACK</span>
                   </Link>
                 </div>
 
