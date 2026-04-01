@@ -91,13 +91,13 @@ export function Navbar() {
         <div className="pointer-events-auto bg-white shadow-md border-b border-slate-100 transition-all duration-300">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="flex items-center justify-between h-20">
-              <Link href="/">
+              <Link href="/" className="relative flex-shrink-0 group">
                 <video 
                   autoPlay 
                   muted 
                   loop 
                   playsInline 
-                  className="h-10 lg:h-12 w-auto object-contain pointer-events-none"
+                  className="h-14 lg:h-16 w-auto object-contain pointer-events-none -my-2 py-1 transition-transform group-hover:scale-105 duration-300"
                   poster="/logo.png"
                 >
                   <source src="/logo_anim.mp4" type="video/mp4" />
