@@ -91,7 +91,19 @@ export function Navbar() {
         <div className="pointer-events-auto bg-white shadow-md border-b border-slate-100 transition-all duration-300">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="flex items-center justify-between h-20">
-              <Link href="/"><img src="/logo.png" alt="VXU Global" className="h-10 lg:h-12 object-contain" /></Link>
+              <Link href="/">
+                <video 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline 
+                  className="h-10 lg:h-12 w-auto object-contain pointer-events-none"
+                  poster="/logo.png"
+                >
+                  <source src="/logo_anim.mp4" type="video/mp4" />
+                  <img src="/logo.png" alt="VXU Global" className="h-full w-auto object-contain" />
+                </video>
+              </Link>
 
               {/* Desktop Nav */}
               <div className="hidden md:flex items-center gap-6 lg:gap-8">
