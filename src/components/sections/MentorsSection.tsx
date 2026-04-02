@@ -50,17 +50,17 @@ export function MentorsSection({
               {/* Background Accent */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[5rem] translate-x-10 -translate-y-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700"></div>
               
-              <div className="relative mb-8 text-center">
-                <div className="w-28 h-28 mx-auto rounded-3xl p-1 bg-gradient-to-tr from-primary via-blue-500 to-secondary transform -rotate-3 group-hover:rotate-0 transition-transform duration-500 overflow-hidden shadow-lg shadow-primary/20">
+              <div className="relative mb-10 text-center">
+                <div className="w-40 h-40 mx-auto rounded-[3rem] p-1.5 bg-gradient-to-br from-primary via-blue-400 to-secondary transform -rotate-6 group-hover:rotate-0 transition-all duration-700 overflow-hidden shadow-2xl shadow-primary/30">
                    <img 
-                     src={mentor.photo || "https://i.pravatar.cc/150"} 
+                     src={mentor.photo || "https://i.pravatar.cc/300"} 
                      alt={mentor.name} 
-                     className="w-full h-full object-cover rounded-[1.25rem] border-2 border-white"
+                     className="w-full h-full object-cover rounded-[2.5rem] border-4 border-white"
                    />
                 </div>
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded-full shadow-md border border-slate-50 flex items-center gap-1">
-                   <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Available</span>
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white px-5 py-2 rounded-2xl shadow-xl border border-slate-50 flex items-center gap-2 scale-110">
+                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+                   <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Active Mentor</span>
                 </div>
               </div>
 
