@@ -36,39 +36,55 @@ export function BrandAmbassadors({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {(limit ? ambassadors.slice(0, limit) : ambassadors).map((ambassador, i) => (
             <motion.div
               key={ambassador.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              whileHover={{ y: -10 }}
-              className="group relative bg-white rounded-3xl overflow-hidden border border-slate-100 hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300"
+              className="group relative h-[450px] rounded-[2.5rem] overflow-hidden shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-700 bg-white border border-slate-100"
             >
-              <div className="aspect-[4/5] overflow-hidden relative">
+              {/* Image with high-end filter */}
+              <div className="absolute inset-0">
                 <img 
-                  src={ambassador.photo || "https://i.pravatar.cc/300"} 
+                  src={ambassador.photo || "https://i.pravatar.cc/400"} 
                   alt={ambassador.name} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/30 to-transparent"></div>
+              </div>
+
+              {/* Top Badge */}
+              <div className="absolute top-6 left-6 z-10">
+                <div className="px-4 py-1.5 bg-white/20 backdrop-blur-xl border border-white/30 rounded-full flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-secondary rounded-full animate-pulse"></div>
+                  <span className="text-[10px] font-black uppercase tracking-[0.1em] text-white">Global Student Rep</span>
+                </div>
               </div>
               
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                 <h3 className="text-xl font-bold text-white mb-1 group-hover:text-amber-400 transition-colors">
+              {/* Glass Info Panel */}
+              <div className="absolute bottom-6 left-6 right-6 p-6 backdrop-blur-2xl bg-white/10 border border-white/20 rounded-3xl transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 text-center">
+                 <h3 className="text-xl font-black text-white mb-1">
                    {ambassador.name}
                  </h3>
-                 <p className="text-slate-300 text-sm font-medium mb-4">
+                 <p className="text-secondary font-black text-[9px] uppercase tracking-[0.2em] mb-4">
+                   Representing {ambassador.country}
+                 </p>
+                 
+                 <div className="h-px bg-white/10 w-full mb-4"></div>
+                 
+                 <p className="text-white/70 text-[11px] font-bold italic line-clamp-2 mb-0">
                    {ambassador.college}
                  </p>
-                 <div className="flex items-center justify-between">
-                    <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-semibold text-white border border-white/20">
-                      {ambassador.country}
-                    </span>
-                    <button className="w-8 h-8 bg-white text-primary rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-amber-400 hover:text-white">
-                      <ExternalLink size={14} />
+
+                 <div className="h-0 group-hover:h-12 overflow-hidden transition-all duration-500 mt-0 group-hover:mt-4 opacity-0 group-hover:opacity-100">
+                    <button 
+                      onClick={() => window.dispatchEvent(new CustomEvent("trigger-lead-form"))}
+                      className="w-full h-full bg-secondary text-white rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-white hover:text-primary transition-colors"
+                    >
+                      Connect with Rep <ExternalLink size={14} />
                     </button>
                  </div>
               </div>
@@ -76,10 +92,10 @@ export function BrandAmbassadors({
           ))}
         </div>
 
-        {showViewAll && ambassadors.length > limit && (
-          <div className="text-center mt-12">
-            <Link href="/ambassadors" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-full hover:bg-secondary transition-colors shadow-lg shadow-primary/20 group">
-               View All Ambassadors <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        {showViewAll && (ambassadors.length > limit || limit === 0) && (
+          <div className="text-center mt-20">
+            <Link href="/ambassadors" className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#001265] text-white font-black text-xs uppercase tracking-[0.2em] rounded-2xl hover:bg-secondary transition-all shadow-2xl shadow-primary/20 group">
+               Explore Global Network <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </Link>
           </div>
         )}
