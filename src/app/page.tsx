@@ -77,7 +77,7 @@ export default function Home() {
         <PartnerUniversities />
         
         <BrandAmbassadors ambassadors={ambassadors} />
-        <MentorsSection mentors={mentors} />
+        <MentorsSection mentors={mentors} limit={4} />
         <BlogsSection blogs={blogs} />
       </main>
 

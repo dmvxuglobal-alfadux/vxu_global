@@ -37,7 +37,7 @@ export function MentorsSection({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {(limit ? mentors.slice(0, limit) : mentors).map((mentor, i) => (
             <motion.div
               key={mentor.id}
@@ -45,59 +45,74 @@ export function MentorsSection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              whileHover={{ y: -10 }}
-              className="bg-white rounded-3xl p-6 shadow-sm hover:shadow-2xl transition-all duration-300 border border-slate-100 group relative overflow-hidden"
+              className="bg-white rounded-[2.5rem] p-8 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 border border-slate-100 group relative overflow-hidden flex flex-col h-full"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-bl-full pointer-events-none transition-transform group-hover:scale-110"></div>
+              {/* Background Accent */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[5rem] translate-x-10 -translate-y-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700"></div>
               
-              <div className="relative mb-6">
-                <div className="w-24 h-24 mx-auto rounded-full p-1 bg-gradient-to-tr from-primary to-secondary">
+              <div className="relative mb-8 text-center">
+                <div className="w-28 h-28 mx-auto rounded-3xl p-1 bg-gradient-to-tr from-primary via-blue-500 to-secondary transform -rotate-3 group-hover:rotate-0 transition-transform duration-500 overflow-hidden shadow-lg shadow-primary/20">
                    <img 
                      src={mentor.photo || "https://i.pravatar.cc/150"} 
                      alt={mentor.name} 
-                     className="w-full h-full object-cover rounded-full border-4 border-white"
+                     className="w-full h-full object-cover rounded-[1.25rem] border-2 border-white"
                    />
+                </div>
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-white px-3 py-1 rounded-full shadow-md border border-slate-50 flex items-center gap-1">
+                   <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Available</span>
                 </div>
               </div>
 
-              <div className="text-center relative z-10">
-                <h3 className="text-xl font-bold text-primary mb-1 group-hover:text-blue-600 transition-colors">
+              <div className="text-center flex flex-col flex-1">
+                <h3 className="text-xl font-black text-primary mb-1 group-hover:text-blue-600 transition-colors leading-tight">
                   {mentor.name}
                 </h3>
-                <p className="text-primary/70 font-medium text-sm mb-4">
+                <p className="text-secondary font-black text-[10px] uppercase tracking-[0.2em] mb-6">
                   {mentor.expertise}
                 </p>
                 
-                <div className="flex flex-col gap-3 text-sm text-primary/80 bg-white rounded-2xl p-4 mb-6">
-                   <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-2"><Briefcase size={14} className="text-primary/60"/> Company</span>
-                      <span className="font-semibold text-primary">{mentor.company}</span>
+                <div className="space-y-4 text-sm text-primary/80 bg-slate-50/50 border border-slate-100 rounded-[2rem] p-5 mb-8 flex-1">
+                   <div className="flex flex-col gap-1 text-left">
+                      <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 flex items-center gap-2">
+                        <Briefcase size={10} className="text-primary/40"/> Current Company
+                      </span>
+                      <span className="font-bold text-slate-700 text-sm whitespace-nowrap overflow-hidden text-ellipsis">{mentor.company}</span>
                    </div>
-                   <div className="flex items-center justify-between border-t border-slate-200/60 pt-3">
-                      <span className="text-primary/70">Experience</span>
-                      <span className="font-semibold text-primary">{mentor.experience}</span>
+                   <div className="h-px bg-slate-200/50 w-full"></div>
+                   <div className="flex flex-col gap-1 text-left">
+                      <span className="text-[9px] font-black uppercase tracking-widest text-slate-400">Expertise Level</span>
+                      <span className="font-bold text-primary text-sm">{mentor.experience} Industry Exp</span>
                    </div>
                 </div>
 
-                <a 
-                  href={mentor.linkedinUrl || "#"} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block w-full"
-                >
-                  <button className="w-full py-3 rounded-full border-2 border-slate-100 text-primary font-bold hover:bg-primary hover:text-white hover:border-slate-900 transition-all duration-300 flex items-center justify-center gap-2 group-hover:shadow-md">
-                     <Linkedin size={18} /> Connect
+                <div className="flex gap-3">
+                  <a 
+                    href={mentor.linkedinUrl || "#"} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex-1"
+                  >
+                    <button className="w-full h-12 rounded-2xl bg-slate-900 text-white font-black text-xs uppercase tracking-widest hover:bg-primary hover:shadow-xl hover:shadow-primary/20 transition-all duration-300 flex items-center justify-center gap-2">
+                       <Linkedin size={14} className="mb-0.5" /> Profile
+                    </button>
+                  </a>
+                  <button 
+                    onClick={() => window.dispatchEvent(new CustomEvent("trigger-lead-form"))}
+                    className="w-12 h-12 rounded-2xl border-2 border-slate-100 text-primary flex items-center justify-center hover:bg-secondary hover:text-white hover:border-secondary transition-all"
+                  >
+                    <ArrowRight size={18} />
                   </button>
-                </a>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {showViewAll && mentors.length > limit && (
-          <div className="text-center mt-12">
-            <Link href="/mentors" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-full hover:bg-secondary transition-colors shadow-lg shadow-primary/20 group">
-               View All Mentors <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        {showViewAll && (mentors.length > limit || limit === 0) && (
+          <div className="text-center mt-20">
+            <Link href="/mentors" className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#001265] text-white font-black text-xs uppercase tracking-[0.2em] rounded-2xl hover:bg-secondary transition-all shadow-2xl shadow-primary/20 group">
+               Explore More Mentors <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </Link>
           </div>
         )}
