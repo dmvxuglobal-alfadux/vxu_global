@@ -41,6 +41,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: true, data: { id: doc.id, ...doc.data() } });
     }
 
+    if (action === "upsert") {
+      await adminDb.collection(collection).doc(id).set({
+        ...data,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+      return NextResponse.json({ success: true });
+    }
+
     return NextResponse.json({ success: false, error: "Invalid action" }, { status: 400 });
   } catch (error: any) {
     console.error("Admin Database API Error Details:", error);
