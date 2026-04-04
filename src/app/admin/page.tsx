@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import { Plus, Trash2, Edit2, LogOut, FileText, Users, Award, Bell } from "lucide-react"
+import { Plus, Trash2, Edit2, LogOut, FileText, Users, Award, Bell, Globe2 } from "lucide-react"
 import { db } from "@/lib/db"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -77,6 +77,9 @@ export default function AdminDashboard() {
           <SidebarBtn active={activeTab === "announcement"} onClick={() => {setActiveTab("announcement"); closeForm()}} icon={<Bell size={18}/>}>
             Announcement
           </SidebarBtn>
+          <SidebarBtn active={activeTab === "popup"} onClick={() => {setActiveTab("popup"); closeForm()}} icon={<Globe2 size={18}/>}>
+            Campaign Popup
+          </SidebarBtn>
         </nav>
 
         <div className="pt-6 border-t border-slate-100">
@@ -101,12 +104,13 @@ export default function AdminDashboard() {
                     {activeTab === "mentors" && <Users className="text-blue-600"/>}
                     {activeTab === "ambassadors" && <Award className="text-blue-600"/>}
                     {activeTab === "announcement" && <Bell className="text-blue-600"/>}
+                    {activeTab === "popup" && <Globe2 className="text-blue-600"/>}
                     Manage {activeTab}
                   </h1>
                   <Button variant="outline" size="sm" onClick={fetchData} className="text-xs h-7 px-2">Reload List</Button>
                 </div>
                 
-                {!showForm && activeTab !== "announcement" && (
+                {!showForm && activeTab !== "announcement" && activeTab !== "popup" && (
                   <Button onClick={openAddForm} variant="gradient" className="gap-2">
                     <Plus size={18} /> Add New {activeTab.slice(0, -1)}
                   </Button>
@@ -163,6 +167,14 @@ export default function AdminDashboard() {
                        alert("Announcement Bar updated successfully!");
                     }} />
                  </div>
+              ) : activeTab === "popup" ? (
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                   <PopupForm onSave={async (obj: any) => {
+                      await db.updatePopupSettings(obj);
+                      fetchData();
+                      alert("Campaign Popup settings updated!");
+                   }} />
+                </div>
               ) : (
                 <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                   {activeTab === "blogs" && (
@@ -203,6 +215,61 @@ export default function AdminDashboard() {
         </div>
       </main>
     </div>
+  )
+}
+
+function PopupForm({ onSave }: any) {
+  const [settings, setSettings] = React.useState<any>(null);
+  const [loading, setLoading] = React.useState(true);
+  const [imageBase64, setImageBase64] = React.useState("");
+
+  React.useEffect(() => {
+    db.getPopupSettings().then(s => {
+      setSettings(s);
+      setImageBase64(s.promoImage);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) return <div className="p-12 text-center text-primary/50">Loading settings...</div>;
+
+  return (
+    <form className="space-y-6" onSubmit={(e:any) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      onSave({
+        promoTitle: fd.get("promoTitle"),
+        promoSubtitle: fd.get("promoSubtitle"),
+        showAfterSeconds: Number(fd.get("showAfterSeconds")),
+        promoImage: imageBase64
+      });
+    }}>
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+         <div className="space-y-6">
+           <div>
+             <label className="text-[10px] font-black text-primary/50 uppercase ml-1 mb-2 block">Popup Headline</label>
+             <Input name="promoTitle" defaultValue={settings?.promoTitle} placeholder="e.g. Special Deepavali Offer!" required />
+           </div>
+           <div>
+             <label className="text-[10px] font-black text-primary/50 uppercase ml-1 mb-2 block">Instruction Label</label>
+             <Input name="promoSubtitle" defaultValue={settings?.promoSubtitle} placeholder="e.g. Register now for 20% scholarship" required />
+           </div>
+           <div>
+             <label className="text-[10px] font-black text-primary/50 uppercase ml-1 mb-2 block">Auto-Show Delay (Seconds)</label>
+             <Input name="showAfterSeconds" type="number" defaultValue={settings?.showAfterSeconds} placeholder="e.g. 15" required />
+           </div>
+         </div>
+         <div className="bg-slate-50 p-6 rounded-3xl border border-dashed border-slate-200">
+           <label className="text-[10px] font-black text-primary/50 uppercase ml-1 mb-4 block">Visual Banner</label>
+           <ImageUpload defaultImage={imageBase64} onImageSelected={setImageBase64} />
+           <p className="text-[9px] text-primary/40 mt-4 leading-relaxed">Recommended: 800x1200px portrait image for best look in the popup.</p>
+         </div>
+       </div>
+       
+       <div className="pt-6 border-t border-slate-100 flex justify-end">
+          <Button type="submit" variant="gradient" className="px-10 h-14 rounded-2xl shadow-xl shadow-primary/20">Update Campaign Popup</Button>
+       </div>
+    </form>
   )
 }
 

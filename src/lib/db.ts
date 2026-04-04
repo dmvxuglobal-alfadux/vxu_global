@@ -39,6 +39,14 @@ export interface Ambassador {
   photo: string;
 }
 
+export interface PopupSettings {
+  id?: string;
+  promoImage: string;
+  promoTitle: string;
+  promoSubtitle: string;
+  showAfterSeconds: number;
+}
+
 export interface Announcement {
   id?: string;
   text: string;
@@ -161,6 +169,30 @@ export const vxuDb = {
 
   updateAmbassador: async (id: string, ambassador: Partial<Ambassador>): Promise<void> => {
     await proxyDb("update", "ambassadors", ambassador, id);
+  },
+
+  // Popup Settings
+  getPopupSettings: async (): Promise<PopupSettings> => {
+    try {
+      const res = await proxyDb("get", "settings", undefined, "popup");
+      return res.data || {
+        promoImage: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&fit=crop",
+        promoTitle: "Exclusive Offer!",
+        promoSubtitle: "Get a free 1-on-1 career roadmap session.",
+        showAfterSeconds: 15
+      };
+    } catch (e) {
+      return {
+        promoImage: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&fit=crop",
+        promoTitle: "Exclusive Offer!",
+        promoSubtitle: "Get a free 1-on-1 career roadmap session.",
+        showAfterSeconds: 15
+      };
+    }
+  },
+
+  updatePopupSettings: async (settings: Partial<PopupSettings>): Promise<void> => {
+    await proxyDb("upsert", "settings", settings, "popup");
   },
 
   // Announcement

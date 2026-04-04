@@ -45,10 +45,41 @@ export default function Home() {
   }, [])
 
   React.useEffect(() => {
-    // Listen for global lead form trigger
+    // 1. TIMED POPUP LOGIC
+    const triggerTimedPopup = async () => {
+      const s = await db.getPopupSettings();
+      const delay = (s?.showAfterSeconds || 15) * 1000;
+      const timer = setTimeout(() => {
+        if (!sessionStorage.getItem("lead_popup_shown")) {
+          setIsLeadPopupOpen(true);
+          sessionStorage.setItem("lead_popup_shown", "true");
+        }
+      }, delay);
+      return timer;
+    };
+
+    let pTimer: any;
+    triggerTimedPopup().then(t => pTimer = t);
+
+    // 2. EXIT INTENT LOGIC
+    const handleExitIntent = (e: MouseEvent) => {
+      if (e.clientY <= 0 && !sessionStorage.getItem("lead_popup_shown")) {
+        setIsLeadPopupOpen(true);
+        sessionStorage.setItem("lead_popup_shown", "true");
+      }
+    };
+
+    document.addEventListener("mouseleave", handleExitIntent);
+
+    // 3. GLOBAL TRIGGER EVENT
     const handleTrigger = () => setIsLeadPopupOpen(true)
     window.addEventListener("trigger-lead-form", handleTrigger)
-    return () => window.removeEventListener("trigger-lead-form", handleTrigger)
+
+    return () => {
+      if (pTimer) clearTimeout(pTimer);
+      document.removeEventListener("mouseleave", handleExitIntent);
+      window.removeEventListener("trigger-lead-form", handleTrigger);
+    }
   }, [])
 
   React.useEffect(() => {
